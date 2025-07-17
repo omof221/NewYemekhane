@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YemekhaneDataAccesLayer.Abstract
 {
-    public interface IAdminDal
+    public interface IAdminDal :IGenericDal<Admin>
     {
     }
 }
