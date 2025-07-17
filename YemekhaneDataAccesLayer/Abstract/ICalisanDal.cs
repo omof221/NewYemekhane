@@ -9,7 +9,7 @@ namespace YemekhaneDataAccesLayer.Abstract
 {
     public interface ICalisanDal : IGenericDal<Calisan>
     {
-        Calisan GetByKartNo(string kartNo);
+        Calisan GetByKartNo(int kartNo);
         Calisan GetByAdSoyad(string ad, string soyad);
         Calisan GetByGörev(string görev);
     }
