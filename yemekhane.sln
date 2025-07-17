@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YemekhaneEntityLayer", "YemekhaneEntityLayer\YemekhaneEntityLayer.csproj", "{5C31F3F7-C836-441E-B508-C90B5BF3D2B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YemekhaneEntityLayer", "YemekhaneEntityLayer\YemekhaneEntityLayer.csproj", "{5C31F3F7-C836-441E-B508-C90B5BF3D2B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YemekhaneDataAccesLayer", "YemekhaneDataAccesLayer\YemekhaneDataAccesLayer.csproj", "{3CB5B432-344D-48F9-BDF7-1BADFE958BDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YemekhaneDataAccesLayer", "YemekhaneDataAccesLayer\YemekhaneDataAccesLayer.csproj", "{3CB5B432-344D-48F9-BDF7-1BADFE958BDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YemekhaneBussssinesLayer.", "YemekhaneBussssinesLayer\YemekhaneBussssinesLayer..csproj", "{54D001A3-835B-4F2C-B492-F98BE52A1F5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YemekhaneHelpersLayer", "YemekhaneHelpersLayer\YemekhaneHelpersLayer.csproj", "{3FBCC8F8-781B-446E-B577-4EB35C992608}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +29,15 @@ Global
 		{54D001A3-835B-4F2C-B492-F98BE52A1F5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54D001A3-835B-4F2C-B492-F98BE52A1F5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54D001A3-835B-4F2C-B492-F98BE52A1F5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FBCC8F8-781B-446E-B577-4EB35C992608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FBCC8F8-781B-446E-B577-4EB35C992608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FBCC8F8-781B-446E-B577-4EB35C992608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FBCC8F8-781B-446E-B577-4EB35C992608}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {476B6615-77D0-4779-882D-C9077CEE2188}
 	EndGlobalSection
 EndGlobal
