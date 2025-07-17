@@ -19,7 +19,7 @@ namespace YemekhaneEntityLayer.Entities
 
         //TODO 
 
-        public List<Okutma> Okutmalar { get; set; }
+        public List<Okutmalar> Okutmal { get; set; }
 
 
 
