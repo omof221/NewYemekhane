@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YemekhaneEntityLayer.Entities;
 
 namespace YemekhaneBussssinesLayer_.Interfacess
 {
-    internal interface ICalisanService
+    public interface ICalisanService
     {
+        Calisan TGetByAdSoyad(string ad, string soyad);
+        Calisan TGetById(int id);
+
+        List<Calisan> TGetAll();
+        Calisan TGetByGörev(string id);
+
+        Calisan TGetByKartNo(string kartNo);
     }
 }
