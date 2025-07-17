@@ -13,7 +13,7 @@ namespace YemekhaneBussssinesLayer_.Interfacess
         Calisan TGetById(int id);
 
         List<Calisan> TGetAll();
-        Calisan TGetByGörev(string id);
+        Calisan TGetByGorev(string id);
 
         Calisan TGetByKartNo(string kartNo);
     }

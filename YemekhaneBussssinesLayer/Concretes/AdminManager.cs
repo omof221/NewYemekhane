@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YemekhaneBussssinesLayer_.Concretes
 {
-    internal class CalisanService
+    internal class AdminManager
     {
     }
 }

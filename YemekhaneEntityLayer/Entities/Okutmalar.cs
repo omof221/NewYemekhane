@@ -9,6 +9,9 @@ namespace YemekhaneEntityLayer.Entities
     public class Okutmalar
     {
         public int OkutmaID { get; set; }
+
+        public Calisan calisanID { get; set; }
+        public Calisan calisan { get; set; }
         public DateTime OkutmaTarihi { get; set; }
         public bool jokerGeçiş { get; set; }
         public int gecisCount { get; set; }
