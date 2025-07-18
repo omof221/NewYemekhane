@@ -12,9 +12,11 @@ namespace YemekhaneDataAccesLayer.EntityFramework
 {
     public class EFOkutmaDal : GenericRepository<Okutmalar>, IOkutmaDal
     {
+
         public bool BugunOkuttuMu(int calisanId)
         {
-            throw new NotImplementedException();
+            using var context = new YemekhaneContext();
+            return context.Okutmalarlar.Any(x => x.calisanID == calisanId && x.OkutmaTarihi == DateTime.Today && !x.jokerGeçiş);
         }
 
         public List<Okutmalar> GetByCalisanCount(DateTime tarih)
