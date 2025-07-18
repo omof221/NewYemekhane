@@ -1,0 +1,2 @@
+﻿1.DataAcces kısmının kodlanması tamamlanmıştır
+2.Entity kısmının kodlanması tamamlanmıştır	
