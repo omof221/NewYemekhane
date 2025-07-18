@@ -12,6 +12,7 @@ namespace YemekhaneDataAccesLayer.EntityFramework
 {
     public class EFAdminDal : GenericRepository<Admin>, IAdminDal
     {
+    
         public Admin GetByAdSoyad(string ad, string soyad)
         {
             using var context = new YemekhaneContext();
