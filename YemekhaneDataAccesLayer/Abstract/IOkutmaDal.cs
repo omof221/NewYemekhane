@@ -12,7 +12,7 @@ namespace YemekhaneDataAccesLayer.Abstract
         bool BugunOkuttuMu(int calisanId);
         List<Okutmalar> GetByDate(DateTime tarih);
         List<Okutmalar> GetByDateRange(DateTime baslangic, DateTime bitis);
-        List<Okutmalar> GetByUniqueCalisanCount(DateTime tarih);
-        List<Okutmalar> GetByCalisanCount(DateTime tarih);
+        int GetByUniqueCalisanCount(DateTime tarih);
+        int GetByCalisanCount(DateTime tarih);
     }
 }

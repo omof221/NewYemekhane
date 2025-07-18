@@ -19,7 +19,7 @@ namespace YemekhaneDataAccesLayer.EntityFramework
             return context.Okutmalarlar.Any(x => x.calisanID == calisanId && x.OkutmaTarihi == DateTime.Today && !x.jokerGeçiş);
         }
 
-        public List<Okutmalar> GetByCalisanCount(DateTime tarih)
+        public int GetByCalisanCount(DateTime tarih)
         {
             throw new NotImplementedException();
         }
@@ -34,7 +34,7 @@ namespace YemekhaneDataAccesLayer.EntityFramework
             throw new NotImplementedException();
         }
 
-        public List<Okutmalar> GetByUniqueCalisanCount(DateTime tarih)
+        public int GetByUniqueCalisanCount(DateTime tarih)
         {
             throw new NotImplementedException();
         }
