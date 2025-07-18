@@ -17,8 +17,6 @@ namespace YemekhaneEntityLayer.Entities
 
         public int calisanKartNo { get; set; }
 
-        //TODO 
-
         public List<Okutmalar> Okutmal { get; set; }
 
 

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YemekhaneBussssinesLayer_.Interfacess;
 using YemekhaneDataAccesLayer.Abstract;
 using YemekhaneEntityLayer.Entities;
 
 namespace YemekhaneBussssinesLayer_.Concretes
 {
-    public class CalisanManager
+    public class CalisanManager : ICalisanService
     {
         private readonly ICalisanDal _calisanDal;
 
@@ -17,7 +18,7 @@ namespace YemekhaneBussssinesLayer_.Concretes
         {
             _calisanDal = calisanDal;
         }
-
+            
         // Kart numarasına göre çalışanı getir
         public Calisan GetByKartNo(int kartNo)
             => _calisanDal.GetByKartNo(kartNo);
@@ -32,7 +33,7 @@ namespace YemekhaneBussssinesLayer_.Concretes
 
         //Göreve göre çalışanı getir
         public Calisan GetByGorev(string gorev)
-            => _calisanDal.GetByGörev(gorev);
+            => _calisanDal.GetByGorev(gorev);
         // Tüm çalışanları getir
         public List<Calisan> GetAll()
             => _calisanDal.GetAll();

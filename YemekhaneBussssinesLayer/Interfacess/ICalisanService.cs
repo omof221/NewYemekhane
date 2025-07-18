@@ -11,10 +11,9 @@ namespace YemekhaneBussssinesLayer_.Interfacess
     {
         Calisan TGetByAdSoyad(string ad, string soyad);
         Calisan TGetById(int id);
-
         List<Calisan> TGetAll();
-        Calisan TGetByGorev(string id);
+        Calisan TGetByGorev(string gorev);
 
-        Calisan TGetByKartNo(string kartNo);
+        Calisan TGetByKartNo(int kartNo);
     }
 }

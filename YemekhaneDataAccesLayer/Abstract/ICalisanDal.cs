@@ -11,6 +11,6 @@ namespace YemekhaneDataAccesLayer.Abstract
     {
         Calisan GetByKartNo(int kartNo);
         Calisan GetByAdSoyad(string ad, string soyad);
-        Calisan GetByGörev(string görev);
+        Calisan GetByGorev(string gorev);
     }
 }

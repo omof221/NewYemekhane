@@ -18,10 +18,10 @@ namespace YemekhaneDataAccesLayer.EntityFramework
             return context.Calisanlar.FirstOrDefault(x => x.calisanIsmi == ad && x.calisanSoyad == soyad);
         }
 
-        public Calisan GetByGörev(string görev)
+        public Calisan GetByGorev(string gorev)
         {
             using var context = new YemekhaneContext();
-            return context.Calisanlar.FirstOrDefault(x => x.calisanGorevi == görev);    
+            return context.Calisanlar.FirstOrDefault(x => x.calisanGorevi == gorev);    
 
         }
 
