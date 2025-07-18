@@ -19,7 +19,7 @@ namespace YemekhaneBussssinesLayer_.Concretes
         }
 
         // Kart numarasına göre çalışanı getir
-        public Calisan GetByKartNo(string kartNo)
+        public Calisan GetByKartNo(int kartNo)
             => _calisanDal.GetByKartNo(kartNo);
 
         // Ad ve soyad'a göre çalışanı getir

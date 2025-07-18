@@ -12,11 +12,13 @@ namespace YemekhaneBussssinesLayer_.Concretes
     {
         public readonly IOkutmaDal _okutmaDal;
 
-        // Constructor - dependency injection ile ICalisanDal dışarıdan alınır
-        public OkutmaManager(IOkutmaDal _okutmaDal)
+        public OkutmaManager(IOkutmaDal okutmaDal)
         {
-            _okutmaDal = _okutmaDal;
+            _okutmaDal = okutmaDal;
         }
+
+        // Constructor - dependency injection ile ICalisanDal dışarıdan alınır
+
         public void Ekle(Okutmalar okutma) 
         { _okutmaDal.Insert(okutma); }
 
@@ -32,7 +34,7 @@ namespace YemekhaneBussssinesLayer_.Concretes
 
         public int GetUniqueCalisanCount(DateTime tarih)
 
-        { return _okutmaDal.GetUniqueCalisanCount(tarih); }
+        { return _okutmaDal.GetByUniqueCalisanCount(tarih); }
 
     }
 }
