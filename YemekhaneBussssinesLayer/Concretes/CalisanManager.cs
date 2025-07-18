@@ -9,7 +9,7 @@ using YemekhaneEntityLayer.Entities;
 
 namespace YemekhaneBussssinesLayer_.Concretes
 {
-    public class CalisanManager : ICalisanService
+    public class CalisanManager 
     {
         private readonly ICalisanDal _calisanDal;
 
