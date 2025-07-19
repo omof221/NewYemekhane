@@ -45,6 +45,11 @@ namespace YemekhaneBussssinesLayer_.Concretes
             throw new NotImplementedException();
         }
 
+        public Calisan TGetByKartNo(int kartNo)
+        {
+            throw new NotImplementedException();
+        }
+
         //// Kart numarasına göre çalışanı getir
         //public Calisan GetByKartNo(int kartNo)
         //    => _calisanDal.GetByKartNo(kartNo);

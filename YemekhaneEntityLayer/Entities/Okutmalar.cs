@@ -10,7 +10,7 @@ namespace YemekhaneEntityLayer.Entities
     {
         public int OkutmaID { get; set; }
 
-        public Calisan calisanID { get; set; }
+        public int calisanID { get; set; }
         public Calisan calisan { get; set; }
         public DateTime OkutmaTarihi { get; set; }
         public bool jokerGecis { get; set; }

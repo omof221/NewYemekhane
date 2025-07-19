@@ -13,10 +13,10 @@ namespace YemekhaneDataAccesLayer.EntityFramework
     public class EFOkutmaDal : GenericRepository<Okutmalar>, IOkutmaDal
     {
 
-        public bool BugunOkuttuMu(int calisanId)
+        public bool BugunOkuttuMu(int calisanID)
         {
             using var context = new YemekhaneContext();
-            return context.Okutmalarlar.Any(x => x.calisanID == calisanId && x.OkutmaTarihi == DateTime.Today && !x.jokerGeçiş);
+            return context.Okutmalar.Any(x => x.calisanID == calisanID && x.OkutmaTarihi.Date == DateTime.Today && !x.jokerGecis);
         }
 
         public int GetByCalisanCount(DateTime tarih)
