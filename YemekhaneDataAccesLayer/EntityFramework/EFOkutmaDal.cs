@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,27 +17,44 @@ namespace YemekhaneDataAccesLayer.EntityFramework
         public bool BugunOkuttuMu(int calisanID)
         {
             using var context = new YemekhaneContext();
-            return context.Okutmalar.Any(x => x.calisanID == calisanID && x.OkutmaTarihi.Date == DateTime.Today && !x.jokerGecis);
+            return context.Okutmalarlar.Any(x => x.calisanID.calisanID == calisanId && x.OkutmaTarihi == DateTime.Today && !x.jokerGecis);
         }
 
         public int GetByCalisanCount(DateTime tarih)
         {
-            throw new NotImplementedException();
+            using var context = new YemekhaneContext();
+            return context.Okutmalarlar
+                          .Where(x => x.OkutmaTarihi == tarih && !x.jokerGecis)
+                          .Select(x => x.calisanID)
+                          .Count();
         }
 
         public List<Okutmalar> GetByDate(DateTime tarih)
         {
-            throw new NotImplementedException();
+            using var context = new YemekhaneContext();
+            return context.Okutmalarlar
+                          .Include(x => x.OkutmaTarihi)
+                          .Where(x => x.OkutmaTarihi.Date == tarih.Date)
+                          .ToList();
         }
 
         public List<Okutmalar> GetByDateRange(DateTime baslangic, DateTime bitis)
         {
-            throw new NotImplementedException();
+            using var context = new YemekhaneContext();
+            return context.Okutmalarlar
+                          .Include(x => x.calisan)
+                          .Where(x => x.OkutmaTarihi >= baslangic && x.OkutmaTarihi <= bitis)
+                          .ToList();
         }
 
         public int GetByUniqueCalisanCount(DateTime tarih)
         {
-            throw new NotImplementedException();
+            using var context = new YemekhaneContext();
+            return context.Okutmalarlar
+                          .Where(x => x.OkutmaTarihi == tarih && !x.jokerGecis)
+                          .Select(x => x.calisanID)
+                          .Distinct()
+                          .Count();
         }
     }
 }

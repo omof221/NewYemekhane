@@ -3,38 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YemekhaneBussssinesLayer_.Interfacess;
 using YemekhaneDataAccesLayer.Abstract;
 using YemekhaneEntityLayer.Entities;
 
 namespace YemekhaneBussssinesLayer_.Concretes
 {
-    public class OkutmaManager
+    public class OkutmaManager : IOkutmaService
     {
-        public readonly IOkutmaDal _okutmaDal;
+        private readonly IOkutmaDal _okutmaDal;
 
         public OkutmaManager(IOkutmaDal okutmaDal)
         {
             _okutmaDal = okutmaDal;
         }
 
-        // Constructor - dependency injection ile ICalisanDal dışarıdan alınır
+        public bool TBugunOkuttuMu(int calisanId)
+        {
+            return _okutmaDal.BugunOkuttuMu(calisanId); 
+        }
 
-        public void Ekle(Okutmalar okutma) 
-        { _okutmaDal.Insert(okutma); }
+        public void TEkle(Okutmalar okutma)
+        {
+            throw new NotImplementedException();
+        }
 
-        public bool BugunOkuttuMu(int calisanId) 
-        { return _okutmaDal.BugunOkuttuMu(calisanId); }
+        public int TGetByCalisanCount(DateTime tarih)
+        {
+            throw new NotImplementedException();
+        }
 
-        public List<Okutmalar> GetByDate(DateTime tarih)
-        { return _okutmaDal.GetByDate(tarih); }
+        public List<Okutmalar> TGetByDate(DateTime tarih)
+        {
+            throw new NotImplementedException();
+        }
 
-        public List<Okutmalar> GetByDateRange(DateTime baslangic, DateTime bitis)
+        public List<Okutmalar> TGetByDateRange(DateTime baslangic, DateTime bitis)
+        {
+            throw new NotImplementedException();
+        }
 
-        { return _okutmaDal.GetByDateRange(baslangic, bitis); }
-
-        public int GetUniqueCalisanCount(DateTime tarih)
-
-        { return _okutmaDal.GetByUniqueCalisanCount(tarih); }
-
+        public int TGetByUniqueCalisanCount(DateTime tarih)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

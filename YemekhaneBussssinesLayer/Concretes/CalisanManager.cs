@@ -17,7 +17,7 @@ namespace YemekhaneBussssinesLayer_.Concretes
         // Constructor - dependency injection ile ICalisanDal dışarıdan alınır
         public CalisanManager(ICalisanDal calisanDal)
         {
-            _calisanDal = calisanDal;
+            _calisanDal = calisanDal; 
         }
 
         public List<Calisan> TGetAll()
