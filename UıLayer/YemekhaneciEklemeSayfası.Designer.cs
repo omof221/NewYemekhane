@@ -41,12 +41,16 @@
             listBox1 = new ListBox();
             button1 = new Button();
             dataGridView2 = new DataGridView();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(88, 35);
+            textBox1.Location = new Point(98, 102);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(153, 27);
             textBox1.TabIndex = 0;
@@ -54,7 +58,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(40, 42);
+            label1.Location = new Point(50, 109);
             label1.Name = "label1";
             label1.Size = new Size(36, 20);
             label1.TabIndex = 1;
@@ -63,7 +67,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(19, 92);
+            label2.Location = new Point(29, 159);
             label2.Name = "label2";
             label2.Size = new Size(60, 20);
             label2.TabIndex = 3;
@@ -71,7 +75,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(88, 85);
+            textBox2.Location = new Point(98, 152);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(153, 27);
             textBox2.TabIndex = 2;
@@ -79,7 +83,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(41, 138);
+            label3.Location = new Point(51, 205);
             label3.Name = "label3";
             label3.Size = new Size(38, 20);
             label3.TabIndex = 5;
@@ -87,7 +91,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(88, 131);
+            textBox3.Location = new Point(98, 198);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(153, 27);
             textBox3.TabIndex = 4;
@@ -95,7 +99,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(-9, 200);
+            label4.Location = new Point(1, 267);
             label4.Name = "label4";
             label4.Size = new Size(88, 20);
             label4.TabIndex = 7;
@@ -103,7 +107,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(88, 193);
+            textBox4.Location = new Point(98, 260);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(153, 27);
             textBox4.TabIndex = 6;
@@ -111,7 +115,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(40, 257);
+            label5.Location = new Point(50, 324);
             label5.Name = "label5";
             label5.Size = new Size(39, 20);
             label5.TabIndex = 9;
@@ -119,7 +123,7 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(88, 250);
+            textBox5.Location = new Point(98, 317);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(153, 27);
             textBox5.TabIndex = 8;
@@ -127,15 +131,15 @@
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(473, 16);
+            listBox1.Location = new Point(519, 12);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(447, 204);
+            listBox1.Size = new Size(968, 284);
             listBox1.TabIndex = 10;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // button1
             // 
-            button1.Location = new Point(88, 298);
+            button1.Location = new Point(570, 335);
             button1.Name = "button1";
             button1.Size = new Size(153, 68);
             button1.TabIndex = 11;
@@ -146,18 +150,62 @@
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(475, 269);
+            dataGridView2.Location = new Point(519, 321);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(445, 197);
+            dataGridView2.Size = new Size(968, 452);
             dataGridView2.TabIndex = 12;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(350, 705);
+            button2.Name = "button2";
+            button2.Size = new Size(153, 68);
+            button2.TabIndex = 13;
+            button2.Text = "Seçili Satırı Sil";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(12, 12);
+            button3.Name = "button3";
+            button3.Size = new Size(153, 68);
+            button3.TabIndex = 14;
+            button3.Text = "Önceki Sayfaya Dön";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(98, 455);
+            button4.Name = "button4";
+            button4.Size = new Size(153, 68);
+            button4.TabIndex = 15;
+            button4.Text = "Güncelle";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(98, 365);
+            button5.Name = "button5";
+            button5.Size = new Size(153, 68);
+            button5.TabIndex = 16;
+            button5.Text = "Ekle";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // YemekhaneciEklemeSayfası
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1295, 506);
+            ClientSize = new Size(1569, 810);
+            Controls.Add(button5);
+            Controls.Add(button4);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(dataGridView2);
             Controls.Add(button1);
             Controls.Add(listBox1);
@@ -198,5 +246,9 @@
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn username;
         private DataGridView dataGridView2;
+        private Button button2;
+        private Button button3;
+        private Button button4;
+        private Button button5;
     }
 }

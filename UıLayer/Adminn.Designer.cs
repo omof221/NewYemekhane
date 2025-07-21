@@ -29,57 +29,92 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            maskedTextBox1 = new MaskedTextBox();
-            textBox1 = new TextBox();
+            txtKullaniciAdi = new MaskedTextBox();
+            txtSifre = new TextBox();
+            btnGirisYap = new Button();
+            label2 = new Label();
+            label3 = new Label();
             button1 = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(50, 20);
+            label1.Location = new Point(56, 102);
             label1.Name = "label1";
             label1.Size = new Size(132, 20);
             label1.TabIndex = 0;
             label1.Text = "Admin Giriş Portalı";
             label1.Click += label1_Click;
             // 
-            // maskedTextBox1
+            // txtKullaniciAdi
             // 
-            maskedTextBox1.Location = new Point(50, 63);
-            maskedTextBox1.Mask = "00000000000";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(125, 27);
-            maskedTextBox1.TabIndex = 1;
-            maskedTextBox1.ValidatingType = typeof(int);
+            txtKullaniciAdi.Location = new Point(191, 157);
+            txtKullaniciAdi.Name = "txtKullaniciAdi";
+            txtKullaniciAdi.Size = new Size(186, 27);
+            txtKullaniciAdi.TabIndex = 1;
+            txtKullaniciAdi.ValidatingType = typeof(int);
             // 
-            // textBox1
+            // txtSifre
             // 
-            textBox1.Location = new Point(50, 110);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 2;
+            txtSifre.Location = new Point(191, 215);
+            txtSifre.Name = "txtSifre";
+            txtSifre.Size = new Size(186, 27);
+            txtSifre.TabIndex = 2;
+            txtSifre.UseSystemPasswordChar = true;
+            // 
+            // btnGirisYap
+            // 
+            btnGirisYap.Location = new Point(191, 267);
+            btnGirisYap.Name = "btnGirisYap";
+            btnGirisYap.Size = new Size(125, 29);
+            btnGirisYap.TabIndex = 3;
+            btnGirisYap.Text = "Giriş Yap";
+            btnGirisYap.UseVisualStyleBackColor = true;
+            btnGirisYap.Click += button1_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(44, 157);
+            label2.Name = "label2";
+            label2.Size = new Size(92, 20);
+            label2.TabIndex = 4;
+            label2.Text = "Kullanıcı Adı";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(56, 222);
+            label3.Name = "label3";
+            label3.Size = new Size(39, 20);
+            label3.TabIndex = 5;
+            label3.Text = "Şifre";
+            label3.Click += label3_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(50, 160);
+            button1.Location = new Point(30, 12);
             button1.Name = "button1";
-            button1.Size = new Size(125, 29);
-            button1.TabIndex = 3;
-            button1.Text = "Giriş Yap";
+            button1.Size = new Size(212, 54);
+            button1.TabIndex = 6;
+            button1.Text = "Önceki Sayfaya Dön";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += button1_Click_1;
             // 
-            // Admin
+            // Adminn
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(247, 248);
+            ClientSize = new Size(567, 410);
             Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(maskedTextBox1);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(btnGirisYap);
+            Controls.Add(txtSifre);
+            Controls.Add(txtKullaniciAdi);
             Controls.Add(label1);
-            Name = "Admin";
+            Name = "Adminn";
             Text = "Admin";
             ResumeLayout(false);
             PerformLayout();
@@ -88,8 +123,11 @@
         #endregion
 
         private Label label1;
-        private MaskedTextBox maskedTextBox1;
-        private TextBox textBox1;
+        private MaskedTextBox txtKullaniciAdi;
+        private TextBox txtSifre;
+        private Button btnGirisYap;
+        private Label label2;
+        private Label label3;
         private Button button1;
     }
 }
