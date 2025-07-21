@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToDoList", "ToDoList", "{CA
 		Yapılan  İşler.txt = Yapılan  İşler.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{C9E1E1F7-9AA0-4EB5-BE4A-45EBDCFCA765}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UıLayer", "UıLayer\UıLayer.csproj", "{4882EAD4-413D-4FC5-AB99-8E370A847A87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{3FBCC8F8-781B-446E-B577-4EB35C992608}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FBCC8F8-781B-446E-B577-4EB35C992608}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FBCC8F8-781B-446E-B577-4EB35C992608}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9E1E1F7-9AA0-4EB5-BE4A-45EBDCFCA765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9E1E1F7-9AA0-4EB5-BE4A-45EBDCFCA765}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9E1E1F7-9AA0-4EB5-BE4A-45EBDCFCA765}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9E1E1F7-9AA0-4EB5-BE4A-45EBDCFCA765}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4882EAD4-413D-4FC5-AB99-8E370A847A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4882EAD4-413D-4FC5-AB99-8E370A847A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4882EAD4-413D-4FC5-AB99-8E370A847A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4882EAD4-413D-4FC5-AB99-8E370A847A87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
