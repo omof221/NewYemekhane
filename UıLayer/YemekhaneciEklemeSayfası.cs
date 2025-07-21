@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -79,6 +80,16 @@ namespace UıLayer
         }
 
         private void YemekhaneciEklemeSayfası_Load_1(object sender, EventArgs e)
+        {
+
+        }
+        public void verilerigöster(string veriler)
+        {
+            SqlDataAdapter da = new SqlDataAdapter(veriler, context);
+            
+        
+        }
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
