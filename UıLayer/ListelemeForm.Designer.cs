@@ -31,12 +31,15 @@
             comboBox1 = new ComboBox();
             label1 = new Label();
             label2 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
-            button1 = new Button();
-            checkBox1 = new CheckBox();
-            button2 = new Button();
-            button3 = new Button();
+            dtpBaslangic = new DateTimePicker();
+            dtpBitis = new DateTimePicker();
+            btnPersonelSecimi = new Button();
+            cbTumPersonel = new CheckBox();
+            btnRaporCikar = new Button();
+            btnExceleAktar = new Button();
+            dataGridView1 = new DataGridView();
+            label3 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // comboBox1
@@ -51,7 +54,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(603, 15);
+            label1.Location = new Point(597, 59);
             label1.Name = "label1";
             label1.Size = new Size(114, 20);
             label1.TabIndex = 1;
@@ -61,83 +64,108 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(603, 68);
+            label2.Location = new Point(597, 112);
             label2.Name = "label2";
             label2.Size = new Size(79, 20);
             label2.TabIndex = 2;
             label2.Text = "Bitiş Tarihi:";
             // 
-            // dateTimePicker1
+            // dtpBaslangic
             // 
-            dateTimePicker1.Location = new Point(750, 10);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 3;
+            dtpBaslangic.Location = new Point(744, 54);
+            dtpBaslangic.Name = "dtpBaslangic";
+            dtpBaslangic.Size = new Size(250, 27);
+            dtpBaslangic.TabIndex = 3;
             // 
-            // dateTimePicker2
+            // dtpBitis
             // 
-            dateTimePicker2.Location = new Point(750, 63);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 27);
-            dateTimePicker2.TabIndex = 4;
+            dtpBitis.Location = new Point(744, 107);
+            dtpBitis.Name = "dtpBitis";
+            dtpBitis.Size = new Size(250, 27);
+            dtpBitis.TabIndex = 4;
+            dtpBitis.ValueChanged += dateTimePicker2_ValueChanged;
             // 
-            // button1
+            // btnPersonelSecimi
             // 
-            button1.Location = new Point(385, 10);
-            button1.Name = "button1";
-            button1.Size = new Size(145, 44);
-            button1.TabIndex = 5;
-            button1.Text = "Personel Seçimi";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnPersonelSecimi.Location = new Point(411, 54);
+            btnPersonelSecimi.Name = "btnPersonelSecimi";
+            btnPersonelSecimi.Size = new Size(145, 44);
+            btnPersonelSecimi.TabIndex = 5;
+            btnPersonelSecimi.Text = "Personel Seçimi";
+            btnPersonelSecimi.UseVisualStyleBackColor = true;
+            btnPersonelSecimi.Click += button1_Click;
             // 
-            // checkBox1
+            // cbTumPersonel
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(397, 67);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(119, 24);
-            checkBox1.TabIndex = 6;
-            checkBox1.Text = "Tüm Personel";
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            cbTumPersonel.AutoSize = true;
+            cbTumPersonel.Location = new Point(423, 111);
+            cbTumPersonel.Name = "cbTumPersonel";
+            cbTumPersonel.Size = new Size(119, 24);
+            cbTumPersonel.TabIndex = 6;
+            cbTumPersonel.Text = "Tüm Personel";
+            cbTumPersonel.UseVisualStyleBackColor = true;
+            cbTumPersonel.CheckedChanged += checkBox1_CheckedChanged;
             // 
-            // button2
+            // btnRaporCikar
             // 
-            button2.Location = new Point(1018, 5);
-            button2.Name = "button2";
-            button2.Size = new Size(270, 49);
-            button2.TabIndex = 8;
-            button2.Text = "Rapor Çıkar";
-            button2.UseVisualStyleBackColor = true;
+            btnRaporCikar.Location = new Point(1018, 30);
+            btnRaporCikar.Name = "btnRaporCikar";
+            btnRaporCikar.Size = new Size(270, 49);
+            btnRaporCikar.TabIndex = 8;
+            btnRaporCikar.Text = "Rapor Çıkar";
+            btnRaporCikar.UseVisualStyleBackColor = true;
+            btnRaporCikar.Click += button2_Click;
             // 
-            // button3
+            // btnExceleAktar
             // 
-            button3.Location = new Point(1018, 67);
-            button3.Name = "button3";
-            button3.Size = new Size(270, 50);
-            button3.TabIndex = 10;
-            button3.Text = "Excel'e aktar";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            btnExceleAktar.Location = new Point(1018, 92);
+            btnExceleAktar.Name = "btnExceleAktar";
+            btnExceleAktar.Size = new Size(270, 50);
+            btnExceleAktar.TabIndex = 10;
+            btnExceleAktar.Text = "Excel'e aktar";
+            btnExceleAktar.UseVisualStyleBackColor = true;
+            btnExceleAktar.Click += button3_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(7, 162);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(1281, 413);
+            dataGridView1.TabIndex = 11;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(815, 20);
+            label3.Name = "label3";
+            label3.Size = new Size(88, 20);
+            label3.TabIndex = 12;
+            label3.Text = "Tarih Seçimi";
             // 
             // ListelemeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1300, 824);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(checkBox1);
-            Controls.Add(button1);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(label3);
+            Controls.Add(dataGridView1);
+            Controls.Add(btnExceleAktar);
+            Controls.Add(btnRaporCikar);
+            Controls.Add(cbTumPersonel);
+            Controls.Add(btnPersonelSecimi);
+            Controls.Add(dtpBitis);
+            Controls.Add(dtpBaslangic);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(comboBox1);
             Name = "ListelemeForm";
             Text = "ListelemeForm";
             Load += ListelemeForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -147,11 +175,13 @@
         private ComboBox comboBox1;
         private Label label1;
         private Label label2;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private Button button1;
-        private CheckBox checkBox1;
-        private Button button2;
-        private Button button3;
+        private DateTimePicker dtpBaslangic;
+        private DateTimePicker dtpBitis;
+        private Button btnPersonelSecimi;
+        private CheckBox cbTumPersonel;
+        private Button btnRaporCikar;
+        private Button btnExceleAktar;
+        private DataGridView dataGridView1;
+        private Label label3;
     }
 }
