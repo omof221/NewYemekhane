@@ -40,6 +40,8 @@
             textBox5 = new TextBox();
             listBox1 = new ListBox();
             button1 = new Button();
+            dataGridView2 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // textBox1
@@ -125,9 +127,9 @@
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(449, 25);
+            listBox1.Location = new Point(473, 16);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(488, 464);
+            listBox1.Size = new Size(447, 204);
             listBox1.TabIndex = 10;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -141,11 +143,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(475, 269);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.Size = new Size(445, 197);
+            dataGridView2.TabIndex = 12;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            // 
             // YemekhaneciEklemeSayfası
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(958, 511);
+            ClientSize = new Size(1295, 506);
+            Controls.Add(dataGridView2);
             Controls.Add(button1);
             Controls.Add(listBox1);
             Controls.Add(label5);
@@ -160,6 +173,8 @@
             Controls.Add(textBox1);
             Name = "YemekhaneciEklemeSayfası";
             Text = "YemekhaneciEklemeSayfası";
+            Load += YemekhaneciEklemeSayfası_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -178,5 +193,10 @@
         private TextBox textBox5;
         private ListBox listBox1;
         private Button button1;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn İsim;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn username;
+        private DataGridView dataGridView2;
     }
 }
