@@ -28,18 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            button1 = new Button();
             SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Location = new Point(32, 41);
+            button1.Name = "button1";
+            button1.Size = new Size(192, 77);
+            button1.TabIndex = 0;
+            button1.Text = "Yemekhaneci Ekleme";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // Admin_Detay
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(993, 502);
+            ClientSize = new Size(911, 554);
+            Controls.Add(button1);
             Name = "Admin_Detay";
             Text = "Admin_Detay";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button button1;
     }
 }

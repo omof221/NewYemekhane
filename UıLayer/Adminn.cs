@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UıLayer
 {
-    public partial class Admin : Form
+    public partial class Adminn : Form
     {
-        public Admin()
+        public Adminn()
         {
             InitializeComponent();
         }

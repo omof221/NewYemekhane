@@ -9,7 +9,7 @@ namespace UıLayer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Admin admn = new Admin();
+            Adminn admn = new Adminn();
             admn.Show();
             this.Hide();    
         }
