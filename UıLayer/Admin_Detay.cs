@@ -16,5 +16,13 @@ namespace UıLayer
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            YemekhaneciEklemeSayfası ymk = new();
+            ymk.Show();
+            this.Hide();
+
+        }
     }
 }

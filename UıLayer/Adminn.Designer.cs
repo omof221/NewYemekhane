@@ -1,6 +1,6 @@
 ﻿namespace UıLayer
 {
-    partial class Admin
+    partial class Adminn
     {
         /// <summary>
         /// Required designer variable.
