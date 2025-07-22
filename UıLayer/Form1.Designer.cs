@@ -33,9 +33,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(12, 12);
+            button1.Location = new Point(30, 12);
             button1.Name = "button1";
-            button1.Size = new Size(166, 105);
+            button1.Size = new Size(189, 133);
             button1.TabIndex = 0;
             button1.Text = "Admin Girişi";
             button1.UseVisualStyleBackColor = true;

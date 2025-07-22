@@ -14,6 +14,7 @@ namespace YemekhaneDataAccesLayer.Context
         public DbSet<Calisan> Calisanlar { get; set; }
         public DbSet<Okutmalar> Okutmalar { get; set; }
         public DbSet<Admin> Adminler { get; set; }
+        public DbSet<YemekhaneCalisan> yemekhaneCalisanlar { get; set; }
         // public YemekhaneContext(DbContextOptions<YemekhaneContext> options)
         //: base(options)
         // {
