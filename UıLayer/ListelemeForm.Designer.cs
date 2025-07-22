@@ -42,6 +42,8 @@
             button2 = new Button();
             label4 = new Label();
             button3 = new Button();
+            comboBox1 = new ComboBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -102,7 +104,7 @@
             // 
             // btnRaporCikar
             // 
-            btnRaporCikar.Location = new Point(749, 15);
+            btnRaporCikar.Location = new Point(1012, 17);
             btnRaporCikar.Name = "btnRaporCikar";
             btnRaporCikar.Size = new Size(99, 112);
             btnRaporCikar.TabIndex = 8;
@@ -112,7 +114,7 @@
             // 
             // btnExceleAktar
             // 
-            btnExceleAktar.Location = new Point(875, 15);
+            btnExceleAktar.Location = new Point(1138, 17);
             btnExceleAktar.Name = "btnExceleAktar";
             btnExceleAktar.Size = new Size(98, 112);
             btnExceleAktar.TabIndex = 10;
@@ -127,7 +129,7 @@
             dataGridView1.Location = new Point(6, 149);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1131, 660);
+            dataGridView1.Size = new Size(1395, 660);
             dataGridView1.TabIndex = 11;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -149,7 +151,7 @@
             // 
             button2.BackColor = Color.Red;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(1030, 57);
+            button2.Location = new Point(1293, 59);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 14;
@@ -160,7 +162,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1030, 18);
+            label4.Location = new Point(1293, 20);
             label4.Name = "label4";
             label4.Size = new Size(92, 20);
             label4.TabIndex = 15;
@@ -175,11 +177,31 @@
             button3.Text = "Yeni Okutma Ekle";
             button3.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(735, 91);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(225, 28);
+            comboBox1.TabIndex = 17;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(723, 41);
+            label5.Name = "label5";
+            label5.Size = new Size(266, 20);
+            label5.TabIndex = 18;
+            label5.Text = "Almak İstediğiniz Rapor Türünü Seçiniz";
+            // 
             // ListelemeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1144, 824);
+            ClientSize = new Size(1409, 824);
+            Controls.Add(label5);
+            Controls.Add(comboBox1);
             Controls.Add(button3);
             Controls.Add(label4);
             Controls.Add(button2);
@@ -216,5 +238,7 @@
         private Button button2;
         private Label label4;
         private Button button3;
+        private ComboBox comboBox1;
+        private Label label5;
     }
 }

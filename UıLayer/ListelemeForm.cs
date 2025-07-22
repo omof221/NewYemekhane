@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 using YemekhaneDataAccesLayer.Context; 
 using YemekhaneEntityLayer.Entities;   
 
@@ -22,11 +23,6 @@ namespace UıLayer
         {
             InitializeComponent();
 
-            dataGridViewOkutmalar = new DataGridView();
-            dataGridViewOkutmalar.Name = "dataGridViewOkutmalar";
-            dataGridViewOkutmalar.Size = new Size(800, 300);
-            dataGridViewOkutmalar.Location = new Point(20, 20);
-            this.Controls.Add(dataGridViewOkutmalar);
         }
 
         private void cmbRaporSeçimi(object sender, EventArgs e)
@@ -58,15 +54,21 @@ namespace UıLayer
         {
             using (var context = new YemekhaneContext())
             {
-                var okutmaListesi = context.Okutmalar.ToList();
-                dataGridViewOkutmalar.DataSource = okutmaListesi;
+                var okutmaListesi = context.Okutmalar
+                    .Include(o => o.calisan) // çalışanın bilgilerini al
+                    .ToList();
 
-                dataGridViewOkutmalar.Columns[0].HeaderText = "Kart No";
-                dataGridViewOkutmalar.Columns[1].HeaderText = "Kart No";
-                dataGridViewOkutmalar.Columns[2].HeaderText = "Okutma Tarihi";
-                dataGridViewOkutmalar.Columns[3].HeaderText = "Çalışan Adı";
+                dataGridView1.DataSource = okutmaListesi;
+
+                // Kolon başlıklarını güncelle
+                dataGridView1.Columns["OkutmalarID"].HeaderText = "Okutma ID";
+                dataGridView1.Columns["calisanID"].HeaderText = "Çalışan ID";
+                dataGridView1.Columns["OkutmaTarihi"].HeaderText = "Tarih";
+                dataGridView1.Columns["jokerGecis"].HeaderText = "Joker Geçiş";
+                dataGridView1.Columns["gecisCount"].HeaderText = "Geçiş Sayısı";
             }
         }
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -89,6 +91,16 @@ namespace UıLayer
         }
 
         private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
