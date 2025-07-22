@@ -109,6 +109,7 @@
             btnRaporCikar.Size = new Size(99, 112);
             btnRaporCikar.TabIndex = 8;
             btnRaporCikar.Text = "Rapor Çıkar";
+            btnRaporCikar.TextAlign = ContentAlignment.BottomCenter;
             btnRaporCikar.UseVisualStyleBackColor = true;
             btnRaporCikar.Click += button2_Click;
             // 
@@ -119,6 +120,7 @@
             btnExceleAktar.Size = new Size(98, 112);
             btnExceleAktar.TabIndex = 10;
             btnExceleAktar.Text = "Excel'e aktar";
+            btnExceleAktar.TextAlign = ContentAlignment.BottomCenter;
             btnExceleAktar.UseVisualStyleBackColor = true;
             btnExceleAktar.Click += button3_Click;
             // 

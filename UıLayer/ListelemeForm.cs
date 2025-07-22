@@ -54,18 +54,29 @@ namespace UıLayer
         {
             using (var context = new YemekhaneContext())
             {
+                //var okutmaListesi = context.Okutmalar
+                //    .Include(o => o.calisan) // çalışanın bilgilerini al
+                //    .ToList();
                 var okutmaListesi = context.Okutmalar
-                    .Include(o => o.calisan) // çalışanın bilgilerini al
-                    .ToList();
-
+       .Include(o => o.calisan) // çalışan bilgilerini al
+       .Select(o => new
+       {
+           OkutmaID = o.OkutmalarID,
+           CalisanID = o.calisanID,
+           CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad, // Ad + Soyad
+           Tarih = o.OkutmaTarihi,
+           JokerGecis = o.jokerGecis,
+           GecisSayisi = o.gecisCount
+       })
+       .ToList();
                 dataGridView1.DataSource = okutmaListesi;
 
-                // Kolon başlıklarını güncelle
-                dataGridView1.Columns["OkutmalarID"].HeaderText = "Okutma ID";
-                dataGridView1.Columns["calisanID"].HeaderText = "Çalışan ID";
-                dataGridView1.Columns["OkutmaTarihi"].HeaderText = "Tarih";
-                dataGridView1.Columns["jokerGecis"].HeaderText = "Joker Geçiş";
-                dataGridView1.Columns["gecisCount"].HeaderText = "Geçiş Sayısı";
+                dataGridView1.Columns["OkutmaID"].HeaderText = "Okutma ID";
+                dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
+                dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
+                dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
+                dataGridView1.Columns["JokerGecis"].HeaderText = "Joker Geçiş";
+                dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
             }
         }
 
