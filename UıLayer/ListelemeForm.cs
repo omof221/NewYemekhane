@@ -54,21 +54,18 @@ namespace UıLayer
         {
             using (var context = new YemekhaneContext())
             {
-                //var okutmaListesi = context.Okutmalar
-                //    .Include(o => o.calisan) // çalışanın bilgilerini al
-                //    .ToList();
                 var okutmaListesi = context.Okutmalar
-       .Include(o => o.calisan) // çalışan bilgilerini al
-       .Select(o => new
-       {
-           OkutmaID = o.OkutmalarID,
-           CalisanID = o.calisanID,
-           CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad, // Ad + Soyad
-           Tarih = o.OkutmaTarihi,
-           JokerGecis = o.jokerGecis,
-           GecisSayisi = o.gecisCount
-       })
-       .ToList();
+                .Include(o => o.calisan) // çalışan bilgilerini al
+                .Select(o => new
+                {
+                   OkutmaID = o.OkutmalarID,
+                   CalisanID = o.calisanID,
+                   CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad, // Ad + Soyad
+                   Tarih = o.OkutmaTarihi,
+                   JokerGecis = o.jokerGecis,
+                   GecisSayisi = o.gecisCount
+                })
+               .ToList();
                 dataGridView1.DataSource = okutmaListesi;
 
                 dataGridView1.Columns["OkutmaID"].HeaderText = "Okutma ID";
@@ -78,6 +75,9 @@ namespace UıLayer
                 dataGridView1.Columns["JokerGecis"].HeaderText = "Joker Geçiş";
                 dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
             }
+            comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
+            comboBox1.Items.Add("Detaylı Yemek Raporu");
+            comboBox1.SelectedIndex = 0;
         }
 
 
