@@ -9,7 +9,7 @@ namespace YemekhaneEntityLayer.Entities
     public class YemekhaneCalisan
     {
         public int yemekhaneCalisanId { get; set; }
-        public int tc { get; set; }
+        public string tc { get; set; }
         public string ad { get; set; }
         public string soyad { get; set; }
 

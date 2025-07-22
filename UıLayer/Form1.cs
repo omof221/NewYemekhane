@@ -11,7 +11,14 @@ namespace UıLayer
         {
             Adminn admn = new Adminn();
             admn.Show();
-            this.Hide();    
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            yemekhaneCalisanGirisDetay dty = new yemekhaneCalisanGirisDetay();
+            dty.Show();
+       
         }
     }
 }

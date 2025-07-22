@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YemekhaneDataAccesLayer.Abstract;
 using YemekhaneDataAccesLayer.Context;
+using YemekhaneEntityLayer.Entities;
 
 namespace YemekhaneDataAccesLayer.Repositories
 {
@@ -49,6 +50,11 @@ namespace YemekhaneDataAccesLayer.Repositories
             context.Update(entity);
             context.SaveChanges();
         }
+
+        //public static implicit operator GenericRepository<T>(GenericRepository<Admin> v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
  
 }
