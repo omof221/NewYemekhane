@@ -39,7 +39,6 @@
             dataGridView1 = new DataGridView();
             label3 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            button1 = new Button();
             button2 = new Button();
             label4 = new Label();
             button3 = new Button();
@@ -146,15 +145,6 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
-            // button1
-            // 
-            button1.Location = new Point(1030, 101);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 13;
-            button1.Text = "geri";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
             button2.BackColor = Color.Red;
@@ -182,7 +172,7 @@
             button3.Name = "button3";
             button3.Size = new Size(144, 29);
             button3.TabIndex = 16;
-            button3.Text = "Yeni Personel Ekle";
+            button3.Text = "Yeni Okutma Ekle";
             button3.UseVisualStyleBackColor = true;
             // 
             // ListelemeForm
@@ -193,7 +183,6 @@
             Controls.Add(button3);
             Controls.Add(label4);
             Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(label3);
             Controls.Add(dataGridView1);
             Controls.Add(btnExceleAktar);
@@ -224,7 +213,6 @@
         private DataGridView dataGridView1;
         private Label label3;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
-        private Button button1;
         private Button button2;
         private Label label4;
         private Button button3;

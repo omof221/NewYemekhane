@@ -7,14 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using YemekhaneDataAccesLayer.Context; 
+using YemekhaneEntityLayer.Entities;   
+
 
 namespace UıLayer
 {
     public partial class ListelemeForm : Form
     {
+        private DataGridView dataGridViewOkutmalar; // Formun üstüne ekle
+
         public ListelemeForm()
         {
             InitializeComponent();
+
+            dataGridViewOkutmalar = new DataGridView();
+            dataGridViewOkutmalar.Name = "dataGridViewOkutmalar";
+            dataGridViewOkutmalar.Size = new Size(800, 300);
+            dataGridViewOkutmalar.Location = new Point(20, 20);
+            this.Controls.Add(dataGridViewOkutmalar);
         }
 
         private void cmbRaporSeçimi(object sender, EventArgs e)
@@ -44,7 +56,16 @@ namespace UıLayer
 
         private void ListelemeForm_Load(object sender, EventArgs e)
         {
+            using (var context = new YemekhaneContext())
+            {
+                var okutmaListesi = context.Okutmalar.ToList();
+                dataGridViewOkutmalar.DataSource = okutmaListesi;
 
+                dataGridViewOkutmalar.Columns[0].HeaderText = "Kart No";
+                dataGridViewOkutmalar.Columns[1].HeaderText = "Kart No";
+                dataGridViewOkutmalar.Columns[2].HeaderText = "Okutma Tarihi";
+                dataGridViewOkutmalar.Columns[3].HeaderText = "Çalışan Adı";
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
