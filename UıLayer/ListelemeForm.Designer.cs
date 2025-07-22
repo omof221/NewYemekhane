@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBox1 = new ComboBox();
             label1 = new Label();
             label2 = new Label();
             dtpBaslangic = new DateTimePicker();
@@ -39,22 +38,18 @@
             btnExceleAktar = new Button();
             dataGridView1 = new DataGridView();
             label3 = new Label();
+            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            button1 = new Button();
+            button2 = new Button();
+            label4 = new Label();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(27, 65);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(293, 28);
-            comboBox1.TabIndex = 0;
-            comboBox1.SelectedIndexChanged += cmbRaporSeçimi;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(597, 59);
+            label1.Location = new Point(317, 41);
             label1.Name = "label1";
             label1.Size = new Size(114, 20);
             label1.TabIndex = 1;
@@ -64,7 +59,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(597, 112);
+            label2.Location = new Point(317, 94);
             label2.Name = "label2";
             label2.Size = new Size(79, 20);
             label2.TabIndex = 2;
@@ -72,14 +67,14 @@
             // 
             // dtpBaslangic
             // 
-            dtpBaslangic.Location = new Point(744, 54);
+            dtpBaslangic.Location = new Point(437, 41);
             dtpBaslangic.Name = "dtpBaslangic";
             dtpBaslangic.Size = new Size(250, 27);
             dtpBaslangic.TabIndex = 3;
             // 
             // dtpBitis
             // 
-            dtpBitis.Location = new Point(744, 107);
+            dtpBitis.Location = new Point(437, 94);
             dtpBitis.Name = "dtpBitis";
             dtpBitis.Size = new Size(250, 27);
             dtpBitis.TabIndex = 4;
@@ -87,18 +82,18 @@
             // 
             // btnPersonelSecimi
             // 
-            btnPersonelSecimi.Location = new Point(411, 54);
+            btnPersonelSecimi.Location = new Point(6, 17);
             btnPersonelSecimi.Name = "btnPersonelSecimi";
-            btnPersonelSecimi.Size = new Size(145, 44);
+            btnPersonelSecimi.Size = new Size(284, 44);
             btnPersonelSecimi.TabIndex = 5;
-            btnPersonelSecimi.Text = "Personel Seçimi";
+            btnPersonelSecimi.Text = "Personel Ara";
             btnPersonelSecimi.UseVisualStyleBackColor = true;
             btnPersonelSecimi.Click += button1_Click;
             // 
             // cbTumPersonel
             // 
             cbTumPersonel.AutoSize = true;
-            cbTumPersonel.Location = new Point(423, 111);
+            cbTumPersonel.Location = new Point(171, 90);
             cbTumPersonel.Name = "cbTumPersonel";
             cbTumPersonel.Size = new Size(119, 24);
             cbTumPersonel.TabIndex = 6;
@@ -108,9 +103,9 @@
             // 
             // btnRaporCikar
             // 
-            btnRaporCikar.Location = new Point(1018, 30);
+            btnRaporCikar.Location = new Point(749, 15);
             btnRaporCikar.Name = "btnRaporCikar";
-            btnRaporCikar.Size = new Size(270, 49);
+            btnRaporCikar.Size = new Size(99, 112);
             btnRaporCikar.TabIndex = 8;
             btnRaporCikar.Text = "Rapor Çıkar";
             btnRaporCikar.UseVisualStyleBackColor = true;
@@ -118,9 +113,9 @@
             // 
             // btnExceleAktar
             // 
-            btnExceleAktar.Location = new Point(1018, 92);
+            btnExceleAktar.Location = new Point(875, 15);
             btnExceleAktar.Name = "btnExceleAktar";
-            btnExceleAktar.Size = new Size(270, 50);
+            btnExceleAktar.Size = new Size(98, 112);
             btnExceleAktar.TabIndex = 10;
             btnExceleAktar.Text = "Excel'e aktar";
             btnExceleAktar.UseVisualStyleBackColor = true;
@@ -130,27 +125,75 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(7, 162);
+            dataGridView1.Location = new Point(6, 149);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1281, 413);
+            dataGridView1.Size = new Size(1131, 660);
             dataGridView1.TabIndex = 11;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(815, 20);
+            label3.Location = new Point(508, 7);
             label3.Name = "label3";
             label3.Size = new Size(88, 20);
             label3.TabIndex = 12;
             label3.Text = "Tarih Seçimi";
             // 
+            // sqlCommand1
+            // 
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(1030, 101);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 13;
+            button1.Text = "geri";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.Red;
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(1030, 57);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 14;
+            button2.Text = "çıkış yap";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click_1;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(1030, 18);
+            label4.Name = "label4";
+            label4.Size = new Size(92, 20);
+            label4.TabIndex = 15;
+            label4.Text = "Kullanıcı Adı";
+            // 
+            // button3
+            // 
+            button3.Location = new Point(6, 87);
+            button3.Name = "button3";
+            button3.Size = new Size(144, 29);
+            button3.TabIndex = 16;
+            button3.Text = "Yeni Personel Ekle";
+            button3.UseVisualStyleBackColor = true;
+            // 
             // ListelemeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1300, 824);
+            ClientSize = new Size(1144, 824);
+            Controls.Add(button3);
+            Controls.Add(label4);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(label3);
             Controls.Add(dataGridView1);
             Controls.Add(btnExceleAktar);
@@ -161,7 +204,6 @@
             Controls.Add(dtpBaslangic);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
             Name = "ListelemeForm";
             Text = "ListelemeForm";
             Load += ListelemeForm_Load;
@@ -171,8 +213,6 @@
         }
 
         #endregion
-
-        private ComboBox comboBox1;
         private Label label1;
         private Label label2;
         private DateTimePicker dtpBaslangic;
@@ -183,5 +223,10 @@
         private Button btnExceleAktar;
         private DataGridView dataGridView1;
         private Label label3;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
+        private Button button1;
+        private Button button2;
+        private Label label4;
+        private Button button3;
     }
 }
