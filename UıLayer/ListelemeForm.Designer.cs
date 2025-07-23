@@ -41,7 +41,6 @@
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             button2 = new Button();
             label4 = new Label();
-            button3 = new Button();
             comboBox1 = new ComboBox();
             label5 = new Label();
             button1 = new Button();
@@ -94,7 +93,7 @@
             // cbTumPersonel
             // 
             cbTumPersonel.AutoSize = true;
-            cbTumPersonel.Location = new Point(171, 90);
+            cbTumPersonel.Location = new Point(171, 93);
             cbTumPersonel.Name = "cbTumPersonel";
             cbTumPersonel.Size = new Size(119, 24);
             cbTumPersonel.TabIndex = 6;
@@ -153,7 +152,7 @@
             // 
             button2.BackColor = Color.Red;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(1293, 59);
+            button2.Location = new Point(1275, 85);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 14;
@@ -164,20 +163,11 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1293, 20);
+            label4.Location = new Point(1275, 46);
             label4.Name = "label4";
             label4.Size = new Size(92, 20);
             label4.TabIndex = 15;
             label4.Text = "Kullanıcı Adı";
-            // 
-            // button3
-            // 
-            button3.Location = new Point(6, 87);
-            button3.Name = "button3";
-            button3.Size = new Size(144, 29);
-            button3.TabIndex = 16;
-            button3.Text = "Yeni Okutma Ekle";
-            button3.UseVisualStyleBackColor = true;
             // 
             // comboBox1
             // 
@@ -199,13 +189,12 @@
             // 
             // button1
             // 
-            button1.Location = new Point(12, 146);
+            button1.Location = new Point(6, 90);
             button1.Name = "button1";
             button1.Size = new Size(144, 29);
             button1.TabIndex = 19;
             button1.Text = "Seçilen Satırı Sil";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_2;
             // 
             // ListelemeForm
             // 
@@ -215,7 +204,6 @@
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(comboBox1);
-            Controls.Add(button3);
             Controls.Add(label4);
             Controls.Add(button2);
             Controls.Add(label3);
@@ -250,7 +238,6 @@
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Button button2;
         private Label label4;
-        private Button button3;
         private ComboBox comboBox1;
         private Label label5;
         private Button button1;

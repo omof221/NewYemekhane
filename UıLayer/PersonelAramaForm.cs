@@ -35,6 +35,16 @@ namespace UıLayer
                 Width = 50
             };
             dataGridView1.Columns.Add(checkBoxColumn);
+
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn
+            {
+                Name = "OkutmaEkle",
+                HeaderText = "Yeni Okutma",
+                Text = "Ekle",
+                UseColumnTextForButtonValue = true,
+                Width = 80
+            };
+            dataGridView1.Columns.Add(buttonColumn);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,11 +63,30 @@ namespace UıLayer
 
                 foreach (var calisan in sonuc)
                 {
-                    dataGridView1.Rows.Add(calisan.calisanID, calisan.calisanIsmi + " " + calisan.calisanSoyad, false);
+                    dataGridView1.Rows.Add(
+                        calisan.calisanID, 
+                        calisan.calisanIsmi + " " + calisan.calisanSoyad, 
+                        false);
                 }
             }
         }
 
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    SecilenCalisanIdListesi.Clear();
+
+        //    foreach (DataGridViewRow row in dataGridView1.Rows)
+        //    {
+        //        if (Convert.ToBoolean(row.Cells["Secildi"].Value) == true)
+        //        {
+        //            int calisanId = Convert.ToInt32(row.Cells["CalisanID"].Value);
+        //            SecilenCalisanIdListesi.Add(calisanId);
+        //        }
+        //    }
+
+        //    SecilenCalisanlarGonder?.Invoke(SecilenCalisanIdListesi);
+        //    this.Close();
+        //}
         private void button2_Click(object sender, EventArgs e)
         {
             SecilenCalisanIdListesi.Clear();
@@ -74,5 +103,27 @@ namespace UıLayer
             SecilenCalisanlarGonder?.Invoke(SecilenCalisanIdListesi);
             this.Close();
         }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "OkutmaEkle" && e.RowIndex >= 0)
+            {
+                int calisanId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["CalisanID"].Value);
+
+                using (var context = new YemekhaneContext())
+                {
+                    var okutma = new Okutmalar
+                    {
+                        calisanID = calisanId ,
+                        OkutmaTarihi = DateTime.Now
+                    };
+
+                    context.Okutmalar.Add(okutma);
+                    context.SaveChanges();
+                }
+
+                MessageBox.Show($"Çalışan ID {calisanId} için okutma eklendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }
