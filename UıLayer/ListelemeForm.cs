@@ -9,8 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using YemekhaneDataAccesLayer.Context; 
-using YemekhaneEntityLayer.Entities;   
+using YemekhaneDataAccesLayer.Context;
+using YemekhaneDataAccesLayer.Repositories;
+using YemekhaneEntityLayer.Entities;
 
 
 namespace UıLayer
@@ -57,7 +58,8 @@ namespace UıLayer
             using (var context = new YemekhaneContext())
             {
                 var okutmaListesi = context.Okutmalar
-                .Include(o => o.calisan) // çalışan bilgilerini al
+                .Include(o => o.calisan)
+                .Where(o => o.calisan.aktiflik == true)
                 .Select(o => new
                 {
                    OkutmaID = o.OkutmalarID,
@@ -74,7 +76,7 @@ namespace UıLayer
                 dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
                 dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
                 dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
-                dataGridView1.Columns["JokerGecis"].HeaderText = "Joker Geçiş";
+                //dataGridView1.Columns["JokerGecis"].HeaderText = "Joker Geçiş";
                 dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
             }
             comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
