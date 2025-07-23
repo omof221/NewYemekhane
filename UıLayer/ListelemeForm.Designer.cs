@@ -44,6 +44,7 @@
             button3 = new Button();
             comboBox1 = new ComboBox();
             label5 = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -79,7 +80,6 @@
             dtpBitis.Name = "dtpBitis";
             dtpBitis.Size = new Size(250, 27);
             dtpBitis.TabIndex = 4;
-            dtpBitis.ValueChanged += dateTimePicker2_ValueChanged;
             // 
             // btnPersonelSecimi
             // 
@@ -128,10 +128,10 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 149);
+            dataGridView1.Location = new Point(53, 181);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1395, 660);
+            dataGridView1.Size = new Size(954, 628);
             dataGridView1.TabIndex = 11;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -197,11 +197,22 @@
             label5.TabIndex = 18;
             label5.Text = "Almak İstediğiniz Rapor Türünü Seçiniz";
             // 
+            // button1
+            // 
+            button1.Location = new Point(12, 146);
+            button1.Name = "button1";
+            button1.Size = new Size(144, 29);
+            button1.TabIndex = 19;
+            button1.Text = "Seçilen Satırı Sil";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_2;
+            // 
             // ListelemeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1409, 824);
+            Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(comboBox1);
             Controls.Add(button3);
@@ -242,5 +253,6 @@
         private Button button3;
         private ComboBox comboBox1;
         private Label label5;
+        private Button button1;
     }
 }

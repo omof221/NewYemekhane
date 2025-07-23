@@ -9,8 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using YemekhaneDataAccesLayer.Context; 
-using YemekhaneEntityLayer.Entities;   
+using YemekhaneDataAccesLayer.Context;
+using YemekhaneDataAccesLayer.Repositories;
+using YemekhaneEntityLayer.Entities;
 
 
 namespace UıLayer
@@ -75,7 +76,7 @@ namespace UıLayer
                 dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
                 dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
                 dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
-                dataGridView1.Columns["JokerGecis"].HeaderText = "Joker Geçiş";
+                //dataGridView1.Columns["JokerGecis"].HeaderText = "Joker Geçiş";
                 dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
             }
         }
@@ -115,5 +116,60 @@ namespace UıLayer
         {
 
         }
+
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                DialogResult sonuc = MessageBox.Show("Bu kaydı silmek istediğinizden emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (sonuc == DialogResult.Yes)
+                {
+                    // Veriyi al
+                    var selectedRow = dataGridView1.CurrentRow.DataBoundItem as Okutmalar;
+
+                    if (selectedRow != null)
+                    {
+                        int secilenId = selectedRow.OkutmalarID;
+
+                        // Doğrudan manuel silme işlemi
+                        using (var context = new YemekhaneContext())
+                        {
+                            var entity = context.Okutmalar.FirstOrDefault(x => x.OkutmalarID == secilenId);
+
+                            if (entity != null)
+                            {
+                                context.Okutmalar.Remove(entity); // Sil
+                                context.SaveChanges(); // Kaydet
+
+                                MessageBox.Show("Kayıt başarıyla silindi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                ListelemeForm_Load(null, null); // Listeyi yenile
+                            }
+                            else
+                            {
+                                MessageBox.Show("Kayıt bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen silmek istediğiniz bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
     }
 }

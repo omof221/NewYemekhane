@@ -36,7 +36,7 @@
             // button1
             // 
             button1.Font = new Font("Yu Gothic", 10.8F, FontStyle.Bold);
-            button1.Location = new Point(115, 249);
+            button1.Location = new Point(80, 140);
             button1.Name = "button1";
             button1.Size = new Size(197, 57);
             button1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // button2
             // 
             button2.Font = new Font("Yu Gothic", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(511, 249);
+            button2.Location = new Point(508, 140);
             button2.Name = "button2";
             button2.Size = new Size(197, 57);
             button2.TabIndex = 1;
@@ -59,7 +59,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic", 10.8F, FontStyle.Bold);
-            label1.Location = new Point(529, 200);
+            label1.Location = new Point(508, 91);
             label1.Name = "label1";
             label1.Size = new Size(179, 46);
             label1.TabIndex = 2;
@@ -71,7 +71,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(841, 401);
+            ClientSize = new Size(798, 293);
             Controls.Add(label1);
             Controls.Add(button2);
             Controls.Add(button1);
