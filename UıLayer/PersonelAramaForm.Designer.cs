@@ -52,7 +52,6 @@
             label1.Size = new Size(480, 23);
             label1.TabIndex = 1;
             label1.Text = "Lütfen Arama Yapmak İçin Personel Sicil No ya da İsim Giriniz";
-            //label1.Click += label1_Click;
             // 
             // button1
             // 
@@ -77,7 +76,7 @@
             // button2
             // 
             button2.Font = new Font("Yu Gothic UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button2.Location = new Point(346, 450);
+            button2.Location = new Point(265, 454);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 4;
