@@ -42,7 +42,9 @@ namespace UıLayer
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            var aramaForm = new PersonelAramaForm();
+            aramaForm.SecilenCalisanlarGonder += CalisanFiltrele;
+            aramaForm.ShowDialog();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -115,5 +117,27 @@ namespace UıLayer
         {
 
         }
+        private void CalisanFiltrele(List<int> calisanIdListesi)
+        {
+            using (var context = new YemekhaneContext())
+            {
+                var okutmaListesi = context.Okutmalar
+                    .Include(o => o.calisan)
+                    .Where(o => calisanIdListesi.Contains(o.calisanID))
+                    .Select(o => new
+                    {
+                        OkutmaID = o.OkutmalarID,
+                        CalisanID = o.calisanID,
+                        CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+                        Tarih = o.OkutmaTarihi,
+                        JokerGecis = o.jokerGecis,
+                        GecisSayisi = o.gecisCount
+                    })
+                    .ToList();
+
+                dataGridView1.DataSource = okutmaListesi;
+            }
+        }
+
     }
 }

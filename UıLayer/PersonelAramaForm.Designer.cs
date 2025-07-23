@@ -32,6 +32,7 @@
             label1 = new Label();
             button1 = new Button();
             dataGridView1 = new DataGridView();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -51,12 +52,12 @@
             label1.Size = new Size(480, 23);
             label1.TabIndex = 1;
             label1.Text = "Lütfen Arama Yapmak İçin Personel Sicil No ya da İsim Giriniz";
-            label1.Click += label1_Click;
+            //label1.Click += label1_Click;
             // 
             // button1
             // 
             button1.Font = new Font("Yu Gothic UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button1.Location = new Point(649, 44);
+            button1.Location = new Point(651, 46);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 2;
@@ -70,20 +71,33 @@
             dataGridView1.Location = new Point(-35, 97);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(831, 394);
+            dataGridView1.Size = new Size(831, 351);
             dataGridView1.TabIndex = 3;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Yu Gothic UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            button2.Location = new Point(346, 450);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 4;
+            button2.Text = "Listele";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // PersonelAramaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 491);
+            Controls.Add(button2);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(textBox1);
             Name = "PersonelAramaForm";
             Text = "PersonelAramaForm";
+            Load += PersonelAramaForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -95,5 +109,6 @@
         private Label label1;
         private Button button1;
         private DataGridView dataGridView1;
+        private Button button2;
     }
 }
