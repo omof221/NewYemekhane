@@ -12,6 +12,7 @@ namespace YemekhaneEntityLayer.Entities
 
         public int calisanID { get; set; }
         public Calisan calisan { get; set; }
+        public bool aktif { get; set; }
         public DateTime OkutmaTarihi { get; set; }
         public bool jokerGecis { get; set; }
         public int gecisCount { get; set; }

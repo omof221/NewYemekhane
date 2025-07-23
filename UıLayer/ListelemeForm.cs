@@ -59,15 +59,15 @@ namespace UıLayer
             {
                 var okutmaListesi = context.Okutmalar
                 .Include(o => o.calisan)
-                .Where(o => o.calisan.aktiflik == true)
+                .Where(o => o.calisan.aktiflik == true && o.aktif == true)
                 .Select(o => new
                 {
-                   OkutmaID = o.OkutmalarID,
-                   CalisanID = o.calisanID,
-                   CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad, // Ad + Soyad
-                   Tarih = o.OkutmaTarihi,
-                   JokerGecis = o.jokerGecis,
-                   GecisSayisi = o.gecisCount
+                    OkutmaID = o.OkutmalarID,
+                    CalisanID = o.calisanID,
+                    CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad, // Ad + Soyad
+                    Tarih = o.OkutmaTarihi,
+                    JokerGecis = o.jokerGecis,
+                    GecisSayisi = o.gecisCount
                 })
                .ToList();
                 dataGridView1.DataSource = okutmaListesi;
@@ -141,5 +141,39 @@ namespace UıLayer
             }
         }
 
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                // Seçilen satırdan ÇalışanID'yi al
+                int okutmaId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["CalisanID"].Value);
+
+                using (var context = new YemekhaneContext())
+                {
+                    // İlgili çalışanı bul
+                    var calisan = context.Okutmalar.FirstOrDefault(c => c.OkutmalarID == okutmaId);
+
+                    if (calisan != null)
+                    {
+                        calisan.aktif = false; // Aktifliği false yap
+                        context.SaveChanges(); // Veritabanına kaydet
+
+                        MessageBox.Show("Çalışan pasif hale getirildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Listeyi yeniden yükle
+                        ListelemeForm_Load(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Çalışan bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+        }
     }
 }
