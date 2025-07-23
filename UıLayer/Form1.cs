@@ -18,6 +18,7 @@ namespace UıLayer
         {
             yemekhaneCalisanGirisDetay dty = new yemekhaneCalisanGirisDetay();
             dty.Show();
+            this.Hide();    
 
         }
 

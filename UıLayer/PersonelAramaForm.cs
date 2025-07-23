@@ -12,8 +12,8 @@ namespace UıLayer
 {
     public partial class PersonelAramaForm : Form
     {
-        public List<int> SecilenCalisanIdListesi { get; private set; } = new List<int>();
-        public event Action<List<int>> SecilenCalisanlarGonder;
+        //public List<int> SecilenCalisanIdListesi { get; private set; } = new List<int>();
+        //public event Action<List<int>> SecilenCalisanlarGonder;
         public PersonelAramaForm()
         {
             InitializeComponent();

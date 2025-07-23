@@ -56,7 +56,8 @@ namespace UıLayer
             using (var context = new YemekhaneContext())
             {
                 var okutmaListesi = context.Okutmalar
-                .Include(o => o.calisan) // çalışan bilgilerini al
+                .Include(o => o.calisan)
+                .Where(o => o.calisan.aktiflik == true)
                 .Select(o => new
                 {
                    OkutmaID = o.OkutmalarID,
