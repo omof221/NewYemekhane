@@ -1,7 +1,7 @@
 ﻿namespace UıLayer
 {
     partial class ListelemeForm
-    {
+    {// 208. satırı değiştirdim ben
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -127,7 +127,7 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(53, 181);
+            dataGridView1.Location = new Point(12, 184);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(954, 628);

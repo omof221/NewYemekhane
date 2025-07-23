@@ -11,6 +11,9 @@ namespace UıLayer
 {
     public partial class PersonelAramaForm : Form
     {
+        [System.ComponentModel.Browsable(false)]
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public List<int> SecilenCalisanIdListesi { get; private set; } = new List<int>();
         public event Action<List<int>> SecilenCalisanlarGonder;
 
