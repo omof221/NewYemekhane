@@ -20,11 +20,17 @@ namespace UıLayer
 {
     public partial class ListelemeForm : Form
     {
+        private bool tumPersonellerSecili = true;
+        private List<int> secilenCalisanlar = new List<int>();
+
         private DataGridView dataGridViewOkutmalar; // Formun üstüne ekle
 
         public ListelemeForm()
         {
+
+
             InitializeComponent();
+
 
         }
 
@@ -52,7 +58,22 @@ namespace UıLayer
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            using (var context = new YemekhaneContext())
+            {
+                if (cbTumPersonel.Checked)
+                {
+                    secilenCalisanlar = context.Calisanlar
+                        .Where(c => c.aktiflik == true)
+                        .Select(c => c.calisanID)
+                        .ToList();
+                    tumPersonellerSecili = true;
+                }
+                else
+                {
+                    secilenCalisanlar.Clear();
+                    tumPersonellerSecili = false;
+                }
+            }
         }
 
         private void ListelemeForm_Load(object sender, EventArgs e)
@@ -87,17 +108,7 @@ namespace UıLayer
         }
 
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private async void button2_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
 
             string klasorYolu = @"C:\Users\omery\OneDrive\Masaüstü\raporlar";
@@ -134,7 +145,7 @@ namespace UıLayer
                             GecisSayisi = o.gecisCount
                         })
                         .ToListAsync();
-
+                    MessageBox.Show($"Okutmalar sayısı: {okutmalar.Count}");
                     using (var workbook = new ClosedXML.Excel.XLWorkbook())
                     {
                         var worksheet = workbook.Worksheets.Add("Okutmalar");
@@ -171,9 +182,58 @@ namespace UıLayer
             }
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            DateTime baslangic = dtpBaslangic.Value.Date;
+            DateTime bitis = dtpBitis.Value.Date;
+
+            if (baslangic > bitis)
+            {
+                MessageBox.Show("Başlangıç tarihi, bitiş tarihinden büyük olamaz!", "Tarih Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var context = new YemekhaneContext())
+            {
+                var query = context.Okutmalar
+                    .Include(o => o.calisan)
+                    .Where(o =>
+                        o.aktif == true &&
+                        o.calisan.aktiflik == true &&
+                        o.OkutmaTarihi >= baslangic &&
+                        o.OkutmaTarihi <= bitis.AddDays(1).AddSeconds(-1)
+                    );
+
+                if (!tumPersonellerSecili && secilenCalisanlar.Any())
+                {
+                    query = query.Where(o => secilenCalisanlar.Contains(o.calisanID));
+                }
+
+                var raporListesi = query
+                    .Select(o => new
+                    {
+                        OkutmaID = o.OkutmalarID,
+                        CalisanID = o.calisanID,
+                        CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+                        Tarih = o.OkutmaTarihi,
+                        JokerGecis = o.jokerGecis,
+                        GecisSayisi = o.gecisCount
+                    })
+                    .ToList();
+
+                dataGridView1.DataSource = raporListesi;
+            }
+        }
+
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-          
+
 
         }
 
@@ -193,6 +253,9 @@ namespace UıLayer
         }
         private void CalisanFiltrele(List<int> calisanIdListesi)
         {
+            secilenCalisanlar = calisanIdListesi;
+            tumPersonellerSecili = true;
+
             using (var context = new YemekhaneContext())
             {
                 var okutmaListesi = context.Okutmalar
@@ -280,6 +343,11 @@ namespace UıLayer
             {
                 MessageBox.Show("Lütfen bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+        }
+
+        private void dtpBaslangic_ValueChanged(object sender, EventArgs e)
+        {
 
         }
     }

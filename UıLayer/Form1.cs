@@ -18,11 +18,16 @@ namespace UıLayer
         {
             yemekhaneCalisanGirisDetay dty = new yemekhaneCalisanGirisDetay();
             dty.Show();
-            this.Hide();    
+            this.Hide();
 
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
