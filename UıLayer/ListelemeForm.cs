@@ -173,7 +173,7 @@ namespace UıLayer
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-          
+
 
         }
 
@@ -280,6 +280,11 @@ namespace UıLayer
             {
                 MessageBox.Show("Lütfen bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+        }
+
+        private void dtpBaslangic_ValueChanged(object sender, EventArgs e)
+        {
 
         }
     }

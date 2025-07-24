@@ -72,6 +72,7 @@
             dtpBaslangic.Name = "dtpBaslangic";
             dtpBaslangic.Size = new Size(250, 27);
             dtpBaslangic.TabIndex = 3;
+            dtpBaslangic.ValueChanged += dtpBaslangic_ValueChanged;
             // 
             // dtpBitis
             // 
