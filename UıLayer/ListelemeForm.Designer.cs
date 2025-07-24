@@ -34,7 +34,6 @@
             dtpBitis = new DateTimePicker();
             btnPersonelSecimi = new Button();
             cbTumPersonel = new CheckBox();
-            btnRaporCikar = new Button();
             btnExceleAktar = new Button();
             dataGridView1 = new DataGridView();
             label3 = new Label();
@@ -55,7 +54,6 @@
             label1.Size = new Size(114, 20);
             label1.TabIndex = 1;
             label1.Text = "Başlangıç Tarihi:";
-            label1.Click += label1_Click_1;
             // 
             // label2
             // 
@@ -103,20 +101,9 @@
             cbTumPersonel.UseVisualStyleBackColor = true;
             cbTumPersonel.CheckedChanged += checkBox1_CheckedChanged;
             // 
-            // btnRaporCikar
-            // 
-            btnRaporCikar.Location = new Point(1012, 17);
-            btnRaporCikar.Name = "btnRaporCikar";
-            btnRaporCikar.Size = new Size(99, 112);
-            btnRaporCikar.TabIndex = 8;
-            btnRaporCikar.Text = "Rapor Çıkar";
-            btnRaporCikar.TextAlign = ContentAlignment.BottomCenter;
-            btnRaporCikar.UseVisualStyleBackColor = true;
-            btnRaporCikar.Click += button2_Click;
-            // 
             // btnExceleAktar
             // 
-            btnExceleAktar.Location = new Point(1138, 17);
+            btnExceleAktar.Location = new Point(1017, 17);
             btnExceleAktar.Name = "btnExceleAktar";
             btnExceleAktar.Size = new Size(98, 112);
             btnExceleAktar.TabIndex = 10;
@@ -129,12 +116,11 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 184);
+            dataGridView1.Location = new Point(6, 150);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(954, 628);
+            dataGridView1.Size = new Size(1246, 628);
             dataGridView1.TabIndex = 11;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // label3
             // 
@@ -154,18 +140,17 @@
             // 
             button2.BackColor = Color.Red;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(1275, 85);
+            button2.Location = new Point(1141, 74);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 14;
             button2.Text = "çıkış yap";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click_1;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1275, 46);
+            label4.Location = new Point(1141, 35);
             label4.Name = "label4";
             label4.Size = new Size(92, 20);
             label4.TabIndex = 15;
@@ -178,7 +163,6 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(225, 28);
             comboBox1.TabIndex = 17;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label5
             // 
@@ -203,7 +187,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1409, 824);
+            ClientSize = new Size(1254, 724);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(comboBox1);
@@ -212,7 +196,6 @@
             Controls.Add(label3);
             Controls.Add(dataGridView1);
             Controls.Add(btnExceleAktar);
-            Controls.Add(btnRaporCikar);
             Controls.Add(cbTumPersonel);
             Controls.Add(btnPersonelSecimi);
             Controls.Add(dtpBitis);
@@ -234,7 +217,6 @@
         private DateTimePicker dtpBitis;
         private Button btnPersonelSecimi;
         private CheckBox cbTumPersonel;
-        private Button btnRaporCikar;
         private Button btnExceleAktar;
         private DataGridView dataGridView1;
         private Label label3;

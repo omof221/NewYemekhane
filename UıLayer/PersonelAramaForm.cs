@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using YemekhaneDataAccesLayer.Context;
-using YemekhaneEntityLayer.Entities; // Calisan sınıfı burada tanımlı olmalı
+using YemekhaneEntityLayer.Entities;
 
 namespace UıLayer
 {
@@ -24,6 +24,7 @@ namespace UıLayer
 
         private void PersonelAramaForm_Load(object sender, EventArgs e)
         {
+            // Sütunları tanımla
             dataGridView1.Columns.Clear();
             dataGridView1.Columns.Add("CalisanID", "Çalışan ID");
             dataGridView1.Columns.Add("IsimSoyisim", "İsim Soyisim");
@@ -45,6 +46,12 @@ namespace UıLayer
                 Width = 80
             };
             dataGridView1.Columns.Add(buttonColumn);
+
+            // Sadece başlıkları göster, satır olmasın
+            dataGridView1.Rows.Clear();
+
+            // Sütunları form genişliğine yay
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -54,39 +61,31 @@ namespace UıLayer
             using (var context = new YemekhaneContext())
             {
                 var sonuc = context.Calisanlar
-                    .Where(c => c.calisanIsmi.ToLower().Contains(arama) ||
-                                c.calisanSoyad.ToLower().Contains(arama) ||
-                                c.calisanID.ToString().Contains(arama))
+                    .Where(c => c.aktiflik == true &&
+                        (c.calisanIsmi.ToLower().Contains(arama) ||
+                         c.calisanSoyad.ToLower().Contains(arama) ||
+                         c.calisanID.ToString().Contains(arama)))
                     .ToList();
 
                 dataGridView1.Rows.Clear();
 
-                foreach (var calisan in sonuc)
+                if (sonuc.Any())
                 {
-                    dataGridView1.Rows.Add(
-                        calisan.calisanID, 
-                        calisan.calisanIsmi + " " + calisan.calisanSoyad, 
-                        false);
+                    foreach (var calisan in sonuc)
+                    {
+                        dataGridView1.Rows.Add(
+                            calisan.calisanID,
+                            calisan.calisanIsmi + " " + calisan.calisanSoyad,
+                            false);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Hiçbir çalışan bulunamadı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-        //private void button2_Click(object sender, EventArgs e)
-        //{
-        //    SecilenCalisanIdListesi.Clear();
-
-        //    foreach (DataGridViewRow row in dataGridView1.Rows)
-        //    {
-        //        if (Convert.ToBoolean(row.Cells["Secildi"].Value) == true)
-        //        {
-        //            int calisanId = Convert.ToInt32(row.Cells["CalisanID"].Value);
-        //            SecilenCalisanIdListesi.Add(calisanId);
-        //        }
-        //    }
-
-        //    SecilenCalisanlarGonder?.Invoke(SecilenCalisanIdListesi);
-        //    this.Close();
-        //}
         private void button2_Click(object sender, EventArgs e)
         {
             SecilenCalisanIdListesi.Clear();
@@ -103,6 +102,7 @@ namespace UıLayer
             SecilenCalisanlarGonder?.Invoke(SecilenCalisanIdListesi);
             this.Close();
         }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "OkutmaEkle" && e.RowIndex >= 0)
@@ -113,7 +113,7 @@ namespace UıLayer
                 {
                     var okutma = new Okutmalar
                     {
-                        calisanID = calisanId ,
+                        calisanID = calisanId,
                         OkutmaTarihi = DateTime.Now
                     };
 
@@ -124,6 +124,5 @@ namespace UıLayer
                 MessageBox.Show($"Çalışan ID {calisanId} için okutma eklendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
     }
 }

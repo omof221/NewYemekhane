@@ -31,13 +31,13 @@ namespace UıLayer
         {
 
         }
+        //yoruma aldım
+        //private void kartKullanıcıEkleme_Load(object sender, EventArgs e)
+        //{
 
-        private void kartKullanıcıEkleme_Load(object sender, EventArgs e)
-        {
-
-            maskedTextBoxKartID.Focus();
-            checkBoxAktif.Checked = true;
-        }
+        //    maskedTextBoxKartID.Focus();
+        //    checkBoxAktif.Checked = true;
+        //}
 
 
 
@@ -50,7 +50,8 @@ namespace UıLayer
                 if (kartID != oncekiKartID)
                 {
                     File.AppendAllText(dosyaYolu, kartID + Environment.NewLine);
-                    lblDurum.Text = $"Kart ID yazıldı: {kartID}";
+                    //yoruma aldım
+                    //lblDurum.Text = $"Kart ID yazıldı: {kartID}";
                     oncekiKartID = kartID;
                 }
 
@@ -64,18 +65,19 @@ namespace UıLayer
                 maskedTextBoxKartID.Focus(); // Fokus hep burada kalsın
         }
 
+        //yoruma aldım
+        //private void checkBoxAktif_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (checkBoxAktif.Checked)
+        //        checkBoxPasif.Checked = false;
+        //}
 
-        private void checkBoxAktif_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxAktif.Checked)
-                checkBoxPasif.Checked = false;
-        }
-
-        private void checkBoxPasif_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxPasif.Checked)
-                checkBoxAktif.Checked = false;
-        }
+        //yoruma aldım
+        //private void checkBoxPasif_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (checkBoxPasif.Checked)
+        //        checkBoxAktif.Checked = false;
+        //}
         //YemekhaneContext<Calisan> 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -88,7 +90,8 @@ namespace UıLayer
             string isim = txtIsim.Text.Trim();
             string soyad = txtSoyad.Text.Trim();
             string gorev = txtGorevv.Text.Trim();
-            bool aktifMi = checkBoxAktif.Checked;
+            //yoruma aldım
+            //bool aktifMi = checkBoxAktif.Checked; yoruma aldım
             if (string.IsNullOrWhiteSpace(kartID) ||
     string.IsNullOrWhiteSpace(isim) ||
     string.IsNullOrWhiteSpace(soyad) ||
@@ -121,7 +124,8 @@ namespace UıLayer
                     calisanIsmi = isim,
                     calisanSoyad = soyad,
                     calisanGorevi = gorev,
-                    aktiflik = aktifMi
+                    //yoruma aldım
+                    //aktiflik = aktifMi 
                 };
 
                 context.Calisanlar.Add(yeniCalisan);
@@ -134,8 +138,9 @@ namespace UıLayer
                 txtIsim.Clear();
                 txtSoyad.Clear();
                 txtGorevv.Clear();
-                checkBoxAktif.Checked = true;
-                checkBoxPasif.Checked = false;
+                //yoruma aldım
+                //checkBoxAktif.Checked = true;
+                //checkBoxPasif.Checked = false;
                 maskedTextBoxKartID.Focus();
             }
         }
@@ -147,8 +152,8 @@ namespace UıLayer
             string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
             Directory.CreateDirectory(Path.GetDirectoryName(dosyaYolu));
             File.AppendAllText(dosyaYolu, kartID + Environment.NewLine);
-
-            lblDurum.Text = $"Yazıldı: {kartID}";
+            //yoruma aldım
+            //lblDurum.Text = $"Yazıldı: {kartID}";
             maskedTextBoxKartID.Clear(); // temizle
 
         }

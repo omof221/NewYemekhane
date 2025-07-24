@@ -148,7 +148,9 @@ namespace UıLayer
             Controls.Add(dataGridView1);
             Name = "kartKullanıcıEkleme";
             Text = "kartKullanıcıEkleme";
-            Load += kartKullanıcıEkleme_Load;
+            //yoruma aldım
+            /*Load += kartKullanıcıEkleme_Load*/
+            ;
             Shown += kartKullanıcıEkleme_Shown;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
