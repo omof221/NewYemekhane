@@ -28,7 +28,7 @@ namespace YemekhaneDataAccesLayer.EntityFramework
         public Calisan GetByKartNo(int kartNo)
         {
             using var context = new YemekhaneContext();
-            return context.Calisanlar.FirstOrDefault(x => x.calisanKartNo == kartNo);
+            return context.Calisanlar.FirstOrDefault();
         }
     }
 }

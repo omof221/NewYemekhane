@@ -350,5 +350,15 @@ namespace UıLayer
         {
 
         }
+
+        private void dtpBaslangic_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpBitis_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

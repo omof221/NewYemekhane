@@ -30,16 +30,19 @@ namespace UıLayer
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            button1 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            label1 = new Label();
+            btnKaydet = new Button();
+            txtIsim = new TextBox();
+            txtGorevv = new TextBox();
+            txtSoyad = new TextBox();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
+            timer2 = new System.Windows.Forms.Timer(components);
+            maskedTextBoxKartID = new MaskedTextBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -52,52 +55,36 @@ namespace UıLayer
             dataGridView1.Size = new Size(591, 295);
             dataGridView1.TabIndex = 0;
             // 
-            // button1
+            // btnKaydet
             // 
-            button1.Location = new Point(720, 278);
-            button1.Name = "button1";
-            button1.Size = new Size(176, 29);
-            button1.TabIndex = 1;
-            button1.Text = "Kaydet";
-            button1.UseVisualStyleBackColor = true;
+            btnKaydet.Location = new Point(666, 256);
+            btnKaydet.Name = "btnKaydet";
+            btnKaydet.Size = new Size(255, 29);
+            btnKaydet.TabIndex = 1;
+            btnKaydet.Text = "Kaydet";
+            btnKaydet.UseVisualStyleBackColor = true;
+            btnKaydet.Click += button1_Click;
             // 
-            // textBox1
+            // txtIsim
             // 
-            textBox1.Location = new Point(745, 43);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(176, 27);
-            textBox1.TabIndex = 2;
+            txtIsim.Location = new Point(745, 104);
+            txtIsim.Name = "txtIsim";
+            txtIsim.Size = new Size(176, 27);
+            txtIsim.TabIndex = 3;
             // 
-            // textBox2
+            // txtGorevv
             // 
-            textBox2.Location = new Point(745, 104);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(176, 27);
-            textBox2.TabIndex = 3;
+            txtGorevv.Location = new Point(745, 201);
+            txtGorevv.Name = "txtGorevv";
+            txtGorevv.Size = new Size(176, 27);
+            txtGorevv.TabIndex = 5;
             // 
-            // textBox3
+            // txtSoyad
             // 
-            textBox3.Location = new Point(745, 224);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(176, 27);
-            textBox3.TabIndex = 5;
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(745, 157);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(176, 27);
-            textBox4.TabIndex = 4;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(666, 52);
-            label1.Name = "label1";
-            label1.Size = new Size(59, 20);
-            label1.TabIndex = 6;
-            label1.Text = "aktif mi";
-            label1.Click += label1_Click;
+            txtSoyad.Location = new Point(745, 157);
+            txtSoyad.Name = "txtSoyad";
+            txtSoyad.Size = new Size(176, 27);
+            txtSoyad.TabIndex = 4;
             // 
             // label2
             // 
@@ -121,30 +108,48 @@ namespace UıLayer
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(666, 231);
+            label4.Location = new Point(667, 208);
             label4.Name = "label4";
             label4.Size = new Size(47, 20);
             label4.TabIndex = 9;
             label4.Text = "gorev";
+            // 
+            // maskedTextBoxKartID
+            // 
+            maskedTextBoxKartID.Location = new Point(745, 10);
+            maskedTextBoxKartID.Mask = "0000000000";
+            maskedTextBoxKartID.Name = "maskedTextBoxKartID";
+            maskedTextBoxKartID.Size = new Size(125, 27);
+            maskedTextBoxKartID.TabIndex = 10;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(633, 12);
+            label1.Name = "label1";
+            label1.Size = new Size(106, 20);
+            label1.TabIndex = 13;
+            label1.Text = "Çalışan Kart ID";
             // 
             // kartKullanıcıEkleme
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(956, 569);
+            Controls.Add(label1);
+            Controls.Add(maskedTextBoxKartID);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(textBox3);
-            Controls.Add(textBox4);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(button1);
+            Controls.Add(txtGorevv);
+            Controls.Add(txtSoyad);
+            Controls.Add(txtIsim);
+            Controls.Add(btnKaydet);
             Controls.Add(dataGridView1);
             Name = "kartKullanıcıEkleme";
             Text = "kartKullanıcıEkleme";
             Load += kartKullanıcıEkleme_Load;
+            Shown += kartKullanıcıEkleme_Shown;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -153,14 +158,16 @@ namespace UıLayer
         #endregion
 
         private DataGridView dataGridView1;
-        private Button button1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private Label label1;
+        private Button btnKaydet;
+        private TextBox txtIsim;
+        private TextBox txtGorevv;
+        private TextBox txtSoyad;
         private Label label2;
         private Label label3;
         private Label label4;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
+        private MaskedTextBox maskedTextBoxKartID;
+        private Label label1;
     }
 }
