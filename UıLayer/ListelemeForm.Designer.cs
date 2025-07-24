@@ -195,6 +195,7 @@
             button1.TabIndex = 19;
             button1.Text = "Seçilen Satırı Sil";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_3;
             // 
             // ListelemeForm
             // 

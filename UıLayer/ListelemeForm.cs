@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using YemekhaneDataAccesLayer.Context;
 using YemekhaneDataAccesLayer.Repositories;
 using YemekhaneEntityLayer.Entities;
+using ClosedXML.Excel;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace UıLayer
@@ -95,13 +97,83 @@ namespace UıLayer
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
 
+            string klasorYolu = @"C:\Users\omery\OneDrive\Masaüstü\raporlar";
+
+            // Daha okunabilir bir format: "23-07-2025_15-10-47"
+            string zamanDamgasi = DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss");
+
+            string dosyaAdi = $"Okutmalar_{zamanDamgasi}.xlsx";
+            string dosyaYolu = Path.Combine(klasorYolu, dosyaAdi);
+
+            try
+            {
+                using (var context = new YemekhaneContext())
+                {
+                    // 📌 DateTimePicker'dan tarihleri al
+                    DateTime baslangic = dtpBaslangic.Value.Date;
+                    DateTime bitis = dtpBitis.Value.Date.AddDays(1).AddSeconds(-1); // Bitis tarihini dahil etmek için 23:59:59
+
+                    var okutmalar = await context.Okutmalar
+                        .Include(o => o.calisan)
+                        .Where(o =>
+                            o.calisan.aktiflik == true &&
+                            o.aktif == true &&
+                            o.OkutmaTarihi >= baslangic &&
+                            o.OkutmaTarihi <= bitis
+                        )
+                        .Select(o => new
+                        {
+                            OkutmaID = o.OkutmalarID,
+                            CalisanID = o.calisanID,
+                            CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+                            Tarih = o.OkutmaTarihi,
+                            JokerGecis = o.jokerGecis,
+                            GecisSayisi = o.gecisCount
+                        })
+                        .ToListAsync();
+
+                    using (var workbook = new ClosedXML.Excel.XLWorkbook())
+                    {
+                        var worksheet = workbook.Worksheets.Add("Okutmalar");
+
+                        // Başlıklar
+                        worksheet.Cell(1, 1).Value = "Okutma ID";
+                        worksheet.Cell(1, 2).Value = "Çalışan ID";
+                        worksheet.Cell(1, 3).Value = "Çalışan Adı";
+                        worksheet.Cell(1, 4).Value = "Tarih";
+                        worksheet.Cell(1, 5).Value = "Joker Geçiş";
+                        worksheet.Cell(1, 6).Value = "Geçiş Sayısı";
+
+                        int row = 2;
+                        foreach (var o in okutmalar)
+                        {
+                            worksheet.Cell(row, 1).Value = o.OkutmaID;
+                            worksheet.Cell(row, 2).Value = o.CalisanID;
+                            worksheet.Cell(row, 3).Value = o.CalisanAdi;
+                            worksheet.Cell(row, 4).Value = o.Tarih.ToString("g");
+                            worksheet.Cell(row, 5).Value = o.JokerGecis ? "Evet" : "Hayır";
+                            worksheet.Cell(row, 6).Value = o.GecisSayisi;
+                            row++;
+                        }
+
+                        workbook.SaveAs(dosyaYolu);
+                    }
+
+                    MessageBox.Show("Excel dosyası başarıyla oluşturuldu.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
+          
 
         }
 
@@ -152,6 +224,41 @@ namespace UıLayer
                 {
                     // İlgili çalışanı bul
                     var calisan = context.Okutmalar.FirstOrDefault(c => c.OkutmalarID == okutmaId);
+
+                    if (calisan != null)
+                    {
+                        calisan.aktif = false; // Aktifliği false yap
+                        context.SaveChanges(); // Veritabanına kaydet
+
+                        MessageBox.Show("Çalışan pasif hale getirildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Listeyi yeniden yükle
+                        ListelemeForm_Load(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Çalışan bulunamadı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+        }
+
+        private void button1_Click_3(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                // Seçilen satırdan ÇalışanID'yi al
+                int calisanId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["OkutmaID"].Value);
+
+                using (var context = new YemekhaneContext())
+                {
+                    // İlgili çalışanı bul
+                    var calisan = context.Okutmalar.FirstOrDefault(c => c.OkutmalarID == calisanId);
 
                     if (calisan != null)
                     {
