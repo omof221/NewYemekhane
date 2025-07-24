@@ -80,6 +80,7 @@
             dtpBitis.Name = "dtpBitis";
             dtpBitis.Size = new Size(250, 27);
             dtpBitis.TabIndex = 4;
+            dtpBitis.ValueChanged += dtpBitis_ValueChanged;
             // 
             // btnPersonelSecimi
             // 

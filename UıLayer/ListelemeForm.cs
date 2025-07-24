@@ -287,5 +287,10 @@ namespace UıLayer
         {
 
         }
+
+        private void dtpBitis_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -15,9 +15,9 @@ namespace YemekhaneEntityLayer.Entities
 
         public string calisanGorevi { get; set; }
 
-        public int calisanKartNo { get; set; }
+        public string calisanKartNo { get; set; }
 
-        public List<Okutmalar> Okutmal { get; set; }
+        public List<Okutmalar> Okutmalar { get; set; }
 
 
 

@@ -18,13 +18,20 @@ namespace UıLayer
         {
             yemekhaneCalisanGirisDetay dty = new yemekhaneCalisanGirisDetay();
             dty.Show();
-            this.Hide();    
+            this.Hide();
 
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            kartKullanıcıEkleme kre=new kartKullanıcıEkleme();
+            kre.Show();
+            this.Show();
         }
     }
 }
