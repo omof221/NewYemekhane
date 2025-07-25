@@ -116,11 +116,12 @@
             // 
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 150);
+            dataGridView1.Location = new Point(12, 146);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1246, 628);
             dataGridView1.TabIndex = 11;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // label3
             // 
@@ -163,6 +164,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(225, 28);
             comboBox1.TabIndex = 17;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label5
             // 
@@ -187,7 +189,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1254, 724);
+            ClientSize = new Size(1254, 551);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(comboBox1);
