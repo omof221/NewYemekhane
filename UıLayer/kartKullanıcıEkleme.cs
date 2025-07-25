@@ -33,6 +33,9 @@ namespace UıLayer
         {
 
         }
+        //yoruma aldım
+        //private void kartKullanıcıEkleme_Load(object sender, EventArgs e)
+        //{
 
         private void kartKullanıcıEkleme_Load(object sender, EventArgs e)
         {
@@ -44,7 +47,6 @@ namespace UıLayer
             CalisanlariListele();
             //checkBoxAktif.Checked = true;
         }
-
 
 
         private void maskedTextBoxKartID_TextChanged(object sender, EventArgs e)
@@ -70,6 +72,12 @@ namespace UıLayer
                 maskedTextBoxKartID.Focus(); // Fokus hep burada kalsın
         }
 
+        //yoruma aldım
+        //private void checkBoxAktif_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (checkBoxAktif.Checked)
+        //        checkBoxPasif.Checked = false;
+        //}
 
         private void checkBoxAktif_CheckedChanged(object sender, EventArgs e)
         {
@@ -140,7 +148,8 @@ namespace UıLayer
                     calisanIsmi = isim,
                     calisanSoyad = soyad,
                     calisanGorevi = gorev,
-                    aktiflik = aktifMi
+                    //yoruma aldım
+                    //aktiflik = aktifMi 
                 };
 
                 context.Calisanlar.Add(yeniCalisan);

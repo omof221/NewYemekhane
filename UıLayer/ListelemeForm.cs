@@ -1,31 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using YemekhaneDataAccesLayer.Context;
-using YemekhaneDataAccesLayer.Repositories;
 using YemekhaneEntityLayer.Entities;
 using ClosedXML.Excel;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace UıLayer
 {
     public partial class ListelemeForm : Form
     {
-        private DataGridView dataGridViewOkutmalar; // Formun üstüne ekle
+        private bool tumPersonellerSecili = true;
+        private List<int> secilenCalisanlar = new List<int>();
 
         public ListelemeForm()
         {
             InitializeComponent();
-
         }
         private async void ListelemeForm_Load(object sender, EventArgs e)
         {
@@ -65,18 +60,47 @@ namespace UıLayer
         }
         private void cmbRaporSeçimi(object sender, EventArgs e)
         {
+            comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
+            comboBox1.Items.Add("Detaylı Yemek Raporu");
+            comboBox1.SelectedIndex = 0;
 
+            cbTumPersonel.Checked = true;
+            ListeleOkutmalar();
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void cmbRaporSeçimi(object sender, EventArgs e) { }
+
+        private void dtpBaslangic_ValueChanged(object sender, EventArgs e) => ListeleOkutmalar();
+
+        private void dtpBitis_ValueChanged(object sender, EventArgs e) => ListeleOkutmalar();
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            using (var context = new YemekhaneContext())
+            {
+                if (cbTumPersonel.Checked)
+                {
+                    secilenCalisanlar = context.Calisanlar.Where(c => c.aktiflik).Select(c => c.calisanID).ToList();
+                    tumPersonellerSecili = true;
+                }
+                else
+                {
+                    secilenCalisanlar.Clear();
+                    tumPersonellerSecili = false;
+                }
+            }
+            ListeleOkutmalar();
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void CalisanFiltrele(List<int> calisanIdListesi)
         {
-
+            secilenCalisanlar = calisanIdListesi;
+            tumPersonellerSecili = false;
+            ListeleOkutmalar();
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -85,84 +109,120 @@ namespace UıLayer
             aramaForm.ShowDialog();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
-
-        }
-
-
-
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private async void button2_Click(object sender, EventArgs e)
-        {
-
-            string klasorYolu = @"C:\Users\omery\OneDrive\Masaüstü\raporlar";
-
-            // Daha okunabilir bir format: "23-07-2025_15-10-47"
+            string klasorYolu = @"C:\\Users\\omery\\OneDrive\\Masaüstü\\raporlar";
             string zamanDamgasi = DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss");
-
-            string dosyaAdi = $"Okutmalar_{zamanDamgasi}.xlsx";
+            string dosyaAdi = $"Yemek_{zamanDamgasi}.xlsx";
             string dosyaYolu = Path.Combine(klasorYolu, dosyaAdi);
 
             try
             {
                 using (var context = new YemekhaneContext())
                 {
-                    // 📌 DateTimePicker'dan tarihleri al
                     DateTime baslangic = dtpBaslangic.Value.Date;
-                    DateTime bitis = dtpBitis.Value.Date.AddDays(1).AddSeconds(-1); // Bitis tarihini dahil etmek için 23:59:59
+                    DateTime bitis = dtpBitis.Value.Date.AddDays(1).AddSeconds(-1);
 
-                    var okutmalar = await context.Okutmalar
-                        .Include(o => o.calisan)
-                        .Where(o =>
-                            o.calisan.aktiflik == true &&
-                            o.aktif == true &&
-                            o.OkutmaTarihi >= baslangic &&
-                            o.OkutmaTarihi <= bitis
-                        )
-                        .Select(o => new
-                        {
-                            OkutmaID = o.OkutmalarID,
-                            CalisanID = o.calisanID,
-                            CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
-                            Tarih = o.OkutmaTarihi,
-                            JokerGecis = o.jokerGecis,
-                            GecisSayisi = o.gecisCount
-                        })
-                        .ToListAsync();
-
-                    using (var workbook = new ClosedXML.Excel.XLWorkbook())
+                    using (var workbook = new XLWorkbook())
                     {
-                        var worksheet = workbook.Worksheets.Add("Okutmalar");
+                        var worksheet = workbook.Worksheets.Add("Yemek Raporu");
 
-                        // Başlıklar
-                        worksheet.Cell(1, 1).Value = "Okutma ID";
-                        worksheet.Cell(1, 2).Value = "Çalışan ID";
-                        worksheet.Cell(1, 3).Value = "Çalışan Adı";
-                        worksheet.Cell(1, 4).Value = "Tarih";
-                        worksheet.Cell(1, 5).Value = "Joker Geçiş";
-                        worksheet.Cell(1, 6).Value = "Geçiş Sayısı";
-
-                        int row = 2;
-                        foreach (var o in okutmalar)
+                        if (comboBox1.SelectedItem.ToString() == "Alınan Toplam Yemek Raporu")
                         {
-                            worksheet.Cell(row, 1).Value = o.OkutmaID;
-                            worksheet.Cell(row, 2).Value = o.CalisanID;
-                            worksheet.Cell(row, 3).Value = o.CalisanAdi;
-                            worksheet.Cell(row, 4).Value = o.Tarih.ToString("g");
-                            worksheet.Cell(row, 5).Value = o.JokerGecis ? "Evet" : "Hayır";
-                            worksheet.Cell(row, 6).Value = o.GecisSayisi;
-                            row++;
+                            var query = context.Okutmalar.Include(o => o.calisan)
+                                .Where(o => o.aktif && o.calisan.aktiflik && o.OkutmaTarihi >= baslangic && o.OkutmaTarihi <= bitis);
+
+                            if (!tumPersonellerSecili && secilenCalisanlar.Any())
+                            {
+                                query = query.Where(o => secilenCalisanlar.Contains(o.calisanID));
+                            }
+
+                            var toplamlar = await query.GroupBy(o => new
+                            {
+                                o.calisanID,
+                                o.calisan.calisanIsmi,
+                                o.calisan.calisanSoyad,
+                                o.calisan.calisanGorevi,
+                                o.calisan.calisanKartNo
+                            }).Select(g => new
+                            {
+                                g.Key.calisanID,
+                                g.Key.calisanIsmi,
+                                g.Key.calisanSoyad,
+                                g.Key.calisanGorevi,
+                                g.Key.calisanKartNo,
+                                ToplamOkutmaSayisi = g.Count()
+                            }).ToListAsync();
+
+                            worksheet.Cell(1, 1).Value = "Çalışan ID";
+                            worksheet.Cell(1, 2).Value = "Ad";
+                            worksheet.Cell(1, 3).Value = "Soyad";
+                            worksheet.Cell(1, 4).Value = "Görev";
+                            worksheet.Cell(1, 5).Value = "Kart No";
+                            worksheet.Cell(1, 6).Value = "Toplam Okutma";
+
+                            int row = 2;
+                            foreach (var t in toplamlar)
+                            {
+                                worksheet.Cell(row, 1).Value = t.calisanID;
+                                worksheet.Cell(row, 2).Value = t.calisanIsmi;
+                                worksheet.Cell(row, 3).Value = t.calisanSoyad;
+                                worksheet.Cell(row, 4).Value = t.calisanGorevi;
+                                worksheet.Cell(row, 5).Value = t.calisanKartNo;
+                                worksheet.Cell(row, 6).Value = t.ToplamOkutmaSayisi;
+                                row++;
+                            }
+                            worksheet.Columns().AdjustToContents();
+
+                            var headerRange = worksheet.Range(1, 1, 1, 6); // 6 sütunluk başlık
+                            headerRange.Style.Font.Bold = true;
+                            headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
+                            headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+                        }
+                        else if (comboBox1.SelectedItem.ToString() == "Detaylı Yemek Raporu")
+                        {
+                            var okutmalar = await context.Okutmalar
+                                .Include(o => o.calisan)
+                                .Where(o => o.calisan.aktiflik && o.aktif && o.OkutmaTarihi >= baslangic && o.OkutmaTarihi <= bitis)
+                                .Select(o => new
+                                {
+                                    OkutmaID = o.OkutmalarID,
+                                    CalisanID = o.calisanID,
+                                    Ad = o.calisan.calisanIsmi,
+                                    Soyad = o.calisan.calisanSoyad,
+                                    Tarih = o.OkutmaTarihi,
+                                    JokerGecis = o.jokerGecis,
+                                    GecisSayisi = o.gecisCount
+                                }).ToListAsync();
+
+                            worksheet.Cell(1, 1).Value = "Okutma ID";
+                            worksheet.Cell(1, 2).Value = "Çalışan ID";
+                            worksheet.Cell(1, 3).Value = "Ad";
+                            worksheet.Cell(1, 4).Value = "Soyad";
+                            worksheet.Cell(1, 5).Value = "Tarih";
+                            worksheet.Cell(1, 6).Value = "Joker Geçiş";
+                            worksheet.Cell(1, 7).Value = "Geçiş Sayısı";
+
+                            int row = 2;
+                            foreach (var o in okutmalar)
+                            {
+                                worksheet.Cell(row, 1).Value = o.OkutmaID;
+                                worksheet.Cell(row, 2).Value = o.CalisanID;
+                                worksheet.Cell(row, 3).Value = o.Ad;
+                                worksheet.Cell(row, 4).Value = o.Soyad;
+                                worksheet.Cell(row, 5).Value = o.Tarih.ToString("g");
+                                worksheet.Cell(row, 6).Value = o.JokerGecis ? "Evet" : "Hayır";
+                                worksheet.Cell(row, 7).Value = o.GecisSayisi;
+                                row++;
+                            }
+
+                            // Görsel düzenlemeler:
+                            worksheet.Columns().AdjustToContents();
+                            var headerRange = worksheet.Range(1, 1, 1, 7);
+                            headerRange.Style.Font.Bold = true;
+                            headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
+                            headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
                         }
 
                         workbook.SaveAs(dosyaYolu);
@@ -177,69 +237,21 @@ namespace UıLayer
             }
         }
 
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void CalisanFiltrele(List<int> calisanIdListesi)
-        {
-            using (var context = new YemekhaneContext())
-            {
-                var okutmaListesi = context.Okutmalar
-                    .Include(o => o.calisan)
-                    .Where(o => calisanIdListesi.Contains(o.calisanID))
-                    .Select(o => new
-                    {
-                        OkutmaID = o.OkutmalarID,
-                        CalisanID = o.calisanID,
-                        CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
-                        Tarih = o.OkutmaTarihi,
-                        JokerGecis = o.jokerGecis,
-                        GecisSayisi = o.gecisCount
-                    })
-                    .ToList();
-
-                dataGridView1.DataSource = okutmaListesi;
-            }
-        }
-
         private void button1_Click_2(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null)
             {
-                // Seçilen satırdan ÇalışanID'yi al
                 int okutmaId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["CalisanID"].Value);
 
                 using (var context = new YemekhaneContext())
                 {
-                    // İlgili çalışanı bul
                     var calisan = context.Okutmalar.FirstOrDefault(c => c.OkutmalarID == okutmaId);
-
                     if (calisan != null)
                     {
-                        calisan.aktif = false; // Aktifliği false yap
-                        context.SaveChanges(); // Veritabanına kaydet
-
+                        calisan.aktif = false;
+                        context.SaveChanges();
                         MessageBox.Show("Çalışan pasif hale getirildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Listeyi yeniden yükle
-                        ListelemeForm_Load(null, null);
+                        ListeleOkutmalar();
                     }
                     else
                     {
@@ -251,30 +263,23 @@ namespace UıLayer
             {
                 MessageBox.Show("Lütfen bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
         private void button1_Click_3(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null)
             {
-                // Seçilen satırdan ÇalışanID'yi al
                 int calisanId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["OkutmaID"].Value);
 
                 using (var context = new YemekhaneContext())
                 {
-                    // İlgili çalışanı bul
                     var calisan = context.Okutmalar.FirstOrDefault(c => c.OkutmalarID == calisanId);
-
                     if (calisan != null)
                     {
-                        calisan.aktif = false; // Aktifliği false yap
-                        context.SaveChanges(); // Veritabanına kaydet
-
+                        calisan.aktif = false;
+                        context.SaveChanges();
                         MessageBox.Show("Çalışan pasif hale getirildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Listeyi yeniden yükle
-                        ListelemeForm_Load(null, null);
+                        ListeleOkutmalar();
                     }
                     else
                     {
@@ -286,12 +291,6 @@ namespace UıLayer
             {
                 MessageBox.Show("Lütfen bir satır seçin.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-        }
-
-        private void dtpBaslangic_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void dtpBitis_ValueChanged(object sender, EventArgs e)

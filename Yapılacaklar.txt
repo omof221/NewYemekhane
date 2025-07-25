@@ -1,1 +1,4 @@
-1. datetþme picker valularýný ve comboboxtan rapor tiði seçildikten sonra bunlara uygun filtreleme ve excel raporu verme
+tarihte jhata düzenle
+2. UI ler düzeltilecek ve merkeze ortlanaccak.
+
+
