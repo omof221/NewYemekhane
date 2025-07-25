@@ -27,7 +27,42 @@ namespace UıLayer
             InitializeComponent();
 
         }
+        private async void ListelemeForm_Load(object sender, EventArgs e)
+        {
+            await Task.Delay(100); // ufak gecikme UI çizilsin diye
 
+            maskedTextBox1.Text = "";
+            maskedTextBox1.SelectionStart = 0;
+            maskedTextBox1.Focus();
+
+            using (var context = new YemekhaneContext())
+            {
+                var okutmaListesi = context.Okutmalar
+                .Include(o => o.calisan)
+                .Where(o => o.calisan.aktiflik == true && o.aktif == true)
+                .Select(o => new
+                {
+                    OkutmaID = o.OkutmalarID,
+                    CalisanID = o.calisanID,
+                    CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+                    Tarih = o.OkutmaTarihi,
+                    JokerGecis = o.jokerGecis,
+                    GecisSayisi = o.gecisCount
+                })
+               .ToList();
+                dataGridView1.DataSource = okutmaListesi;
+
+                dataGridView1.Columns["OkutmaID"].HeaderText = "Okutma ID";
+                dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
+                dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
+                dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
+                dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
+            }
+
+            comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
+            comboBox1.Items.Add("Detaylı Yemek Raporu");
+            comboBox1.SelectedIndex = 0;
+        }
         private void cmbRaporSeçimi(object sender, EventArgs e)
         {
 
@@ -55,36 +90,7 @@ namespace UıLayer
 
         }
 
-        private void ListelemeForm_Load(object sender, EventArgs e)
-        {
-            using (var context = new YemekhaneContext())
-            {
-                var okutmaListesi = context.Okutmalar
-                .Include(o => o.calisan)
-                .Where(o => o.calisan.aktiflik == true && o.aktif == true)
-                .Select(o => new
-                {
-                    OkutmaID = o.OkutmalarID,
-                    CalisanID = o.calisanID,
-                    CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad, // Ad + Soyad
-                    Tarih = o.OkutmaTarihi,
-                    JokerGecis = o.jokerGecis,
-                    GecisSayisi = o.gecisCount
-                })
-               .ToList();
-                dataGridView1.DataSource = okutmaListesi;
 
-                dataGridView1.Columns["OkutmaID"].HeaderText = "Okutma ID";
-                dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
-                dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
-                dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
-                //dataGridView1.Columns["JokerGecis"].HeaderText = "Joker Geçiş";
-                dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
-            }
-            comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
-            comboBox1.Items.Add("Detaylı Yemek Raporu");
-            comboBox1.SelectedIndex = 0;
-        }
 
 
         private void button3_Click(object sender, EventArgs e)
@@ -291,6 +297,114 @@ namespace UıLayer
         private void dtpBitis_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void maskedTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string girilenKartID = maskedTextBox1.Text.Replace(" ", "").Trim(); // Boşlukları temizle
+
+            if (girilenKartID.Length != 10)
+                return;
+
+            using (var context = new YemekhaneContext())
+            {
+                // 1. Kart numarası ile eşleşen aktif çalışanı bul
+                var calisan = context.Calisanlar
+                    .FirstOrDefault(c => c.calisanKartNo == girilenKartID && c.aktiflik == true);
+
+                if (calisan == null)
+                {
+                    MessageBox.Show("❗ Bu kart ile kayıtlı aktif bir çalışan bulunamadı.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    maskedTextBox1.Text = "";
+                    maskedTextBox1.SelectionStart = 0;
+                    maskedTextBox1.Focus();
+                    return;
+                }
+
+                // 2. Bugünkü yapılan geçiş sayısını bul
+                DateTime bugun = DateTime.Today;
+                int bugunkuGecisSayisi = context.Okutmalar
+                    .Count(o => o.calisanID == calisan.calisanID && o.OkutmaTarihi.Date == bugun && o.aktif == true);
+
+                // 3. Geçiş hakkını (gecisCount) en son aktif kayıttan al
+                var sonOkutmaKaydi = context.Okutmalar
+                    .Where(o => o.calisanID == calisan.calisanID && o.aktif == true)
+                    .OrderByDescending(o => o.OkutmaTarihi)
+                    .FirstOrDefault();
+
+                int gecisHakki = sonOkutmaKaydi?.gecisCount ?? 1;
+
+                if (bugunkuGecisSayisi >= gecisHakki)
+                {
+                    MessageBox.Show($"🚫 {calisan.calisanIsmi} {calisan.calisanSoyad} bugün maksimum {gecisHakki} kez yemek alabilir!\nLimit doldu.", "Yemek Hakkı Doldu", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    maskedTextBox1.Text = "";
+                    maskedTextBox1.SelectionStart = 0;
+                    maskedTextBox1.Focus();
+                    return;
+                }
+
+                // 4. Yeni okutma kaydı oluştur
+                var yeniOkutma = new Okutmalar
+                {
+                    calisanID = calisan.calisanID,
+                    OkutmaTarihi = DateTime.Now,
+                    aktif = true,
+                    jokerGecis = false,
+                    gecisCount = gecisHakki
+                };
+
+                context.Okutmalar.Add(yeniOkutma);
+                context.SaveChanges();
+
+                MessageBox.Show($"✅ {calisan.calisanIsmi} {calisan.calisanSoyad} için okutma kaydı eklendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                maskedTextBox1.Text = "";
+                maskedTextBox1.SelectionStart = 0;
+                maskedTextBox1.Focus();
+            }
+
+            // 5. Listeyi güncelle
+            OkutmalariYenile();
+
+
+
+        }
+        private void OkutmalariYenile()
+        {
+            using (var context = new YemekhaneContext())
+            {
+                var okutmaListesi = context.Okutmalar
+                    .Include(o => o.calisan)
+                    .Where(o => o.calisan.aktiflik == true && o.aktif == true)
+                    .OrderByDescending(o => o.OkutmaTarihi)
+                    .Select(o => new
+                    {
+                        OkutmaID = o.OkutmalarID,
+                        CalisanID = o.calisanID,
+                        CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+                        Tarih = o.OkutmaTarihi,
+                        JokerGecis = o.jokerGecis,
+                        GecisSayisi = o.gecisCount
+                    })
+                    .ToList();
+
+                dataGridView1.DataSource = null; // önce temizle
+                dataGridView1.DataSource = okutmaListesi;
+
+                dataGridView1.Columns["OkutmaID"].HeaderText = "Okutma ID";
+                dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
+                dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
+                dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
+                dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
+                // dataGridView1.Columns["JokerGecis"].HeaderText = "Joker Geçiş"; // gerekirse aç
+            }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Form1 frmo = new Form1();
+            frmo.ShowDialog();  
+            this.Hide();
         }
     }
 }

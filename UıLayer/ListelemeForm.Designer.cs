@@ -44,6 +44,8 @@
             comboBox1 = new ComboBox();
             label5 = new Label();
             button1 = new Button();
+            maskedTextBox1 = new MaskedTextBox();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -199,11 +201,32 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_3;
             // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(35, 151);
+            maskedTextBox1.Mask = "0000000000";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.Size = new Size(125, 27);
+            maskedTextBox1.TabIndex = 20;
+            maskedTextBox1.TextChanged += maskedTextBox1_TextChanged;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(1213, 606);
+            button3.Name = "button3";
+            button3.Size = new Size(144, 29);
+            button3.TabIndex = 21;
+            button3.Text = "Seçilen Satırı Sil";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click_1;
+            // 
             // ListelemeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1409, 824);
+            Controls.Add(button3);
+            Controls.Add(maskedTextBox1);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(comboBox1);
@@ -244,5 +267,7 @@
         private ComboBox comboBox1;
         private Label label5;
         private Button button1;
+        private MaskedTextBox maskedTextBox1;
+        private Button button3;
     }
 }
