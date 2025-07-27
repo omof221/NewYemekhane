@@ -191,30 +191,6 @@ namespace UıLayer
 
         private void button5_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    using (var con = new YemekhaneContext())
-            //    {
-            //        Admin admin = new Admin();
-            //        admin.adminIsim = textBox1.Text.Trim();
-            //        admin.adminSoyad = textBox2.Text.Trim();
-            //        admin.adminEmail = textBox3.Text.Trim();
-            //        admin.adminUsername = textBox4.Text.Trim();
-            //        admin.adminSifre = textBox5.Text;
-
-            //        con.Adminler.Add(admin);
-            //        con.SaveChanges();
-
-            //        MessageBox.Show("Yeni admin başarıyla eklendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //    AdminleriListele(); // listeyi güncelle
-            //    VerileriGoster();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
 
 
 
@@ -223,44 +199,46 @@ namespace UıLayer
             {
                 using (var con = new YemekhaneContext())
                 {
-                    string isim = textBox1.Text.Trim();
-                    string soyad = textBox2.Text.Trim();
-                    string email = textBox3.Text.Trim();
-                    string username = textBox4.Text.Trim();
-                    string sifre = textBox5.Text;
+                    string isim = textBox1.Text.Trim();      // Ad
+                    string soyad = textBox2.Text.Trim();     // Soyad
+                    string tc = textBox3.Text.Trim();        // TC
+                    string kullaniciAdi = textBox4.Text.Trim();  // Kullanıcı Adı
+                    string sifre = textBox5.Text;            // Şifre
 
-                    // Aynı veriye sahip admin var mı kontrol et
-                    bool adminVarMi = con.Adminler.Any(a =>
-                        a.adminIsim == isim &&
-                        a.adminSoyad == soyad &&
-                        a.adminEmail == email &&
-                        a.adminUsername == username &&
-                        a.adminSifre == sifre);
+                    // 🔒 Aynı veriye sahip çalışan var mı kontrol et
+                    bool calisanVarMi = con.mekhaneCalisanlar.Any(c =>
+                        c.tc == tc &&
+                        c.ad == isim &&
+                        c.soyad == soyad &&
+                        c.kullaniciAdi == kullaniciAdi &&
+                        c.sifre == sifre);
 
-                    if (adminVarMi)
+                    if (calisanVarMi)
                     {
-                        MessageBox.Show("Bu bilgilerle kayıtlı bir admin zaten var!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return; // eklemeyi iptal et
+                        MessageBox.Show("Bu bilgilerle kayıtlı bir çalışan zaten var!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
 
-                    // Yeni admin oluştur
-                    Admin admin = new Admin
+                    // ➕ Yeni çalışan nesnesi oluştur
+                    var yeniCalisan = new mekhaneCalisanlar
                     {
-                        adminIsim = isim,
-                        adminSoyad = soyad,
-                        adminEmail = email,
-                        adminUsername = username,
-                        adminSifre = sifre
+                        tc = tc,
+                        ad = isim,
+                        soyad = soyad,
+                        kullaniciAdi = kullaniciAdi,
+                        sifre = sifre
                     };
 
-                    con.Adminler.Add(admin);
+                    con.mekhaneCalisanlar.Add(yeniCalisan);
                     con.SaveChanges();
 
-                    MessageBox.Show("Yeni admin başarıyla eklendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Yeni çalışan başarıyla eklendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                AdminleriListele(); // listeyi güncelle
-                VerileriGoster();
+                // Listeyi güncelle (varsa)
+                CalisanlariListele();
+                VerileriTemizle(); // textbox'ları temizlemek istersen
+
             }
             catch (Exception ex)
             {

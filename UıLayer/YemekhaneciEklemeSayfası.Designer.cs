@@ -85,9 +85,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(51, 205);
             label3.Name = "label3";
-            label3.Size = new Size(38, 20);
+            label3.Size = new Size(23, 20);
             label3.TabIndex = 5;
-            label3.Text = "Mail";
+            label3.Text = "Tc";
             // 
             // textBox3
             // 
