@@ -238,5 +238,12 @@ namespace UıLayer
                 }
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();       
+            anaSayfa.Show();
+            this.Close(); // Mevcut formu gizle, böylece kullanıcı ana sayfaya dönebilir
+        }
     }
 }

@@ -44,7 +44,6 @@
             label5 = new Label();
             button1 = new Button();
             maskedTextBox1 = new MaskedTextBox();
-            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -123,7 +122,6 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1246, 628);
             dataGridView1.TabIndex = 11;
-            //dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // label3
             // 
@@ -143,12 +141,13 @@
             // 
             button2.BackColor = Color.Red;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(1141, 74);
+            button2.Location = new Point(1141, 101);
             button2.Name = "button2";
-            button2.Size = new Size(94, 29);
+            button2.Size = new Size(192, 29);
             button2.TabIndex = 14;
-            button2.Text = "çıkış yap";
+            button2.Text = "Ana Sayfaya Dön";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // label4
             // 
@@ -166,7 +165,6 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(225, 28);
             comboBox1.TabIndex = 17;
-            //comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label5
             // 
@@ -196,22 +194,11 @@
             maskedTextBox1.TabIndex = 20;
             maskedTextBox1.TextChanged += maskedTextBox1_TextChanged;
             // 
-            // button3
-            // 
-            button3.Location = new Point(1213, 606);
-            button3.Name = "button3";
-            button3.Size = new Size(144, 29);
-            button3.TabIndex = 21;
-            button3.Text = "Seçilen Satırı Sil";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click_1;
-            // 
             // ListelemeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1409, 824);
-            Controls.Add(button3);
             Controls.Add(maskedTextBox1);
             Controls.Add(button1);
             Controls.Add(label5);
@@ -252,6 +239,5 @@
         private Label label5;
         private Button button1;
         private MaskedTextBox maskedTextBox1;
-        private Button button3;
     }
 }

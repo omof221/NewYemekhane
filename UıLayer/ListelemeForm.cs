@@ -439,8 +439,15 @@ namespace UıLayer
         private void button3_Click_1(object sender, EventArgs e)
         {
             Form1 frmo = new Form1();
-            frmo.ShowDialog();  
+            frmo.ShowDialog();
             this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
+            anaSayfa.Show();
+            this.Close();    
         }
     }
 }

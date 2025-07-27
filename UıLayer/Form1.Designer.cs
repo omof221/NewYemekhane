@@ -31,8 +31,6 @@
             button1 = new Button();
             button2 = new Button();
             label1 = new Label();
-            button3 = new Button();
-            button4 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -68,36 +66,12 @@
             label1.Text = "İsmail Abi buna bas\r\n\r\n";
             label1.Click += label1_Click;
             // 
-            // button3
-            // 
-            button3.Font = new Font("Yu Gothic", 10.8F, FontStyle.Bold);
-            button3.Location = new Point(305, 91);
-            button3.Name = "button3";
-            button3.Size = new Size(197, 57);
-            button3.TabIndex = 3;
-            button3.Text = "kartekle";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
-            // 
-            // button4
-            // 
-            button4.Font = new Font("Yu Gothic", 10.8F, FontStyle.Bold);
-            button4.Location = new Point(305, 204);
-            button4.Name = "button4";
-            button4.Size = new Size(197, 57);
-            button4.TabIndex = 4;
-            button4.Text = "Yeni Okutma Ekleme";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
             ClientSize = new Size(798, 293);
-            Controls.Add(button4);
-            Controls.Add(button3);
             Controls.Add(label1);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -113,7 +87,5 @@
         private Button button1;
         private Button button2;
         private Label label1;
-        private Button button3;
-        private Button button4;
     }
 }

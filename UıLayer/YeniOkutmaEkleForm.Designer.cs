@@ -32,6 +32,7 @@
             dataGridView1 = new DataGridView();
             button1 = new Button();
             btnCalisanAra = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -74,11 +75,22 @@
             btnCalisanAra.UseVisualStyleBackColor = true;
             btnCalisanAra.Click += btnCalisanAra_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(12, 410);
+            button2.Name = "button2";
+            button2.Size = new Size(237, 45);
+            button2.TabIndex = 4;
+            button2.Text = "Ana Sayfaya Dön";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // YeniOkutmaEkleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(896, 604);
+            Controls.Add(button2);
             Controls.Add(btnCalisanAra);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
@@ -97,5 +109,6 @@
         private DataGridView dataGridView1;
         private Button button1;
         private Button btnCalisanAra;
+        private Button button2;
     }
 }

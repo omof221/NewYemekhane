@@ -364,6 +364,13 @@ namespace UıLayer
                 }
             }
         }
-            }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
+            anaSayfa.Show();
+            this.Close();    
         }
+    }
+}
     
