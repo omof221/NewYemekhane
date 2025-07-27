@@ -123,7 +123,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1246, 628);
             dataGridView1.TabIndex = 11;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            //dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // label3
             // 
@@ -166,7 +166,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(225, 28);
             comboBox1.TabIndex = 17;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            //comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label5
             // 

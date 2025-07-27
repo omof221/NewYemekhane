@@ -22,7 +22,7 @@ namespace UıLayer
             Directory.CreateDirectory(Path.GetDirectoryName(dosyaYolu));
             //timer1.Start();
         }
-        private string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
+        private string dosyaYolu = @"C:\Users\omery\OneDrive\Masaüstü\kartverileri";
         private string oncekiKartID = "";
         private void label1_Click(object sender, EventArgs e)
         {

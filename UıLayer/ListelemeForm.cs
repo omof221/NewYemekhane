@@ -22,6 +22,43 @@ namespace UıLayer
         {
             InitializeComponent();
         }
+        private void ListeleOkutmalar()
+        {
+            DateTime baslangic = dtpBaslangic.Value.Date;
+            DateTime bitis = dtpBitis.Value.Date.AddDays(1).AddSeconds(-1);
+
+            using (var context = new YemekhaneContext())
+            {
+                var query = context.Okutmalar
+                    .Include(o => o.calisan)
+                    .Where(o => o.aktif && o.calisan.aktiflik && o.OkutmaTarihi >= baslangic && o.OkutmaTarihi <= bitis);
+
+                if (!tumPersonellerSecili && secilenCalisanlar.Any())
+                {
+                    query = query.Where(o => secilenCalisanlar.Contains(o.calisanID));
+                }
+
+                var raporListesi = query.Select(o => new
+                {
+                    OkutmaID = o.OkutmalarID,
+                    CalisanID = o.calisanID,
+                    CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+                    Tarih = o.OkutmaTarihi,
+                    JokerGecis = o.jokerGecis,
+                    GecisSayisi = o.gecisCount
+                }).ToList();
+
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridView1.DataSource = raporListesi;
+                dataGridView1.Columns["OkutmaID"].HeaderText = "Okutma ID";
+                dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
+                dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
+                dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
+                dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
+            }
+        }
+
+
         private async void ListelemeForm_Load(object sender, EventArgs e)
         {
             await Task.Delay(100); // ufak gecikme UI çizilsin diye
@@ -69,7 +106,7 @@ namespace UıLayer
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        private void cmbRaporSeçimi(object sender, EventArgs e) { }
+        //private void cmbRaporSeçimi(object sender, EventArgs e) { }
 
         private void dtpBaslangic_ValueChanged(object sender, EventArgs e) => ListeleOkutmalar();
 
@@ -293,10 +330,10 @@ namespace UıLayer
             }
         }
 
-        private void dtpBitis_ValueChanged(object sender, EventArgs e)
-        {
+        //private void dtpBitis_ValueChanged(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private void maskedTextBox1_TextChanged(object sender, EventArgs e)
         {
