@@ -31,6 +31,7 @@
             maskedTextBox1 = new MaskedTextBox();
             dataGridView1 = new DataGridView();
             button1 = new Button();
+            btnCalisanAra = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             dataGridView1.Location = new Point(12, 45);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(714, 258);
+            dataGridView1.Size = new Size(857, 258);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
@@ -63,11 +64,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // btnCalisanAra
+            // 
+            btnCalisanAra.Location = new Point(632, 320);
+            btnCalisanAra.Name = "btnCalisanAra";
+            btnCalisanAra.Size = new Size(237, 45);
+            btnCalisanAra.TabIndex = 3;
+            btnCalisanAra.Text = "Çalışan Ara";
+            btnCalisanAra.UseVisualStyleBackColor = true;
+            btnCalisanAra.Click += btnCalisanAra_Click;
+            // 
             // YeniOkutmaEkleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(896, 400);
+            ClientSize = new Size(896, 604);
+            Controls.Add(btnCalisanAra);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
             Controls.Add(maskedTextBox1);
@@ -84,5 +96,6 @@
         private MaskedTextBox maskedTextBox1;
         private DataGridView dataGridView1;
         private Button button1;
+        private Button btnCalisanAra;
     }
 }
