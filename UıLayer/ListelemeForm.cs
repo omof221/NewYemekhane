@@ -61,11 +61,11 @@ namespace UıLayer
 
         private async void ListelemeForm_Load(object sender, EventArgs e)
         {
-            await Task.Delay(100); // ufak gecikme UI çizilsin diye
+         
 
-            maskedTextBox1.Text = "";
-            maskedTextBox1.SelectionStart = 0;
-            maskedTextBox1.Focus();
+            //maskedTextBox1.Text = "";
+            //maskedTextBox1.SelectionStart = 0;
+            //maskedTextBox1.Focus();
 
             using (var context = new YemekhaneContext())
             {
@@ -373,9 +373,9 @@ namespace UıLayer
                 if (bugunkuGecisSayisi >= gecisHakki)
                 {
                     MessageBox.Show($"🚫 {calisan.calisanIsmi} {calisan.calisanSoyad} bugün maksimum {gecisHakki} kez yemek alabilir!\nLimit doldu.", "Yemek Hakkı Doldu", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    maskedTextBox1.Text = "";
-                    maskedTextBox1.SelectionStart = 0;
-                    maskedTextBox1.Focus();
+                    //maskedTextBox1.Text = "";
+                    //maskedTextBox1.SelectionStart = 0;
+                    //maskedTextBox1.Focus();
                     return;
                 }
 
@@ -394,9 +394,9 @@ namespace UıLayer
 
                 MessageBox.Show($"✅ {calisan.calisanIsmi} {calisan.calisanSoyad} için okutma kaydı eklendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                maskedTextBox1.Text = "";
-                maskedTextBox1.SelectionStart = 0;
-                maskedTextBox1.Focus();
+                //maskedTextBox1.Text = "";
+                //maskedTextBox1.SelectionStart = 0;
+                //maskedTextBox1.Focus();
             }
 
             // 5. Listeyi güncelle
@@ -447,7 +447,12 @@ namespace UıLayer
         {
             YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
             anaSayfa.Show();
-            this.Close();    
+            this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
