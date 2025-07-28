@@ -43,7 +43,6 @@
             comboBox1 = new ComboBox();
             label5 = new Label();
             button1 = new Button();
-            maskedTextBox1 = new MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -104,7 +103,7 @@
             // 
             // btnExceleAktar
             // 
-            btnExceleAktar.Location = new Point(1017, 17);
+            btnExceleAktar.Location = new Point(995, 11);
             btnExceleAktar.Name = "btnExceleAktar";
             btnExceleAktar.Size = new Size(98, 112);
             btnExceleAktar.TabIndex = 10;
@@ -142,9 +141,9 @@
             // 
             button2.BackColor = Color.Red;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(1141, 101);
+            button2.Location = new Point(1110, 81);
             button2.Name = "button2";
-            button2.Size = new Size(192, 29);
+            button2.Size = new Size(139, 40);
             button2.TabIndex = 14;
             button2.Text = "Ana Sayfaya Dön";
             button2.UseVisualStyleBackColor = false;
@@ -153,7 +152,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1141, 35);
+            label4.Location = new Point(1132, 29);
             label4.Name = "label4";
             label4.Size = new Size(92, 20);
             label4.TabIndex = 15;
@@ -162,7 +161,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(735, 91);
+            comboBox1.Location = new Point(726, 91);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(225, 28);
             comboBox1.TabIndex = 17;
@@ -170,7 +169,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(723, 41);
+            label5.Location = new Point(714, 41);
             label5.Name = "label5";
             label5.Size = new Size(266, 20);
             label5.TabIndex = 18;
@@ -186,21 +185,11 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_3;
             // 
-            // maskedTextBox1
-            // 
-            maskedTextBox1.Location = new Point(35, 151);
-            maskedTextBox1.Mask = "0000000000";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(125, 27);
-            maskedTextBox1.TabIndex = 20;
-            maskedTextBox1.TextChanged += maskedTextBox1_TextChanged;
-            // 
             // ListelemeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1409, 824);
-            Controls.Add(maskedTextBox1);
+            ClientSize = new Size(1270, 824);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(comboBox1);
