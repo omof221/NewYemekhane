@@ -15,5 +15,7 @@ namespace YemekhaneEntityLayer.Entities
 
         public string kullaniciAdi { get; set; }
         public string sifre { get; set; }
+        public bool durum { get; set; }
+        
     }
 }

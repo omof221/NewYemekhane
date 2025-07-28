@@ -38,6 +38,14 @@ namespace UıLayer
         {
             YeniOkutmaEkleForm yeniOkutmaEkleForm = new YeniOkutmaEkleForm();
             yeniOkutmaEkleForm.Show();
+            this.Hide();
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            YeniYemekhaneCalisaniEkleme yeniYemekhaneCalisaniEkleme=new YeniYemekhaneCalisaniEkleme();
+            yeniYemekhaneCalisaniEkleme.Show();
             this.Hide();    
 
         }

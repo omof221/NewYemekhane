@@ -28,21 +28,21 @@ namespace UıLayer
         {
             kartKullanıcıEkleme krt = new kartKullanıcıEkleme();
             krt.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             ListelemeForm lst = new ListelemeForm();
             lst.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             yemekhaneCalisanGirisDetay yemekhaneCalisanGirisDetay = new yemekhaneCalisanGirisDetay();
             yemekhaneCalisanGirisDetay.Show();
-            this.Hide();    
+            this.Close();    
         }
     }
 }

@@ -447,7 +447,12 @@ namespace UıLayer
         {
             YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
             anaSayfa.Show();
-            this.Close();    
+            this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

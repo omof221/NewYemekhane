@@ -131,7 +131,7 @@
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(519, 12);
+            listBox1.Location = new Point(437, 12);
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(968, 284);
             listBox1.TabIndex = 10;
@@ -150,7 +150,7 @@
             // dataGridView2
             // 
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(519, 321);
+            dataGridView2.Location = new Point(437, 324);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(968, 452);
