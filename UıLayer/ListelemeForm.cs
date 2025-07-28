@@ -148,7 +148,7 @@ namespace UıLayer
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            string klasorYolu = @"C:\\Users\\omery\\OneDrive\\Masaüstü\\raporlar";
+            string klasorYolu = @"C:\Users\Hp\OneDrive\Desktop\excelçıktıları";
             string zamanDamgasi = DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss");
             string dosyaAdi = $"Yemek_{zamanDamgasi}.xlsx";
             string dosyaYolu = Path.Combine(klasorYolu, dosyaAdi);
@@ -330,11 +330,6 @@ namespace UıLayer
             }
         }
 
-        //private void dtpBitis_ValueChanged(object sender, EventArgs e)
-        //{
-
-        //}
-
         private void maskedTextBox1_TextChanged(object sender, EventArgs e)
         {
             string girilenKartID = maskedTextBox1.Text.Replace(" ", "").Trim(); // Boşlukları temizle
@@ -394,9 +389,6 @@ namespace UıLayer
 
                 MessageBox.Show($"✅ {calisan.calisanIsmi} {calisan.calisanSoyad} için okutma kaydı eklendi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                //maskedTextBox1.Text = "";
-                //maskedTextBox1.SelectionStart = 0;
-                //maskedTextBox1.Focus();
             }
 
             // 5. Listeyi güncelle
