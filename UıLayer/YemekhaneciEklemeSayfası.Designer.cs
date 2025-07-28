@@ -85,9 +85,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(51, 205);
             label3.Name = "label3";
-            label3.Size = new Size(38, 20);
+            label3.Size = new Size(23, 20);
             label3.TabIndex = 5;
-            label3.Text = "Mail";
+            label3.Text = "Tc";
             // 
             // textBox3
             // 
@@ -155,11 +155,12 @@
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(968, 452);
             dataGridView2.TabIndex = 12;
+            dataGridView2.CellClick += dataGridView2_CellClick_1;
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // button2
             // 
-            button2.Location = new Point(350, 705);
+            button2.Location = new Point(98, 559);
             button2.Name = "button2";
             button2.Size = new Size(153, 68);
             button2.TabIndex = 13;

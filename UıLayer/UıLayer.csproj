@@ -9,6 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Kenan Doğulu - Ara Beni Lütfen %28Official Video%29 #Festival [PHG83uTG3-8] %281%29.wav" />
+    <None Remove="uyarı.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Kenan Doğulu - Ara Beni Lütfen (Official Video) #Festival [PHG83uTG3-8] (1).wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="uyarı.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.105.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.7">
@@ -43,5 +57,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="for /f &quot;tokens=1&quot; %25%25a in ('tasklist ^| findstr /i &quot;UiLayer.exe&quot;') do taskkill /f /pid %25%25a&#xD;&#xA;&#xD;&#xA;" />
+  </Target>
 
 </Project>

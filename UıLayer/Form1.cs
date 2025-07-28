@@ -29,9 +29,17 @@ namespace UıLayer
 
         private void button3_Click(object sender, EventArgs e)
         {
-            kartKullanıcıEkleme kre=new kartKullanıcıEkleme();
+            kartKullanıcıEkleme kre = new kartKullanıcıEkleme();
             kre.Show();
             this.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            YeniOkutmaEkleForm yeniOkutmaEkleForm = new YeniOkutmaEkleForm();
+            yeniOkutmaEkleForm.Show();
+            this.Hide();    
+
         }
     }
 }

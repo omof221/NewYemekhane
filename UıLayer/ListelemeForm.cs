@@ -57,6 +57,8 @@ namespace UıLayer
                 dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
             }
         }
+
+
         private async void ListelemeForm_Load(object sender, EventArgs e)
         {
             await Task.Delay(100); // ufak gecikme UI çizilsin diye
@@ -437,8 +439,15 @@ namespace UıLayer
         private void button3_Click_1(object sender, EventArgs e)
         {
             Form1 frmo = new Form1();
-            frmo.ShowDialog();  
+            frmo.ShowDialog();
             this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
+            anaSayfa.Show();
+            this.Close();    
         }
     }
 }

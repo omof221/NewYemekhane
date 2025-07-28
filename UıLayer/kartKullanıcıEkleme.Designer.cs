@@ -45,6 +45,7 @@ namespace UıLayer
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -182,11 +183,22 @@ namespace UıLayer
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // button4
+            // 
+            button4.Location = new Point(530, 344);
+            button4.Name = "button4";
+            button4.Size = new Size(201, 52);
+            button4.TabIndex = 19;
+            button4.Text = "Ana Sayfaya Dön";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // kartKullanıcıEkleme
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1270, 684);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -228,5 +240,6 @@ namespace UıLayer
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button button4;
     }
 }

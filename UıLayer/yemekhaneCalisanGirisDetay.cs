@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YemekhaneDataAccesLayer.Context;
 using YemekhaneDataAccesLayer.Repositories;
 using YemekhaneEntityLayer.Entities;
 
@@ -35,24 +36,39 @@ namespace UıLayer
         GenericRepository<YemekhaneCalisan> adminRepo = new GenericRepository<YemekhaneCalisan>();
         private void button2_Click(object sender, EventArgs e)
         {
-            //int tc = int.Parse(textBox1.Text.Trim());
-            string tc =textBox1.Text.Trim();
-            string sifre = textBox2.Text.Trim();
-            var yemekhanekullanıcı = adminRepo.GetByFilter(a => a.tc == tc && a.sifre == sifre);
-            if (yemekhanekullanıcı != null)
+
+            string tc = textBox1.Text.Trim();
+            string sifre = textBox2.Text;
+
+            // 1️⃣ Boş alan kontrolü
+            if (string.IsNullOrEmpty(tc) || string.IsNullOrEmpty(sifre))
             {
-                // Giriş başarılı, yeni formu aç
-             ListelemeForm listelemeForm = new ListelemeForm(); 
-                listelemeForm.Show();
-                this.Close();
-            }
-            else
-            {
-                // Hatalı giriş
-                MessageBox.Show("Tc veya şifre hatalı!", "Giriş Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("❗ Lütfen TC ve şifre alanlarını boş bırakmayınız.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
+            using (var context = new YemekhaneContext())
+            {
+                // 2️⃣ TC ve Şifre ile çalışanı kontrol et
+                var calisan = context.yemekhaneCalisanlar
+                    .FirstOrDefault(c => c.tc == tc && c.sifre == sifre);
 
+                if (calisan != null)
+                {
+                    // 3️⃣ Giriş başarılı → Ana sayfa formunu aç
+                    MessageBox.Show("✅ Giriş başarılı. Hoş geldiniz!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Hide(); // Giriş formunu gizle
+                    YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
+                    anaSayfa.ShowDialog(); // Modal olarak aç
+                    this.Show(); // Ana sayfa kapanınca giriş formunu geri getir
+                }
+                else
+                {
+                    // 4️⃣ Hatalı giriş
+                    MessageBox.Show("❌ TC veya şifre hatalı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
 
 
