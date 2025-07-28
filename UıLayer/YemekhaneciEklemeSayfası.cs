@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace UıLayer
         private void YemekhaneciEklemeSayfası_Load(object sender, EventArgs e)
         {
             CalisanlariListele();
-            VerileriGoster();
+            //VerileriGoster();
         }
 
 
@@ -91,7 +92,7 @@ namespace UıLayer
             }
         }
         GenericRepository<Admin> adminRepo = new GenericRepository<Admin>();
-        GenericRepository<YemekhaneCalisan> calisanRepo = new GenericRepository<YemekhaneCalisan>();    
+        GenericRepository<YemekhaneCalisan> calisanRepo = new GenericRepository<YemekhaneCalisan>();
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -172,7 +173,7 @@ namespace UıLayer
 
 
                 // Id'yi geçici olarak tut (güncellemede lazım olacak)
-                secilenAdminId = Convert.ToInt32(satir.Cells["yemekhaneCalisanId"].Value);
+                secilenAdminId = Convert.ToInt32(satir.Cells["ID"].Value);
             }
         }
         int secilenCalisanId;
@@ -279,6 +280,12 @@ namespace UıLayer
 
 
 
+
+        }
+
+        private void dataGridView2_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            //secilenCalisanId = Convert.ToInt32(satir.Cells["ID"].Value);
 
         }
     }
