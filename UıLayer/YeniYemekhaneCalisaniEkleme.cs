@@ -16,7 +16,7 @@ namespace UıLayer
     {
         public YeniYemekhaneCalisaniEkleme()
         {
-        
+
             InitializeComponent();
         }
         private void TemizleVeHazirla()
@@ -193,6 +193,14 @@ namespace UıLayer
             cmbDurum.Items.Add("Aktif");
             cmbDurum.Items.Add("Pasif");
             cmbDurum.SelectedIndex = 0;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Admin_Detay admin_Detay = new Admin_Detay();
+            admin_Detay.Show();
+            this.Close();   
+
         }
     }
 }

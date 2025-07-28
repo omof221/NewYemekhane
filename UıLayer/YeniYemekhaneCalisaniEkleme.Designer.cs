@@ -44,6 +44,7 @@
             btnEkle = new Button();
             btnGuncelle = new Button();
             btnSil = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -184,11 +185,22 @@
             btnSil.UseVisualStyleBackColor = true;
             btnSil.Click += btnSil_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(55, 460);
+            button1.Name = "button1";
+            button1.Size = new Size(225, 33);
+            button1.TabIndex = 16;
+            button1.Text = "Geri Dön";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // YeniYemekhaneCalisaniEkleme
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(963, 563);
+            Controls.Add(button1);
             Controls.Add(btnSil);
             Controls.Add(btnGuncelle);
             Controls.Add(btnEkle);
@@ -231,5 +243,6 @@
         private Button btnEkle;
         private Button btnGuncelle;
         private Button btnSil;
+        private Button button1;
     }
 }
