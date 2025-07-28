@@ -126,6 +126,7 @@ namespace UıLayer
             maskedTextBoxKartID.Name = "maskedTextBoxKartID";
             maskedTextBoxKartID.Size = new Size(125, 27);
             maskedTextBoxKartID.TabIndex = 10;
+            maskedTextBoxKartID.TextChanged += maskedTextBoxKartID_TextChanged_2;
             // 
             // label1
             // 

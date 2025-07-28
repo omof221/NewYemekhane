@@ -139,6 +139,12 @@ namespace UıLayer
                 if (kartZatenVar)
                 {
                     MessageBox.Show("Bu Kart ID zaten kayıtlı.");
+                    maskedTextBoxKartID.Clear();
+                    txtIsim.Clear();
+                    txtSoyad.Clear();
+                    txtGorevv.Clear();
+                    maskedTextBoxKartID.Focus();
+                    comboBoxAktiflik.SelectedIndex = 0;
                     return;
                 }
 
@@ -234,6 +240,15 @@ namespace UıLayer
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(maskedTextBoxKartID.Text) ||
+    string.IsNullOrWhiteSpace(txtIsim.Text) ||
+    string.IsNullOrWhiteSpace(txtSoyad.Text) ||
+    string.IsNullOrWhiteSpace(txtGorevv.Text) ||
+    comboBoxAktiflik.SelectedIndex == -1)
+            {
+                MessageBox.Show("Lütfen tüm alanları doldurunuz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (secilenCalisanID == 0)
             {
                 MessageBox.Show("Lütfen güncellenecek bir satır seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -369,7 +384,42 @@ namespace UıLayer
         {
             YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
             anaSayfa.Show();
-            this.Close();    
+            this.Close();
+        }
+
+        private void maskedTextBoxKartID_TextChanged_2(object sender, EventArgs e)
+        {
+            string girilenKartID = maskedTextBoxKartID.Text.Trim();
+
+            if (girilenKartID.Length != 10) // Veya senin sistemdeki uzunluk
+                return;
+
+            using (var context = new YemekhaneContext())
+            {
+                var calisan = context.Calisanlar
+                    .FirstOrDefault(c => c.calisanKartNo == girilenKartID);
+
+                if (calisan != null)
+                {
+                    // ✅ ID'yi güncelleme için tut
+                    secilenCalisanID = calisan.calisanID;
+
+                    txtIsim.Text = calisan.calisanIsmi;
+                    txtSoyad.Text = calisan.calisanSoyad;
+                    txtGorevv.Text = calisan.calisanGorevi;
+
+                    comboBoxAktiflik.SelectedItem = calisan.aktiflik ? "Aktif" : "Pasif";
+                }
+                else
+                {
+                    // Veri yoksa alanları temizle
+                    secilenCalisanID = 0;
+                    txtIsim.Clear();
+                    txtSoyad.Clear();
+                    txtGorevv.Clear();
+                    comboBoxAktiflik.SelectedIndex = -1;
+                }
+            }
         }
     }
 }
