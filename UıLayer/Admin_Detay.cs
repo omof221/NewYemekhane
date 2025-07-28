@@ -19,9 +19,9 @@ namespace UıLayer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            YemekhaneciEklemeSayfası ymk = new();
-            ymk.Show();
-            this.Hide();
+            YeniYemekhaneCalisaniEkleme yeniYemekhaneCalisaniEkleme = new YeniYemekhaneCalisaniEkleme();
+            yeniYemekhaneCalisaniEkleme.Show();
+            this.Close();   
 
         }
 

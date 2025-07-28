@@ -16,26 +16,64 @@ namespace UıLayer
     {
         public YeniYemekhaneCalisaniEkleme()
         {
+        
             InitializeComponent();
         }
+        private void TemizleVeHazirla()
+        {
+            // TextBox'ları temizle
+            txtTc.Clear();
+            txtAd.Clear();
+            txtSoyad.Clear();
+            txtKullaniciAdi.Clear();
+            txtSifre.Clear();
 
+            // ComboBox sıfırla
+            cmbDurum.SelectedIndex = -1;
+
+            // TC alanına focus yap
+            txtTc.Focus();
+        }
         private void CalisanlariListele()
         {
             using (var context = new YemekhaneContext())
             {
                 var calisanlar = context.yemekhaneCalisanlar
-                    .OrderByDescending(c => c.durum) // true olanlar önce
-                    .ThenBy(c => c.yemekhaneCalisanId) // eski kayıt önce
+                    .ToList() // EF Core sıralamaları karıştırabilir, önce al
+                    .OrderByDescending(c => c.durum) // aktifler üstte
+                    .ThenBy(c =>
+                    {
+                        // aktif olanlar: küçük ID yukarı
+                        // pasif olanlar: büyük ID yukarı (negatif ID vererek ters çeviriyoruz)
+                        return c.durum ? c.yemekhaneCalisanId : -c.yemekhaneCalisanId;
+                    })
                     .ToList();
 
                 dataGridView1.DataSource = calisanlar;
-
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
+
         }
 
         private void btnEkle_Click(object sender, EventArgs e)
-        {
+        {    // 1️⃣ BOŞ ALAN KONTROLÜ
+            if (string.IsNullOrWhiteSpace(txtTc.Text) ||
+                string.IsNullOrWhiteSpace(txtAd.Text) ||
+                string.IsNullOrWhiteSpace(txtSoyad.Text) ||
+                string.IsNullOrWhiteSpace(txtKullaniciAdi.Text) ||
+                string.IsNullOrWhiteSpace(txtSifre.Text) ||
+                cmbDurum.SelectedIndex == -1)
+            {
+                MessageBox.Show("❗ Lütfen tüm alanları doldurunuz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2️⃣ TC KARAKTER KONTROLÜ
+            if (txtTc.Text.Length != 11)
+            {
+                MessageBox.Show("❗ TC kimlik numarası 11 haneli olmalıdır.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             using (var context = new YemekhaneContext())
             {
                 var yeni = new YemekhaneCalisan
@@ -54,10 +92,29 @@ namespace UıLayer
 
             MessageBox.Show("✅ Yeni çalışan eklendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
             CalisanlariListele();
+            TemizleVeHazirla();
+
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
-        {
+        {   // 1️⃣ BOŞ ALAN KONTROLÜ
+            if (string.IsNullOrWhiteSpace(txtTc.Text) ||
+                string.IsNullOrWhiteSpace(txtAd.Text) ||
+                string.IsNullOrWhiteSpace(txtSoyad.Text) ||
+                string.IsNullOrWhiteSpace(txtKullaniciAdi.Text) ||
+                string.IsNullOrWhiteSpace(txtSifre.Text) ||
+                cmbDurum.SelectedIndex == -1)
+            {
+                MessageBox.Show("❗ Lütfen tüm alanları doldurunuz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2️⃣ TC KARAKTER KONTROLÜ
+            if (txtTc.Text.Length != 11)
+            {
+                MessageBox.Show("❗ TC kimlik numarası 11 haneli olmalıdır.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (secilenId == 0)
             {
                 MessageBox.Show("Lütfen bir satır seçin!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -82,6 +139,7 @@ namespace UıLayer
                     context.SaveChanges();
                     MessageBox.Show("Güncelleme başarılı!", "Bilgi");
                     CalisanlariListele();
+                    TemizleVeHazirla();
                 }
             }
 
