@@ -59,42 +59,65 @@ namespace UıLayer
         }
 
 
-        private async void ListelemeForm_Load(object sender, EventArgs e)
+        //private async void ListelemeForm_Load(object sender, EventArgs e)
+        //{
+
+
+        //    using (var context = new YemekhaneContext())
+        //    {
+        //        var okutmaListesi = context.Okutmalar
+        //        .Include(o => o.calisan)
+        //        .Where(o => o.calisan.aktiflik == true && o.aktif == true)
+        //        .Select(o => new
+        //        {
+        //            OkutmaID = o.OkutmalarID,
+        //            CalisanID = o.calisanID,
+        //            CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+        //            Tarih = o.OkutmaTarihi,
+        //            JokerGecis = o.jokerGecis,
+        //            GecisSayisi = o.gecisCount
+        //        })
+        //       .ToList();
+        //        dataGridView1.DataSource = okutmaListesi;
+
+        //        dataGridView1.Columns["OkutmaID"].HeaderText = "Okutma ID";
+        //        dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
+        //        dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
+        //        dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
+        //        dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
+        //    }
+
+        //    comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
+        //    comboBox1.Items.Add("Detaylı Yemek Raporu");
+        //    comboBox1.SelectedIndex = 0;
+        //}
+        private void ListelemeForm_Load(object sender, EventArgs e)
         {
-         
-
-            //maskedTextBox1.Text = "";
-            //maskedTextBox1.SelectionStart = 0;
-            //maskedTextBox1.Focus();
-
-            using (var context = new YemekhaneContext())
-            {
-                var okutmaListesi = context.Okutmalar
-                .Include(o => o.calisan)
-                .Where(o => o.calisan.aktiflik == true && o.aktif == true)
-                .Select(o => new
-                {
-                    OkutmaID = o.OkutmalarID,
-                    CalisanID = o.calisanID,
-                    CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
-                    Tarih = o.OkutmaTarihi,
-                    JokerGecis = o.jokerGecis,
-                    GecisSayisi = o.gecisCount
-                })
-               .ToList();
-                dataGridView1.DataSource = okutmaListesi;
-
-                dataGridView1.Columns["OkutmaID"].HeaderText = "Okutma ID";
-                dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
-                dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
-                dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
-                dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
-            }
-
             comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
             comboBox1.Items.Add("Detaylı Yemek Raporu");
             comboBox1.SelectedIndex = 0;
+
+            cbTumPersonel.Checked = true;
+            ListeleOkutmalar();
+
+            // 📌 DataGridView tam otursun
+            dataGridView1.Dock = DockStyle.Top; // Formun üst kısmını kaplasın
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+
+            // Başlık stilini güzelleştir
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            dataGridView1.EnableHeadersVisualStyles = false;
+
+            // 🧠 Form genişledikçe otomatik olarak boyutu koru
+            this.Resize += (s, ev) =>
+            {
+                dataGridView1.Width = this.ClientSize.Width;
+            };
         }
+
         private void cmbRaporSeçimi(object sender, EventArgs e)
         {
             comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
