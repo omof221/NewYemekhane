@@ -166,6 +166,7 @@ namespace UıLayer
 
                     MessageBox.Show("Çalışan pasif hale getirildi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CalisanlariListele();
+                    TemizleVeHazirla();
                 }
             }
         }
