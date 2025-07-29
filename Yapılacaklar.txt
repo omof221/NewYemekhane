@@ -3,5 +3,26 @@
 
 8. listelemede kullanýcý adý gözükmesi
 
+excelde zebrayý uygula
+aktif pasif ok yerine yazýlýcak direkt
+aktif default olarak gelicek
+id yerinin sütunu daralt
+sicil eklenicek - PK olarak kullan
+satrý temizle - hücreleri temizle
+ana sayfaya dön sað-sol üst köþe
+kart kullanýcý ekle zenbra
+kart kullanýcý ekle formu datagrid view saðda form bilgi doldurma vs solda
+personel kaydedildsin mi? güncellensin mi silinsin mi
+okutma id olmasýn görüntüsel sicil eklensin
+bitiþ tarihi baþlangýçtan önce olamaz
+kullanýcý adýný yemekhane çalýþaný olarak doldur
+tüm personel
+listeleme gridden geçiþ sayýsýný sil
+joker de ayný sil
+geçiþ count default 1 gelsin 3 falan ayrýca seçilsin
+
+
+
+
 
 
