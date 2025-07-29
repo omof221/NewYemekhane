@@ -16,6 +16,11 @@ personel kaydedildsin mi? güncellensin mi silinsin mi
 okutma id olmasýn görüntüsel sicil eklensin
 bitiþ tarihi baþlangýçtan önce olamaz
 kullanýcý adýný yemekhane çalýþaný olarak doldur
+tüm personel
+listeleme gridden geçiþ sayýsýný sil
+joker de ayný sil
+geçiþ count default 1 gelsin 3 falan ayrýca seçilsin
+
 
 
 
