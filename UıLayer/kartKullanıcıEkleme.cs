@@ -39,11 +39,10 @@ namespace UıLayer
 
         private void kartKullanıcıEkleme_Load(object sender, EventArgs e)
         {
+            comboBoxAktiflik.Items.Clear();
             comboBoxAktiflik.Items.Add("Aktif");
             comboBoxAktiflik.Items.Add("Pasif");
             comboBoxAktiflik.SelectedIndex = 0;
-
-            maskedTextBoxKartID.Focus();
             CalisanlariListele();
             //checkBoxAktif.Checked = true;
         }
@@ -97,7 +96,7 @@ namespace UıLayer
             string isim = txtIsim.Text.Trim();
             string soyad = txtSoyad.Text.Trim();
             string gorev = txtGorevv.Text.Trim();
-            bool aktifMi = comboBoxAktiflik.SelectedItem.ToString() == "Aktif";
+            bool aktifMi = comboBoxAktiflik.SelectedIndex == 0; // "Aktif" seçiliyse true, "Pasif" seçiliyse false  
 
             // 1. Kontrol: Tüm alanlar dolu mu?
             if (string.IsNullOrWhiteSpace(kartID) ||
@@ -155,7 +154,7 @@ namespace UıLayer
                     calisanSoyad = soyad,
                     calisanGorevi = gorev,
                     //yoruma aldım
-                    //aktiflik = aktifMi 
+                    aktiflik = aktifMi 
                 };
 
                 context.Calisanlar.Add(yeniCalisan);
@@ -419,6 +418,27 @@ namespace UıLayer
                     txtGorevv.Clear();
                     comboBoxAktiflik.SelectedIndex = -1;
                 }
+            }
+        }
+
+        private void txtIsim_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                
+                txtSoyad.Focus(); // Sonraki alana odaklan   
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Enter sesi bastırılır
+            }
+        }
+
+        private void txtSoyad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtGorevv.Focus(); // Sonraki alana odaklan   
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Enter sesi bastırılır
             }
         }
     }

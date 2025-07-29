@@ -76,6 +76,7 @@ namespace UıLayer
             txtIsim.Name = "txtIsim";
             txtIsim.Size = new Size(176, 27);
             txtIsim.TabIndex = 3;
+            txtIsim.KeyDown += txtIsim_KeyDown;
             // 
             // txtGorevv
             // 
@@ -90,6 +91,7 @@ namespace UıLayer
             txtSoyad.Name = "txtSoyad";
             txtSoyad.Size = new Size(176, 27);
             txtSoyad.TabIndex = 4;
+            txtSoyad.KeyDown += txtSoyad_KeyDown;
             // 
             // label2
             // 

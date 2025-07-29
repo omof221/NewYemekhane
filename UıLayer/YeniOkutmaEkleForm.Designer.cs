@@ -96,7 +96,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(maskedTextBox1);
             Name = "YeniOkutmaEkleForm";
-            Text = "YeniOkutmaEkleForm";
+            Text = "                                                                               ";
             Load += YeniOkutmaEkleForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

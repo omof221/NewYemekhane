@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace UıLayer
         public YemekhaneciAnaSayfa()
         {
             InitializeComponent();
+            textBox1.Focus();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -42,7 +44,12 @@ namespace UıLayer
         {
             yemekhaneCalisanGirisDetay yemekhaneCalisanGirisDetay = new yemekhaneCalisanGirisDetay();
             yemekhaneCalisanGirisDetay.Show();
-            this.Close();    
+            this.Close();
+        }
+
+        private void YemekhaneciAnaSayfa_Load(object sender, EventArgs e)
+        {
+            textBox1.Focus();   
         }
     }
 }

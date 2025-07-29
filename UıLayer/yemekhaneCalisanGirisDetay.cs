@@ -20,7 +20,10 @@ namespace UıLayer
     {
         public yemekhaneCalisanGirisDetay()
         {
+       
             InitializeComponent();
+            textBox1.Focus();
+            textBox1.Clear();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -37,39 +40,40 @@ namespace UıLayer
         }
 
 
-public class AutoClosingMessageBox
-    {
-        System.Threading.Timer timeoutTimer;
-        string caption;
-
-        private AutoClosingMessageBox(string text, string caption, int timeout)
+        public class AutoClosingMessageBox
         {
-            this.caption = caption;
-            timeoutTimer = new System.Threading.Timer(OnTimerElapsed, null, timeout, Timeout.Infinite);
-            MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            System.Threading.Timer timeoutTimer;
+            string caption;
 
-        public static void Show(string text, string caption, int timeout)
-        {
-            new AutoClosingMessageBox(text, caption, timeout);
-        }
+            private AutoClosingMessageBox(string text, string caption, int timeout)
+            {
+                this.caption = caption;
+                timeoutTimer = new System.Threading.Timer(OnTimerElapsed, null, timeout, Timeout.Infinite);
+                MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
-        private void OnTimerElapsed(object state)
-        {
-            IntPtr mbWnd = FindWindow(null, caption);
-            if (mbWnd != IntPtr.Zero)
-                SendMessage(mbWnd, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
-            timeoutTimer.Dispose();
-        }
+            public static void Show(string text, string caption, int timeout)
+            {
+                new AutoClosingMessageBox(text, caption, timeout);
+            }
 
-        const int WM_CLOSE = 0x0010;
-        [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
-        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-        [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
-        static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
-}
+            private void OnTimerElapsed(object state)
+            {
+                IntPtr mbWnd = FindWindow(null, caption);
+                if (mbWnd != IntPtr.Zero)
+                    SendMessage(mbWnd, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+                timeoutTimer.Dispose();
+            }
+
+            const int WM_CLOSE = 0x0010;
+            [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+            static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+            [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+            static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+        }
 
         GenericRepository<YemekhaneCalisan> adminRepo = new GenericRepository<YemekhaneCalisan>();
+
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -101,17 +105,6 @@ public class AutoClosingMessageBox
                     // Giriş başarılı mesajı otomatik 3 saniyede kapanır
                     AutoClosingMessageBox.Show("✅ Giriş başarılı. Hoş geldiniz!", "Bilgi", 1600);
 
-
-
-
-
-
-
-
-
-                    //// 4️⃣ Giriş başarılı mesajını sonra göster (arkada ana sayfa açık)
-                    //MessageBox.Show("✅ Giriş başarılı. Hoş geldiniz!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     this.Hide(); // Giriş formunu gizle
                 }
                 else
@@ -130,6 +123,32 @@ public class AutoClosingMessageBox
 
 
 
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBox2.Focus(); // Şifre kutusuna geçiş
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Enter sesi bastırılır
+            }
+        }
+
+        private void button2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button2.PerformClick(); // Giriş butonunu tetikle
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void yemekhaneCalisanGirisDetay_Load(object sender, EventArgs e)
+        {
+            textBox1.Focus();
+            textBox1.Clear();   
         }
     }
 }

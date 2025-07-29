@@ -156,6 +156,8 @@ namespace UıLayer
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Lütfen önce bir satır seçin.");
+                maskedTextBox1.Clear();
+                maskedTextBox1.Focus();
                 return;
             }
 
@@ -221,6 +223,8 @@ namespace UıLayer
                     if (bugunkuGecisSayisi >= izinliGecis)
                     {
                         MessageBox.Show("⚠️ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
+                        maskedTextBox1.Clear();
+                        maskedTextBox1.Focus();
                         return;
                     }
 
@@ -238,6 +242,8 @@ namespace UıLayer
                     context.Okutmalar.Add(yeni);
                     context.SaveChanges();
                     ListeleOkutmalar(); // Güncelleme
+                    maskedTextBox1.Clear();
+                    maskedTextBox1.Focus();
                 }
             }
         }

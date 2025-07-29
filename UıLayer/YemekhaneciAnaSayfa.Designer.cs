@@ -32,6 +32,7 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // button1
@@ -74,18 +75,28 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(149, 69);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(176, 27);
+            textBox1.TabIndex = 4;
+            // 
             // YemekhaneciAnaSayfa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(962, 495);
+            Controls.Add(textBox1);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "YemekhaneciAnaSayfa";
             Text = "YemekhaneciAnaSayfa";
+            Load += YemekhaneciAnaSayfa_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -94,5 +105,6 @@
         private Button button2;
         private Button button3;
         private Button button4;
+        private TextBox textBox1;
     }
 }

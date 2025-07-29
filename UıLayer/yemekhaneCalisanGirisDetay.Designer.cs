@@ -52,6 +52,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(146, 27);
             textBox1.TabIndex = 1;
+            textBox1.KeyDown += textBox1_KeyDown;
             // 
             // textBox2
             // 
@@ -102,6 +103,7 @@
             Controls.Add(button1);
             Name = "yemekhaneCalisanGirisDetay";
             Text = "yemekhaneCalisanGirisDetay";
+            Load += yemekhaneCalisanGirisDetay_Load;
             ResumeLayout(false);
             PerformLayout();
         }
