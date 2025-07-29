@@ -47,7 +47,7 @@ namespace UıLayer
 
                 var liste = context.Okutmalar
                     .Include(o => o.calisan)
-                    .Where(o => o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin) // sadece bugünkü veriler
+                    .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin) // sadece aktif ve bugünkü veriler
                     .Select(o => new
                     {
                         o.OkutmalarID,
@@ -57,14 +57,12 @@ namespace UıLayer
                         o.gecisCount,
                         o.aktif
                     })
-                    .ToList()
-                    .OrderByDescending(x => x.aktif) // önce aktif olanlar
-                    .ThenByDescending(x => x.aktif ? x.OkutmaTarihi : DateTime.MinValue)
-                    .ThenBy(x => !x.aktif ? x.OkutmaTarihi : DateTime.MaxValue)
+                    .OrderByDescending(x => x.OkutmaTarihi) // sadece aktifler olduğu için tek sıralama yeterli
                     .ToList();
 
                 dataGridView1.DataSource = liste;
             }
+
 
         }
         private void maskedTextBox1_TextChanged(object sender, EventArgs e)
