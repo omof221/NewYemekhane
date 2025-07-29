@@ -42,8 +42,12 @@ namespace UıLayer
         {
             using (var context = new YemekhaneContext())
             {
+                DateTime bugun = DateTime.Today;
+                DateTime yarin = bugun.AddDays(1);
+
                 var liste = context.Okutmalar
                     .Include(o => o.calisan)
+                    .Where(o => o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin) // sadece bugünkü veriler
                     .Select(o => new
                     {
                         o.OkutmalarID,
@@ -54,13 +58,14 @@ namespace UıLayer
                         o.aktif
                     })
                     .ToList()
-                    .OrderByDescending(x => x.aktif)              // önce aktif = true
-                    .ThenByDescending(x => x.aktif ? x.OkutmaTarihi : DateTime.MinValue) // aktif olanları en yeni başa
-                    .ThenBy(x => !x.aktif ? x.OkutmaTarihi : DateTime.MaxValue)          // pasif olanları en eski başa
+                    .OrderByDescending(x => x.aktif) // önce aktif olanlar
+                    .ThenByDescending(x => x.aktif ? x.OkutmaTarihi : DateTime.MinValue)
+                    .ThenBy(x => !x.aktif ? x.OkutmaTarihi : DateTime.MaxValue)
                     .ToList();
 
                 dataGridView1.DataSource = liste;
             }
+
         }
         private void maskedTextBox1_TextChanged(object sender, EventArgs e)
         {
