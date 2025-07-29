@@ -157,6 +157,7 @@
             label4.Size = new Size(92, 20);
             label4.TabIndex = 15;
             label4.Text = "Kullanıcı Adı";
+            label4.Click += label4_Click;
             // 
             // comboBox1
             // 

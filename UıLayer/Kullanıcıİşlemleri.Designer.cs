@@ -1,6 +1,6 @@
 ﻿namespace UıLayer
 {
-    partial class YeniYemekhaneCalisaniEkleme
+    partial class Kullanıcıİşlemleri
     {
         /// <summary>
         /// Required designer variable.

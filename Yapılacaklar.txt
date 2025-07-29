@@ -1,7 +1,9 @@
-tarihte jhata düzenle
+
 2. UI ler düzeltilecek ve merkeze ortlanaccak.
-3. KULLANIC EKLEMEDEN SONRA HATA MESAJI VERÝRSE SONRAsýnda textboxlra silinsin
-4. Güncelleme butonuna bastýktan sonra kart okuturulursa veya kart id elle girilirse ve ara butonuna basýlýrsa kiþinin kart bilgileri otomatik olark gelisn 
-5. isim soyad görev boþ kalamaz
-6.giriþ baþarýlý mesahýndan sonra tamama basmadan ekran açýlsýn
+
+8. listelemede kullanýcý adý gözükmesi
+
+
+
+
 

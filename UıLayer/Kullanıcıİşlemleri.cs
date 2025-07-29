@@ -12,9 +12,9 @@ using YemekhaneEntityLayer.Entities;
 
 namespace UıLayer
 {
-    public partial class YeniYemekhaneCalisaniEkleme : Form
+    public partial class Kullanıcıİşlemleri : Form
     {
-        public YeniYemekhaneCalisaniEkleme()
+        public Kullanıcıİşlemleri()
         {
 
             InitializeComponent();

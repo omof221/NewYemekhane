@@ -19,7 +19,7 @@ namespace UıLayer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            YeniYemekhaneCalisaniEkleme yeniYemekhaneCalisaniEkleme = new YeniYemekhaneCalisaniEkleme();
+            Kullanıcıİşlemleri yeniYemekhaneCalisaniEkleme = new Kullanıcıİşlemleri();
             yeniYemekhaneCalisaniEkleme.Show();
             this.Close();   
 

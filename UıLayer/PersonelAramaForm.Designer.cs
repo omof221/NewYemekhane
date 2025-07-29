@@ -33,7 +33,6 @@
             button1 = new Button();
             dataGridView1 = new DataGridView();
             button2 = new Button();
-            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -77,7 +76,7 @@
             // button2
             // 
             button2.Font = new Font("Yu Gothic UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button2.Location = new Point(183, 454);
+            button2.Location = new Point(351, 454);
             button2.Name = "button2";
             button2.Size = new Size(94, 35);
             button2.TabIndex = 4;
@@ -85,22 +84,11 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // button3
-            // 
-            button3.Font = new Font("Yu Gothic UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            button3.Location = new Point(487, 451);
-            button3.Name = "button3";
-            button3.Size = new Size(159, 35);
-            button3.TabIndex = 5;
-            button3.Text = "Okutma Ekle";
-            button3.UseVisualStyleBackColor = true;
-            // 
             // PersonelAramaForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 491);
-            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
@@ -121,6 +109,5 @@
         private Button button1;
         private DataGridView dataGridView1;
         private Button button2;
-        private Button button3;
     }
 }

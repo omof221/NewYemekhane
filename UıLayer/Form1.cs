@@ -44,9 +44,14 @@ namespace UıLayer
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            YeniYemekhaneCalisaniEkleme yeniYemekhaneCalisaniEkleme=new YeniYemekhaneCalisaniEkleme();
+            Kullanıcıİşlemleri yeniYemekhaneCalisaniEkleme = new Kullanıcıİşlemleri();
             yeniYemekhaneCalisaniEkleme.Show();
-            this.Hide();    
+            this.Hide();
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
 
         }
     }
