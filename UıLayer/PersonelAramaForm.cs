@@ -1,7 +1,107 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+//using Microsoft.EntityFrameworkCore;
+//using System;
+//using System.Collections.Generic;
+//using System.Data;
+//using System.Drawing;
+//using System.Linq;
+//using System.Windows.Forms;
+//using YemekhaneDataAccesLayer.Context;
+//using YemekhaneEntityLayer.Entities;
+
+//namespace UıLayer
+//{
+//    public partial class PersonelAramaForm : Form
+//    {
+//        [System.ComponentModel.Browsable(false)]
+//        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+//        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+//        public List<int> SecilenCalisanIdListesi { get; private set; } = new List<int>();
+//        public event Action<List<int>> SecilenCalisanlarGonder;
+
+//        public PersonelAramaForm()
+//        {
+//            InitializeComponent();
+//        }
+
+//        private void PersonelAramaForm_Load(object sender, EventArgs e)
+//        {
+//            dataGridView1.Columns.Clear();
+//            dataGridView1.Columns.Add("CalisanID", "Çalışan ID");
+//            dataGridView1.Columns.Add("IsimSoyisim", "İsim Soyisim");
+
+//            dataGridView1.Rows.Clear();
+//            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+//            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick; // Çift tıklama olayı bağlandı
+//        }
+
+//        private void button1_Click(object sender, EventArgs e)
+//        {
+//            string arama = textBox1.Text.Trim().ToLower();
+
+//            using (var context = new YemekhaneContext())
+//            {
+//                var sonuc = context.Calisanlar
+//                    .Where(c => c.aktiflik == true &&
+//                        (c.calisanIsmi.ToLower().Contains(arama) ||
+//                         c.calisanSoyad.ToLower().Contains(arama) ||
+//                         c.calisanID.ToString().Contains(arama)))
+//                    .ToList();
+
+//                dataGridView1.Rows.Clear();
+
+//                if (sonuc.Any())
+//                {
+//                    foreach (var calisan in sonuc)
+//                    {
+//                        dataGridView1.Rows.Add(
+//                            calisan.calisanID,
+//                            calisan.calisanIsmi + " " + calisan.calisanSoyad);
+//                    }
+//                }
+//                else
+//                {
+//                    MessageBox.Show("Hiçbir çalışan bulunamadı.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+//                }
+//            }
+//        }
+
+//        private void button2_Click(object sender, EventArgs e)
+//        {
+//            SecilenCalisanlarGonder?.Invoke(SecilenCalisanIdListesi);
+//            this.Close();
+//        }
+
+//        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+//        {
+//            if (e.RowIndex >= 0)
+//            {
+//                int calisanId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["CalisanID"].Value);
+
+//                if (!SecilenCalisanIdListesi.Contains(calisanId))
+//                {
+//                    SecilenCalisanIdListesi.Add(calisanId);
+//                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen; // Seçildi göstergesi
+//                }
+//                else
+//                {
+//                    SecilenCalisanIdListesi.Remove(calisanId);
+//                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White; // Seçim iptal
+//                }
+//            }
+//        }
+
+//        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+//        {
+
+//        }
+//    }
+//}
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using YemekhaneDataAccesLayer.Context;
@@ -24,34 +124,15 @@ namespace UıLayer
 
         private void PersonelAramaForm_Load(object sender, EventArgs e)
         {
-            // Sütunları tanımla
             dataGridView1.Columns.Clear();
             dataGridView1.Columns.Add("CalisanID", "Çalışan ID");
             dataGridView1.Columns.Add("IsimSoyisim", "İsim Soyisim");
 
-            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
-            {
-                Name = "Secildi",
-                HeaderText = "Seç",
-                Width = 50
-            };
-            dataGridView1.Columns.Add(checkBoxColumn);
-
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn
-            {
-                Name = "OkutmaEkle",
-                HeaderText = "Yeni Okutma",
-                Text = "Ekle",
-                UseColumnTextForButtonValue = true,
-                Width = 80
-            };
-            dataGridView1.Columns.Add(buttonColumn);
-
-            // Sadece başlıkları göster, satır olmasın
             dataGridView1.Rows.Clear();
-
-            // Sütunları form genişliğine yay
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+
+            ApplyZebraStyle(); // Zebra görünümü form açılışında da uygula
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -75,9 +156,10 @@ namespace UıLayer
                     {
                         dataGridView1.Rows.Add(
                             calisan.calisanID,
-                            calisan.calisanIsmi + " " + calisan.calisanSoyad,
-                            false);
+                            calisan.calisanIsmi + " " + calisan.calisanSoyad);
                     }
+
+                    ApplyZebraStyle(); // Arama sonrası zebra stilini yeniden uygula
                 }
                 else
                 {
@@ -88,41 +170,44 @@ namespace UıLayer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SecilenCalisanIdListesi.Clear();
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (Convert.ToBoolean(row.Cells["Secildi"].Value) == true)
-                {
-                    int calisanId = Convert.ToInt32(row.Cells["CalisanID"].Value);
-                    SecilenCalisanIdListesi.Add(calisanId);
-                }
-            }
-
             SecilenCalisanlarGonder?.Invoke(SecilenCalisanIdListesi);
             this.Close();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "OkutmaEkle" && e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 int calisanId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["CalisanID"].Value);
 
-                using (var context = new YemekhaneContext())
+                if (!SecilenCalisanIdListesi.Contains(calisanId))
                 {
-                    var okutma = new Okutmalar
-                    {
-                        calisanID = calisanId,
-                        OkutmaTarihi = DateTime.Now
-                    };
-
-                    context.Okutmalar.Add(okutma);
-                    context.SaveChanges();
+                    SecilenCalisanIdListesi.Add(calisanId);
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
                 }
-
-                MessageBox.Show($"Çalışan ID {calisanId} için okutma eklendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    SecilenCalisanIdListesi.Remove(calisanId);
+                    // Zebra görünümüne uygun olarak geri döndür
+                    if (e.RowIndex % 2 == 0)
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    else
+                        dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Gainsboro;
+                }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        // ✅ Zebra görünüm fonksiyonu
+        private void ApplyZebraStyle()
+        {
+            dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
         }
     }
 }
+
+

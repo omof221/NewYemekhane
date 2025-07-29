@@ -37,7 +37,7 @@
             // button1
             // 
             button1.Font = new Font("Yu Gothic", 10.8F, FontStyle.Bold);
-            button1.Location = new Point(89, 278);
+            button1.Location = new Point(92, 278);
             button1.Name = "button1";
             button1.Size = new Size(197, 57);
             button1.TabIndex = 0;
