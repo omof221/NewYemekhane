@@ -55,42 +55,11 @@ namespace UıLayer
                 dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
                 dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
                 dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
+                ApplyZebraStyle(dataGridView1);
+
             }
         }
 
-
-        //private async void ListelemeForm_Load(object sender, EventArgs e)
-        //{
-
-
-        //    using (var context = new YemekhaneContext())
-        //    {
-        //        var okutmaListesi = context.Okutmalar
-        //        .Include(o => o.calisan)
-        //        .Where(o => o.calisan.aktiflik == true && o.aktif == true)
-        //        .Select(o => new
-        //        {
-        //            OkutmaID = o.OkutmalarID,
-        //            CalisanID = o.calisanID,
-        //            CalisanAdi = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
-        //            Tarih = o.OkutmaTarihi,
-        //            JokerGecis = o.jokerGecis,
-        //            GecisSayisi = o.gecisCount
-        //        })
-        //       .ToList();
-        //        dataGridView1.DataSource = okutmaListesi;
-
-        //        dataGridView1.Columns["OkutmaID"].HeaderText = "Okutma ID";
-        //        dataGridView1.Columns["CalisanID"].HeaderText = "Çalışan ID";
-        //        dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
-        //        dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
-        //        dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
-        //    }
-
-        //    comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
-        //    comboBox1.Items.Add("Detaylı Yemek Raporu");
-        //    comboBox1.SelectedIndex = 0;
-        //}
         private void ListelemeForm_Load(object sender, EventArgs e)
         {
             comboBox1.Items.Add("Alınan Toplam Yemek Raporu");
@@ -127,6 +96,10 @@ namespace UıLayer
             cbTumPersonel.Checked = true;
             ListeleOkutmalar();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
+
         }
 
         //private void cmbRaporSeçimi(object sender, EventArgs e) { }
@@ -233,6 +206,9 @@ namespace UıLayer
                                 row++;
                             }
                             worksheet.Columns().AdjustToContents();
+                            worksheet.Style.Alignment.WrapText = true;
+                            worksheet.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+
 
                             var headerRange = worksheet.Range(1, 1, 1, 6); // 6 sütunluk başlık
                             headerRange.Style.Font.Bold = true;
@@ -447,6 +423,8 @@ namespace UıLayer
                 dataGridView1.Columns["CalisanAdi"].HeaderText = "Çalışan Adı";
                 dataGridView1.Columns["Tarih"].HeaderText = "Tarih";
                 dataGridView1.Columns["GecisSayisi"].HeaderText = "Geçiş Sayısı";
+                ApplyZebraStyle(dataGridView1);
+
                 // dataGridView1.Columns["JokerGecis"].HeaderText = "Joker Geçiş"; // gerekirse aç
             }
         }
@@ -474,5 +452,11 @@ namespace UıLayer
         {
 
         }
+        private void ApplyZebraStyle(DataGridView dgv)
+        {
+            dgv.RowsDefaultCellStyle.BackColor = Color.White;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
+        }
+
     }
 }

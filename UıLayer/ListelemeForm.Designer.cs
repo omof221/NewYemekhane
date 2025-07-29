@@ -42,7 +42,6 @@
             label4 = new Label();
             comboBox1 = new ComboBox();
             label5 = new Label();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -93,7 +92,7 @@
             // cbTumPersonel
             // 
             cbTumPersonel.AutoSize = true;
-            cbTumPersonel.Location = new Point(171, 93);
+            cbTumPersonel.Location = new Point(87, 90);
             cbTumPersonel.Name = "cbTumPersonel";
             cbTumPersonel.Size = new Size(119, 24);
             cbTumPersonel.TabIndex = 6;
@@ -176,22 +175,11 @@
             label5.TabIndex = 18;
             label5.Text = "Almak İstediğiniz Rapor Türünü Seçiniz";
             // 
-            // button1
-            // 
-            button1.Location = new Point(6, 90);
-            button1.Name = "button1";
-            button1.Size = new Size(144, 29);
-            button1.TabIndex = 19;
-            button1.Text = "Seçilen Satırı Sil";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_3;
-            // 
             // ListelemeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1270, 629);
-            Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(comboBox1);
             Controls.Add(label4);
@@ -228,7 +216,6 @@
         private Label label4;
         private ComboBox comboBox1;
         private Label label5;
-        private Button button1;
         private MaskedTextBox maskedTextBox1;
     }
 }
