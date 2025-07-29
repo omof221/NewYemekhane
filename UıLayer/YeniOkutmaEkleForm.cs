@@ -47,7 +47,7 @@ namespace UıLayer
 
                 var liste = context.Okutmalar
                     .Include(o => o.calisan)
-                    .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin) // sadece aktif ve bugünkü veriler
+                    .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
                     .Select(o => new
                     {
                         o.OkutmalarID,
@@ -57,11 +57,74 @@ namespace UıLayer
                         o.gecisCount,
                         o.aktif
                     })
-                    .OrderByDescending(x => x.OkutmaTarihi) // sadece aktifler olduğu için tek sıralama yeterli
+                    .OrderByDescending(x => x.OkutmaTarihi)
                     .ToList();
 
                 dataGridView1.DataSource = liste;
+
+                // ✅ Zebra efekti (alternatif satır renkleri)
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
             }
+            using (var context = new YemekhaneContext())
+            {
+                DateTime bugun = DateTime.Today;
+                DateTime yarin = bugun.AddDays(1);
+
+                var liste = context.Okutmalar
+                    .Include(o => o.calisan)
+                    .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
+                    .Select(o => new
+                    {
+                        o.OkutmalarID,
+                        AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+                        o.OkutmaTarihi,
+                        o.jokerGecis,
+                        o.gecisCount,
+                        o.aktif
+                    })
+                    .OrderByDescending(x => x.OkutmaTarihi)
+                    .ToList();
+
+                dataGridView1.DataSource = liste;
+
+                // ✅ Zebra efekti (alternatif satır renkleri)
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            }
+            using (var context = new YemekhaneContext())
+            {
+                DateTime bugun = DateTime.Today;
+                DateTime yarin = bugun.AddDays(1);
+
+                var liste = context.Okutmalar
+                    .Include(o => o.calisan)
+                    .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
+                    .Select(o => new
+                    {
+                        o.OkutmalarID,
+                        AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+                        o.OkutmaTarihi,
+                        o.jokerGecis,
+                        o.gecisCount,
+                        o.aktif
+                    })
+                    .OrderByDescending(x => x.OkutmaTarihi)
+                    .ToList();
+
+                dataGridView1.DataSource = liste;
+
+                // ✅ Zebra efekti (alternatif satır renkleri)
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            }
+
 
 
         }
@@ -84,7 +147,6 @@ namespace UıLayer
                     maskedTextBox1.Clear();
                     maskedTextBox1.Focus();
 
-                    // 🛠 İmleç başa alınır
                     this.BeginInvoke((MethodInvoker)(() =>
                     {
                         maskedTextBox1.SelectionStart = 0;
@@ -95,14 +157,13 @@ namespace UıLayer
 
                 DateTime bugun = DateTime.Today;
 
-                // 🔍 Bugünkü aktif geçişleri al
+                // 🔍 Bugünkü geçişleri al (aktif ve joker olmayanlar)
                 var bugunkuGecisler = context.Okutmalar
                     .Where(o => o.calisanID == calisan.calisanID && o.OkutmaTarihi.Date == bugun && o.aktif && !o.jokerGecis)
-                    .OrderBy(o => o.OkutmaTarihi)
                     .ToList();
 
                 int bugunkuGecisSayisi = bugunkuGecisler.Count;
-                int izinliGecisSayisi = bugunkuGecisler.FirstOrDefault()?.gecisCount ?? 1;
+                int izinliGecisSayisi = calisan.gecisSayısı; // ✅ Artık geçiş hakkı buradan alınıyor
 
                 if (bugunkuGecisSayisi >= izinliGecisSayisi)
                 {
@@ -114,7 +175,6 @@ namespace UıLayer
                     maskedTextBox1.Clear();
                     maskedTextBox1.Focus();
 
-                    // 🛠 İmleç başa alınır
                     this.BeginInvoke((MethodInvoker)(() =>
                     {
                         maskedTextBox1.SelectionStart = 0;
@@ -123,31 +183,31 @@ namespace UıLayer
                     return;
                 }
 
-                // ✅ Yeni geçiş ekle
+                // ✅ Geçiş izni varsa yeni geçişi kaydet
                 Okutmalar yeniOkutma = new Okutmalar
                 {
                     calisanID = calisan.calisanID,
                     OkutmaTarihi = DateTime.Now,
                     aktif = true,
                     jokerGecis = false,
-                    gecisCount = izinliGecisSayisi,
+                    gecisCount = izinliGecisSayisi,    // Bu alan artık gerekmiyorsa yine de saklanabilir
                     jokerGecisCount = 1
                 };
 
                 context.Okutmalar.Add(yeniOkutma);
                 context.SaveChanges();
 
-                ListeleOkutmalar(); // 🔄 datagrid güncelle
+                ListeleOkutmalar();
 
                 maskedTextBox1.Clear();
                 maskedTextBox1.Focus();
 
-                // 🛠 İmleç başa alınır
                 this.BeginInvoke((MethodInvoker)(() =>
                 {
                     maskedTextBox1.SelectionStart = 0;
                 }));
             }
+
 
         }
 

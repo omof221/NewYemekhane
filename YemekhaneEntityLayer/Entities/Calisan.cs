@@ -16,6 +16,8 @@ namespace YemekhaneEntityLayer.Entities
         public string calisanGorevi { get; set; }
 
         public string calisanKartNo { get; set; }
+        public string sicil { get; set; }
+        public int gecisSayısı { get; set; }
 
         public List<Okutmalar> Okutmalar { get; set; }
 

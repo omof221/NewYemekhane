@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using YemekhaneDataAccesLayer.Context;
 using YemekhaneEntityLayer.Entities;
+using static UıLayer.yemekhaneCalisanGirisDetay;
 
 namespace UıLayer
 {
@@ -19,10 +20,14 @@ namespace UıLayer
         public kartKullanıcıEkleme()
         {
             InitializeComponent();
+
             Directory.CreateDirectory(Path.GetDirectoryName(dosyaYolu));
             //timer1.Start();
         }
-        private string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
+        //yamok
+        //private string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
+        //omof
+        private string dosyaYolu = @"C:\Users\omery\OneDrive\Masaüstü\kartverileri";
         private string oncekiKartID = "";
         private void label1_Click(object sender, EventArgs e)
         {
@@ -96,15 +101,19 @@ namespace UıLayer
             string isim = txtIsim.Text.Trim();
             string soyad = txtSoyad.Text.Trim();
             string gorev = txtGorevv.Text.Trim();
+            string sicil = txtsicil.Text.Trim();
+            string gecis=txtgecis.Text.Trim();
             bool aktifMi = comboBoxAktiflik.SelectedIndex == 0; // "Aktif" seçiliyse true, "Pasif" seçiliyse false  
-
+        
             // 1. Kontrol: Tüm alanlar dolu mu?
             if (string.IsNullOrWhiteSpace(kartID) ||
                 string.IsNullOrWhiteSpace(isim) ||
                 string.IsNullOrWhiteSpace(soyad) ||
-                string.IsNullOrWhiteSpace(gorev))
+                string.IsNullOrWhiteSpace(gorev) ||
+                string.IsNullOrWhiteSpace(sicil) ||
+                string.IsNullOrWhiteSpace(gecis))
             {
-                MessageBox.Show("Tüm alanlar (Kart ID, İsim, Soyad, Görev) doldurulmalıdır.");
+                MessageBox.Show("Tüm alanlar (Kart ID, İsim, Soyad, Görev,Sicil, Günlük Geçiş Sayısı) doldurulmalıdır.");
                 return;
             }
 
@@ -142,6 +151,8 @@ namespace UıLayer
                     txtIsim.Clear();
                     txtSoyad.Clear();
                     txtGorevv.Clear();
+                    txtsicil.Clear();
+                    txtgecis.Clear(); 
                     maskedTextBoxKartID.Focus();
                     comboBoxAktiflik.SelectedIndex = 0;
                     return;
@@ -153,8 +164,9 @@ namespace UıLayer
                     calisanIsmi = isim,
                     calisanSoyad = soyad,
                     calisanGorevi = gorev,
-                    //yoruma aldım
-                    aktiflik = aktifMi 
+                    sicil = sicil,
+                    gecisSayısı = Convert.ToInt32(gecis), // Günlük geçiş sayısını int olarak kaydet
+                    aktiflik = aktifMi
                 };
 
                 context.Calisanlar.Add(yeniCalisan);
@@ -167,6 +179,8 @@ namespace UıLayer
                 txtIsim.Clear();
                 txtSoyad.Clear();
                 txtGorevv.Clear();
+                txtsicil.Clear();
+                txtgecis.Clear();
                 maskedTextBoxKartID.Focus();
                 comboBoxAktiflik.SelectedIndex = 0;
 
@@ -178,8 +192,10 @@ namespace UıLayer
         private void maskedTextBoxKartID_TextChanged_1(object sender, EventArgs e)
         {
             string kartID = maskedTextBoxKartID.Text.Trim();
-
-            string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
+            //yamok
+            // string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
+            //omof
+            string dosyaYolu = @"C:\Users\omery\OneDrive\Masaüstü\kartverileri";
             Directory.CreateDirectory(Path.GetDirectoryName(dosyaYolu));
             File.AppendAllText(dosyaYolu, kartID + Environment.NewLine);
 
@@ -205,7 +221,6 @@ namespace UıLayer
         {
             using (var context = new YemekhaneContext())
             {
-                // Önce aktif olanlar, sonra pasif olanlar, ikisi de kendi içinde sondan başa doğru sıralanacak
                 var liste = context.Calisanlar
                     .Select(c => new
                     {
@@ -214,13 +229,21 @@ namespace UıLayer
                         Isim = c.calisanIsmi,
                         Soyad = c.calisanSoyad,
                         Gorev = c.calisanGorevi,
+                        Sicil = c.sicil,
+                        GecisSayısı = c.gecisSayısı,
                         KartNo = c.calisanKartNo
                     })
-                    .OrderByDescending(c => c.AktifMi)  // Aktif olanlar önce
-                    .ThenByDescending(c => c.ID)        // Aynı gruptakilerde son eklenen önce
+                    .OrderByDescending(c => c.AktifMi)
+                    .ThenByDescending(c => c.ID)
                     .ToList();
 
                 dataGridView1.DataSource = liste;
+
+                // ✅ Alternatif satır renklendirmesi
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                dataGridView1.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.SteelBlue;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
             }
         }
 
@@ -243,11 +266,14 @@ namespace UıLayer
     string.IsNullOrWhiteSpace(txtIsim.Text) ||
     string.IsNullOrWhiteSpace(txtSoyad.Text) ||
     string.IsNullOrWhiteSpace(txtGorevv.Text) ||
+    string.IsNullOrWhiteSpace(txtsicil.Text) ||
+    string.IsNullOrWhiteSpace(txtgecis.Text) ||
     comboBoxAktiflik.SelectedIndex == -1)
             {
                 MessageBox.Show("Lütfen tüm alanları doldurunuz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (secilenCalisanID == 0)
             {
                 MessageBox.Show("Lütfen güncellenecek bir satır seçiniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -259,21 +285,41 @@ namespace UıLayer
                 var calisan = context.Calisanlar.FirstOrDefault(c => c.calisanID == secilenCalisanID);
                 if (calisan != null)
                 {
-                    calisan.calisanKartNo = maskedTextBoxKartID.Text.Trim();
-                    calisan.calisanIsmi = txtIsim.Text.Trim();
-                    calisan.calisanSoyad = txtSoyad.Text.Trim();
-                    calisan.calisanGorevi = txtGorevv.Text.Trim();
-                    calisan.aktiflik = comboBoxAktiflik.SelectedItem.ToString() == "Aktif";
+                    string isimSoyad = $"{calisan.calisanIsmi} {calisan.calisanSoyad}";
 
-                    context.SaveChanges();
+                    DialogResult onay = MessageBox.Show(
+                        $"Seçilen çalışan: {isimSoyad}\n\nBu çalışanı güncellemek istiyor musunuz?",
+                        "Güncelleme Onayı",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
 
-                    MessageBox.Show("Çalışan bilgileri güncellendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (onay == DialogResult.Yes)
+                    {
+                        calisan.calisanKartNo = maskedTextBoxKartID.Text.Trim();
+                        calisan.calisanIsmi = txtIsim.Text.Trim();
+                        calisan.calisanSoyad = txtSoyad.Text.Trim();
+                        calisan.calisanGorevi = txtGorevv.Text.Trim();
+                        calisan.sicil = txtsicil.Text.Trim();
+                        calisan.gecisSayısı = Convert.ToInt32(txtgecis.Text.Trim()); 
+                        calisan.aktiflik = comboBoxAktiflik.SelectedIndex == 0;
 
-                    // Temizle ve resetle
+                        context.SaveChanges();
+
+                        MessageBox.Show("Çalışan bilgileri güncellendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        AutoClosingMessageBox.Show($"❗ {isimSoyad} adlı çalışan güncellenmedi.", "Bilgi", 1000); // 1 saniyede kapanır
+                    }
+
+                    // Temizle ve resetle (her iki durumda da)
                     secilenCalisanID = 0;
                     txtIsim.Clear();
                     txtSoyad.Clear();
                     txtGorevv.Clear();
+                    txtsicil.Clear();
+                    txtgecis.Clear();   
                     maskedTextBoxKartID.Clear();
                     comboBoxAktiflik.SelectedIndex = 0;
                     maskedTextBoxKartID.Focus();
@@ -283,9 +329,10 @@ namespace UıLayer
                 }
                 else
                 {
-                    MessageBox.Show("Seçilen çalışan bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Seçilen çalışan veritabanında bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -302,7 +349,8 @@ namespace UıLayer
                 txtIsim.Text = satir.Cells["Isim"].Value.ToString();
                 txtSoyad.Text = satir.Cells["Soyad"].Value.ToString();
                 txtGorevv.Text = satir.Cells["Gorev"].Value.ToString();
-
+                txtsicil.Text = satir.Cells["Sicil"].Value.ToString(); 
+                txtgecis.Text = satir.Cells["GecisSayısı"].Value.ToString(); // Günlük geçiş sayısını al
                 // Aktiflik durumunu combobox'a yükle
                 bool aktiflik = Convert.ToBoolean(satir.Cells["AktifMi"].Value);
                 comboBoxAktiflik.SelectedItem = aktiflik ? "Aktif" : "Pasif";
@@ -315,6 +363,8 @@ namespace UıLayer
             txtIsim.Clear();
             txtSoyad.Clear();
             txtGorevv.Clear();
+            txtsicil.Clear();
+            txtgecis.Clear();   
             maskedTextBoxKartID.Clear();
             comboBoxAktiflik.SelectedIndex = 0;
             maskedTextBoxKartID.Focus();
@@ -364,6 +414,8 @@ namespace UıLayer
                         txtIsim.Clear();
                         txtSoyad.Clear();
                         txtGorevv.Clear();
+                        txtsicil.Clear();
+                        txtgecis.Clear();   
                         maskedTextBoxKartID.Clear();
                         comboBoxAktiflik.SelectedIndex = 0;
                         maskedTextBoxKartID.Focus();
@@ -406,6 +458,8 @@ namespace UıLayer
                     txtIsim.Text = calisan.calisanIsmi;
                     txtSoyad.Text = calisan.calisanSoyad;
                     txtGorevv.Text = calisan.calisanGorevi;
+                    txtsicil.Text = calisan.sicil;
+                    txtgecis.Text = calisan.gecisSayısı.ToString(); 
 
                     comboBoxAktiflik.SelectedItem = calisan.aktiflik ? "Aktif" : "Pasif";
                 }
@@ -416,7 +470,9 @@ namespace UıLayer
                     txtIsim.Clear();
                     txtSoyad.Clear();
                     txtGorevv.Clear();
-                    comboBoxAktiflik.SelectedIndex = -1;
+                    txtgecis.Clear();
+                    txtsicil.Clear();
+                    comboBoxAktiflik.SelectedIndex = 0;
                 }
             }
         }
@@ -425,7 +481,7 @@ namespace UıLayer
         {
             if (e.KeyCode == Keys.Enter)
             {
-                
+
                 txtSoyad.Focus(); // Sonraki alana odaklan   
                 e.Handled = true;
                 e.SuppressKeyPress = true; // Enter sesi bastırılır
@@ -439,6 +495,37 @@ namespace UıLayer
                 txtGorevv.Focus(); // Sonraki alana odaklan   
                 e.Handled = true;
                 e.SuppressKeyPress = true; // Enter sesi bastırılır
+            }
+        }
+
+        private void maskedTextBoxKartID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtIsim.Focus(); // Sonraki alana odaklan   
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Enter sesi bastırılır
+            }
+        }
+
+        private void txtGorevv_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtsicil.Focus(); // Sonraki alana odaklan   
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Enter sesi bastırılır
+            }
+
+        }
+
+        private void txtsicil_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnKaydet.PerformClick(); // Kaydet butonuna tıkla
+                e.Handled = true;
+                e.SuppressKeyPress = true; // Enter tuşunun sesini bastır
             }
         }
     }

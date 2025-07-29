@@ -54,9 +54,18 @@ namespace UıLayer
         }
 
         private void button1_Click_1(object sender, EventArgs e)
-        {Form1 form1 = new Form1();
+        {
+            Form1 form1 = new Form1();
             form1.Show();
-            this.Close();   
+            this.Close();
+
+        }
+
+        private void Adminn_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;         // İsteğe bağlı: kenarlık kaldırılır
+            this.StartPosition = FormStartPosition.CenterScreen; // Ekranın ortasında başlasın
 
         }
     }

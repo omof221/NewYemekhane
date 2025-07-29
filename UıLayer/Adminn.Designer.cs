@@ -116,6 +116,7 @@
             Controls.Add(label1);
             Name = "Adminn";
             Text = "Admin";
+            Load += Adminn_Load;
             ResumeLayout(false);
             PerformLayout();
         }

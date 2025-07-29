@@ -21,7 +21,7 @@ namespace UıLayer
         {
             Kullanıcıİşlemleri yeniYemekhaneCalisaniEkleme = new Kullanıcıİşlemleri();
             yeniYemekhaneCalisaniEkleme.Show();
-            this.Close();   
+            this.Close();
 
         }
 
@@ -29,7 +29,15 @@ namespace UıLayer
         {
             Adminn adminn = new();
             adminn.Show();
-            this.Close();   
+            this.Close();
+        }
+
+        private void Admin_Detay_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;         // İsteğe bağlı: kenarlık kaldırılır
+            this.StartPosition = FormStartPosition.CenterScreen; // Ekranın ortasında başlasın
+
         }
     }
 }

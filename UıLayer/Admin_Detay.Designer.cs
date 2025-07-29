@@ -61,6 +61,7 @@
             Controls.Add(button1);
             Name = "Admin_Detay";
             Text = "Admin_Detay";
+            Load += Admin_Detay_Load;
             ResumeLayout(false);
         }
 

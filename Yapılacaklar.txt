@@ -1,25 +1,25 @@
+ï»¿
+2. UI ler dÃ¼zeltilecek ve merkeze ortlanaccak.
 
-2. UI ler düzeltilecek ve merkeze ortlanaccak.
+8. listelemede kullanÃ½cÃ½ adÃ½ gÃ¶zÃ¼kmesi
 
-8. listelemede kullanıcı adı gözükmesi
-
-excelde zebrayı uygula
-aktif pasif ok yerine yazılıcak direkt
-aktif default olarak gelicek
-id yerinin sütunu daralt
-sicil eklenicek - PK olarak kullan
-satrı temizle - hücreleri temizle
-ana sayfaya dön sağ-sol üst köşe
-kart kullanıcı ekle zenbra
-kart kullanıcı ekle formu datagrid view sağda form bilgi doldurma vs solda
-personel kaydedildsin mi? güncellensin mi silinsin mi
-okutma id olmasın görüntüsel sicil eklensin
-bitiş tarihi başlangıçtan önce olamaz
-kullanıcı adını yemekhane çalışanı olarak doldur
-tüm personel
-listeleme gridden geçiş sayısını sil
-joker de aynı sil
-geçiş count default 1 gelsin 3 falan ayrıca seçilsin
+excelde zebrayÃ½ uygula
+aktif pasif ok yerine yazÃ½lÃ½cak direkt ----------hata oluÅŸuyo en son bak tekrar
+aktif default olarak gelicek    -----------------ok
+id yerinin sÃ¼tunu daralt
+sicil eklenicek - PK olarak kullan-------------ok
+satrÃ½ temizle - hÃ¼creleri temizle
+ana sayfaya dÃ¶n saÃ°-sol Ã¼st kÃ¶Ã¾e
+kart kullanÃ½cÃ½ ekle zenbra     ------------ok
+kart kullanÃ½cÃ½ ekle formu datagrid view saÃ°da form bilgi doldurma vs solda----------yok gari
+personel kaydedildsin mi? gÃ¼ncellensin mi silinsin mi -----------ok
+okutma id olmasÃ½n gÃ¶rÃ¼ntÃ¼sel sicil eklensin------------ok
+bitiÃ¾ tarihi baÃ¾langÃ½Ã§tan Ã¶nce olamaz
+kullanÃ½cÃ½ adÃ½nÃ½ yemekhane Ã§alÃ½Ã¾anÃ½ olarak doldur
+tÃ¼m personel
+listeleme gridden geÃ§iÃ¾ sayÃ½sÃ½nÃ½ sil
+joker de aynÃ½ sil
+geÃ§iÃ¾ count default 1 gelsin 3 falan ayrÃ½ca seÃ§ilsin -----------olmuyo
 
 
 
