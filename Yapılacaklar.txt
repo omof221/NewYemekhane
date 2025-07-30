@@ -9,7 +9,7 @@ aktif pasif ok yerine yazýlýcak direkt ----------hata oluşuyo en son bak tekr
 aktif default olarak gelicek    -----------------ok
 id yerinin sütunu daralt
 sicil eklenicek - PK olarak kullan-------------ok
-satrý temizle - hücreleri temizle
+satrý temizle - hücreleri temizle ---------ok
 ana sayfaya dön sað-sol üst köþe
 kart kullanýcý ekle zenbra     ------------ok
 kart kullanýcý ekle formu datagrid view saðda form bilgi doldurma vs solda----------yok gari
@@ -17,38 +17,19 @@ personel kaydedildsin mi? güncellensin mi silinsin mi -----------ok
 okutma id olmasýn görüntüsel sicil eklensin------------ok
 bitiþ tarihi baþlangýçtan önce olamaz
 kullanýcý adýný yemekhane çalýþaný olarak doldur
-tüm personel
+tüm personel ---ok
 listeleme gridden geçiþ sayýsýný sil
 joker de ayný sil
-geçiþ count default 1 gelsin 3 falan ayrýca seçilsin -----------olmuyo
-=======
-8. listelemede kullan�c� ad� g�z�kmesi
-
-excelde zebray� uygula
-aktif pasif ok yerine yaz�l�cak direkt
-aktif default olarak gelicek
-id yerinin s�tunu daralt
-sicil eklenicek - PK olarak kullan
-satr� temizle - h�creleri temizle
-ana sayfaya d�n sa�-sol �st k��e
-kart kullan�c� ekle zenbra
-kart kullan�c� ekle formu datagrid view sa�da form bilgi doldurma vs solda
-personel kaydedildsin mi? g�ncellensin mi silinsin mi
-okutma id olmas�n g�r�nt�sel sicil eklensin
-biti� tarihi ba�lang��tan �nce olamaz
-kullan�c� ad�n� yemekhane �al��an� olarak doldur
-t�m personel
-listeleme gridden ge�i� say�s�n� sil
-joker de ayn� sil
-ge�i� count default 1 gelsin 2-3-s�n�rs�z
-t�m personel default gelsin butpn� sil
-detayl� ara olsun personel arama de�il
-personel arama gridde sicil olcak personel id de�il
-detayl� raporda her �ey gelsin toplam rapoda okutma id joker ge�i� ve ge�i� say�s� olmucak
-comboboxllara bi�i yaz�lamas�n
-sat�rlar� b�y�tk
-yeni kart okutmada e�er kart pasifse ya da zaten uyar� ��ks�n
-�al��an se� foruma sicille arama gelsin
+geçiþ count default 1 gelsin 2-3-sýnýrsýz
+tüm personel default gelsin butpný sil
+detaylý ara olsun personel arama deðil
+personel arama gridde sicil olcak personel id deðil
+detaylý raporda her þey gelsin toplam rapoda okutma id joker geçiþ ve geçiþ sayýsý olmucak
+comboboxllara biþi yazýlamasýn
+satýrlarý büyütk
+yeni kart okutmada eðer kart pasifse ya da zaten uyarý çýksýn
+çalýþan seç foruma sicille arama gelsin
+personel aramada boşluk arayamaz
 
 
 
