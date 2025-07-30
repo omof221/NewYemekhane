@@ -82,6 +82,7 @@
             Controls.Add(label1);
             Name = "CalisanSecForm";
             Text = "CalisanSecForm";
+            Load += CalisanSecForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

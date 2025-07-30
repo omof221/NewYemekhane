@@ -3,6 +3,7 @@
 
 8. listelemede kullanýcý adý gözükmesi
 
+<<<<<<< HEAD
 excelde zebrayý uygula
 aktif pasif ok yerine yazýlýcak direkt ----------hata oluşuyo en son bak tekrar
 aktif default olarak gelicek    -----------------ok
@@ -32,6 +33,7 @@ personel aramada boşluk arayamaz
 
 
 
+>>>>>>> 4d24e5f9a283db2bb0ef2ecdfe128f53486901cd
 
 
 

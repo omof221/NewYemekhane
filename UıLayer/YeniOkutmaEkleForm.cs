@@ -68,34 +68,34 @@ namespace UıLayer
                 dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
                 dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
             }
-            using (var context = new YemekhaneContext())
-            {
-                DateTime bugun = DateTime.Today;
-                DateTime yarin = bugun.AddDays(1);
+            //using (var context = new YemekhaneContext())
+            //{
+            //    DateTime bugun = DateTime.Today;
+            //    DateTime yarin = bugun.AddDays(1);
 
-                var liste = context.Okutmalar
-                    .Include(o => o.calisan)
-                    .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
-                    .Select(o => new
-                    {
-                        o.OkutmalarID,
-                        AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
-                        o.OkutmaTarihi,
-                        o.jokerGecis,
-                        o.gecisCount,
-                        o.aktif
-                    })
-                    .OrderByDescending(x => x.OkutmaTarihi)
-                    .ToList();
+            //    var liste = context.Okutmalar
+            //        .Include(o => o.calisan)
+            //        .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
+            //        .Select(o => new
+            //        {
+            //            o.OkutmalarID,
+            //            AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+            //            o.OkutmaTarihi,
+            //            o.jokerGecis,
+            //            o.gecisCount,
+            //            o.aktif
+            //        })
+            //        .OrderByDescending(x => x.OkutmaTarihi)
+            //        .ToList();
 
-                dataGridView1.DataSource = liste;
+            //    dataGridView1.DataSource = liste;
 
-                // ✅ Zebra efekti (alternatif satır renkleri)
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
-                dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
-                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
-                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-            }
+            //    // ✅ Zebra efekti (alternatif satır renkleri)
+            //    dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            //    dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+            //    dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+            //    dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            //}
             using (var context = new YemekhaneContext())
             {
                 DateTime bugun = DateTime.Today;
