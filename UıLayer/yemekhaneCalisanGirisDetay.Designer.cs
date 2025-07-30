@@ -39,7 +39,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(309, 177);
+            textBox1.Location = new Point(451, 196);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(233, 27);
             textBox1.TabIndex = 1;
@@ -48,7 +48,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(309, 231);
+            textBox2.Location = new Point(451, 250);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(233, 27);
             textBox2.TabIndex = 2;
@@ -59,7 +59,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label1.Location = new Point(215, 184);
+            label1.Location = new Point(357, 203);
             label1.Name = "label1";
             label1.Size = new Size(33, 28);
             label1.TabIndex = 3;
@@ -69,7 +69,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label2.Location = new Point(215, 238);
+            label2.Location = new Point(357, 257);
             label2.Name = "label2";
             label2.Size = new Size(60, 28);
             label2.TabIndex = 4;
@@ -78,7 +78,7 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            button2.Location = new Point(353, 314);
+            button2.Location = new Point(495, 333);
             button2.Name = "button2";
             button2.Size = new Size(131, 46);
             button2.TabIndex = 5;
@@ -89,11 +89,11 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            button4.Location = new Point(12, 12);
+            button4.Location = new Point(28, 333);
             button4.Name = "button4";
             button4.Size = new Size(180, 57);
             button4.TabIndex = 21;
-            button4.Text = "Önceki Sayfaya Dön";
+            button4.Text = "Admin Girişi";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
@@ -101,7 +101,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F);
-            label3.Location = new Point(193, 94);
+            label3.Location = new Point(335, 113);
             label3.Name = "label3";
             label3.Size = new Size(418, 38);
             label3.TabIndex = 22;

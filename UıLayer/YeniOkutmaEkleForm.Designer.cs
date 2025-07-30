@@ -33,6 +33,7 @@
             button1 = new Button();
             btnCalisanAra = new Button();
             button2 = new Button();
+            dtpFiltreTarih = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -86,11 +87,20 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // dtpFiltreTarih
+            // 
+            dtpFiltreTarih.Location = new Point(278, 327);
+            dtpFiltreTarih.Name = "dtpFiltreTarih";
+            dtpFiltreTarih.Size = new Size(298, 27);
+            dtpFiltreTarih.TabIndex = 5;
+            dtpFiltreTarih.ValueChanged += dtpFiltreTarih_ValueChanged;
+            // 
             // YeniOkutmaEkleForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(896, 604);
+            Controls.Add(dtpFiltreTarih);
             Controls.Add(button2);
             Controls.Add(btnCalisanAra);
             Controls.Add(button1);
@@ -111,5 +121,6 @@
         private Button button1;
         private Button btnCalisanAra;
         private Button button2;
+        private DateTimePicker dtpFiltreTarih;
     }
 }

@@ -102,11 +102,11 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            button4.Location = new Point(12, 12);
+            button4.Location = new Point(23, 12);
             button4.Name = "button4";
             button4.Size = new Size(180, 57);
             button4.TabIndex = 20;
-            button4.Text = "Önceki Sayfaya Dön";
+            button4.Text = "Geri Dön";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 

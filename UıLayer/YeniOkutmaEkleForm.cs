@@ -24,6 +24,7 @@ namespace UıLayer
 
         private void YeniOkutmaEkleForm_Load(object sender, EventArgs e)
         {
+            dtpFiltreTarih.Value = DateTime.Today;
             maskedTextBox1.Mask = "0000000000"; // 10 haneli rakam
             maskedTextBox1.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             maskedTextBox1.ResetOnPrompt = true;
@@ -42,12 +43,12 @@ namespace UıLayer
         {
             using (var context = new YemekhaneContext())
             {
-                DateTime bugun = DateTime.Today;
-                DateTime yarin = bugun.AddDays(1);
+                DateTime secilenTarih = dtpFiltreTarih.Value.Date;
+                DateTime ertesiGun = secilenTarih.AddDays(1);
 
                 var liste = context.Okutmalar
                     .Include(o => o.calisan)
-                    .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
+                    .Where(o => o.aktif == true && o.OkutmaTarihi >= secilenTarih && o.OkutmaTarihi < ertesiGun)
                     .Select(o => new
                     {
                         o.OkutmalarID,
@@ -68,63 +69,8 @@ namespace UıLayer
                 dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
                 dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
             }
-            //using (var context = new YemekhaneContext())
-            //{
-            //    DateTime bugun = DateTime.Today;
-            //    DateTime yarin = bugun.AddDays(1);
 
-            //    var liste = context.Okutmalar
-            //        .Include(o => o.calisan)
-            //        .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
-            //        .Select(o => new
-            //        {
-            //            o.OkutmalarID,
-            //            AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
-            //            o.OkutmaTarihi,
-            //            o.jokerGecis,
-            //            o.gecisCount,
-            //            o.aktif
-            //        })
-            //        .OrderByDescending(x => x.OkutmaTarihi)
-            //        .ToList();
-
-            //    dataGridView1.DataSource = liste;
-
-            //    // ✅ Zebra efekti (alternatif satır renkleri)
-            //    dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
-            //    dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
-            //    dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
-            //    dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-            //}
-            //using (var context = new YemekhaneContext())
-            //{
-            //    DateTime bugun = DateTime.Today;
-            //    DateTime yarin = bugun.AddDays(1);
-
-            //    var liste = context.Okutmalar
-            //        .Include(o => o.calisan)
-            //        .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
-            //        .Select(o => new
-            //        {
-            //            o.OkutmalarID,
-            //            AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
-            //            o.OkutmaTarihi,
-            //            o.jokerGecis,
-            //            o.gecisCount,
-            //            o.aktif
-            //        })
-            //        .OrderByDescending(x => x.OkutmaTarihi)
-            //        .ToList();
-
-            //    dataGridView1.DataSource = liste;
-
-            //    // ✅ Zebra efekti (alternatif satır renkleri)
-            //    dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
-            //    dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
-            //    dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
-            //    dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-            //}
-
+      
 
 
         }
@@ -302,6 +248,8 @@ namespace UıLayer
 
                     context.Okutmalar.Add(yeni);
                     context.SaveChanges();
+              
+
                     ListeleOkutmalar();
 
                     maskedTextBox1.Clear();
@@ -364,6 +312,11 @@ namespace UıLayer
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dtpFiltreTarih_ValueChanged(object sender, EventArgs e)
+        {
+            ListeleOkutmalar();
         }
     }
 }
