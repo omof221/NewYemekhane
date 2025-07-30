@@ -239,7 +239,7 @@ namespace UıLayer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1270, 789);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(txtgecis);
             Controls.Add(label7);
             Controls.Add(txtsicil);

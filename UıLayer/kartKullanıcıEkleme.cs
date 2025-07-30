@@ -25,9 +25,9 @@ namespace UıLayer
             //timer1.Start();
         }
         //yamok
-        private string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
+        //private string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
         //omof
-        //private string dosyaYolu = @"C:\Users\omery\OneDrive\Masaüstü\kartverileri";
+        private string dosyaYolu = @"C:\Users\omery\OneDrive\Masaüstü\kartverileri";
         private string oncekiKartID = "";
         private void label1_Click(object sender, EventArgs e)
         {

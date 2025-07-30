@@ -167,7 +167,7 @@ namespace UıLayer
 
                 if (bugunkuGecisSayisi >= izinliGecisSayisi)
                 {
-                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\Kenan Doğulu - Ara Beni Lütfen (Official Video) #Festival [PHG83uTG3-8] (1).wav");
+                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarisiz.wav");
                     player.Play();
 
                     MessageBox.Show("⚠️ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
@@ -196,7 +196,8 @@ namespace UıLayer
 
                 context.Okutmalar.Add(yeniOkutma);
                 context.SaveChanges();
-
+                SoundPlayer basariliSesi = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarili.wav");
+                basariliSesi.Play();
                 ListeleOkutmalar();
 
                 maskedTextBox1.Clear();
@@ -237,14 +238,16 @@ namespace UıLayer
                 }
 
                 // Onay mesajı
+                DateTime bugu = DateTime.Today;
+
                 var adSoyad = okutma.calisan.calisanIsmi + " " + okutma.calisan.calisanSoyad;
-                var result = MessageBox.Show($"Seçilen {adSoyad} isimli çalışanın geçişini pasif yapmak istiyor musunuz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show($"Seçilen {adSoyad} isimli çalışanın bu {bugu}'kü yemeğini iptal etmek istiyor musunuz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     okutma.aktif = false;
                     context.SaveChanges();
-                    MessageBox.Show("Geçiş pasif hale getirildi.");
+                    MessageBox.Show("Yemek iptal getirildi.");
                     ListeleOkutmalar(); // Listeyi yenile
                 }
                 maskedTextBox1.Clear();

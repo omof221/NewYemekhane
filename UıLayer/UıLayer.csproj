@@ -10,14 +10,18 @@
 
   <ItemGroup>
     <None Remove="Kenan Doğulu - Ara Beni Lütfen %28Official Video%29 #Festival [PHG83uTG3-8] %281%29.wav" />
-    <None Remove="uyarı.wav" />
+    <None Remove="yemekhane.basarili.wav" />
+    <None Remove="yemekhane.basarisiz.wav" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Kenan Doğulu - Ara Beni Lütfen (Official Video) #Festival [PHG83uTG3-8] (1).wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="uyarı.wav">
+    <Content Include="yemekhane.basarili.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="yemekhane.basarisiz.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
