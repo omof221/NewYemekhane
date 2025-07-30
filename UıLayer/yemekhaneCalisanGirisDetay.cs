@@ -153,9 +153,9 @@ namespace UıLayer
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
-            this.Close();
+            Adminn adminn = new Adminn();
+            adminn.Show();
+            this.Close();   
 
         }
 

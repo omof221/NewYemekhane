@@ -71,9 +71,9 @@ namespace UıLayer
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
-            this.Close();
+            yemekhaneCalisanGirisDetay yemekhaneCalisanGirisDetay = new yemekhaneCalisanGirisDetay();
+            yemekhaneCalisanGirisDetay.Show();
+            this.Close();   
         }
 
         private void txtSifre_TextChanged(object sender, EventArgs e)
