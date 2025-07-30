@@ -32,7 +32,7 @@ namespace UıLayer
                 string kartNo = satir.Cells["calisanKartNo"].Value.ToString();
                 int calisanID = Convert.ToInt32(satir.Cells["calisanID"].Value);
 
-                string mesaj = $"👤 Ad: {isim} {soyad}\n🧑‍💼 Görev: {gorev}\n\n🕒 Bugün için yemek eklemek istiyor musunuz?";
+                string mesaj = $"👤 Ad: {isim} {soyad}\n🧑‍💼 Görev: {gorev}\n\n Kişisine  yemek eklemek istiyor musunuz?";
                 DialogResult sonuc = MessageBox.Show(mesaj, "Yemek Ekleme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (sonuc == DialogResult.Yes)
@@ -108,9 +108,6 @@ namespace UıLayer
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+      
     }
 }

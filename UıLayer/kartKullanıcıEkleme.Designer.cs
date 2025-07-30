@@ -244,7 +244,7 @@ namespace UıLayer
             // 
             // txtgecis
             // 
-            txtgecis.Location = new Point(364, 608);
+            txtgecis.Location = new Point(358, 608);
             txtgecis.Name = "txtgecis";
             txtgecis.Size = new Size(188, 27);
             txtgecis.TabIndex = 23;
