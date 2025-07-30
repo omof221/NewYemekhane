@@ -41,7 +41,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F);
-            label1.Location = new Point(207, 103);
+            label1.Location = new Point(287, 83);
             label1.Name = "label1";
             label1.Size = new Size(263, 38);
             label1.TabIndex = 0;
@@ -51,17 +51,16 @@
             // txtKullaniciAdi
             // 
             txtKullaniciAdi.Font = new Font("Segoe UI", 16.2F);
-            txtKullaniciAdi.Location = new Point(207, 204);
+            txtKullaniciAdi.Location = new Point(295, 175);
             txtKullaniciAdi.Name = "txtKullaniciAdi";
             txtKullaniciAdi.Size = new Size(255, 43);
             txtKullaniciAdi.TabIndex = 1;
             txtKullaniciAdi.ValidatingType = typeof(int);
-            //txtKullaniciAdi.MaskInputRejected += this.txtKullaniciAdi_MaskInputRejected;
             // 
             // txtSifre
             // 
             txtSifre.Font = new Font("Segoe UI", 16.2F);
-            txtSifre.Location = new Point(207, 271);
+            txtSifre.Location = new Point(295, 242);
             txtSifre.Name = "txtSifre";
             txtSifre.Size = new Size(255, 43);
             txtSifre.TabIndex = 2;
@@ -71,7 +70,7 @@
             // btnGirisYap
             // 
             btnGirisYap.Font = new Font("Segoe UI", 16.2F);
-            btnGirisYap.Location = new Point(252, 364);
+            btnGirisYap.Location = new Point(340, 335);
             btnGirisYap.Name = "btnGirisYap";
             btnGirisYap.Size = new Size(163, 59);
             btnGirisYap.TabIndex = 3;
@@ -83,18 +82,17 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 16.2F);
-            label2.Location = new Point(23, 209);
+            label2.Location = new Point(111, 180);
             label2.Name = "label2";
             label2.Size = new Size(169, 38);
             label2.TabIndex = 4;
             label2.Text = "Kullanıcı Adı";
-            //label2.Click += this.label2_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F);
-            label3.Location = new Point(66, 274);
+            label3.Location = new Point(154, 245);
             label3.Name = "label3";
             label3.Size = new Size(73, 38);
             label3.TabIndex = 5;
@@ -116,7 +114,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(643, 529);
+            ClientSize = new Size(800, 450);
             Controls.Add(button4);
             Controls.Add(label3);
             Controls.Add(label2);
