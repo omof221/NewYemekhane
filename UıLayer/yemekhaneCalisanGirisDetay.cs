@@ -20,7 +20,7 @@ namespace UıLayer
     {
         public yemekhaneCalisanGirisDetay()
         {
-       
+
             InitializeComponent();
             textBox1.Focus();
             textBox1.Clear();
@@ -148,7 +148,35 @@ namespace UıLayer
         private void yemekhaneCalisanGirisDetay_Load(object sender, EventArgs e)
         {
             textBox1.Focus();
-            textBox1.Clear();   
+            textBox1.Clear();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Close();
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtKullaniciAdi_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

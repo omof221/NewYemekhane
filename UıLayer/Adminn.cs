@@ -68,5 +68,17 @@ namespace UıLayer
             this.StartPosition = FormStartPosition.CenterScreen; // Ekranın ortasında başlasın
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Close();
+        }
+
+        private void txtSifre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
