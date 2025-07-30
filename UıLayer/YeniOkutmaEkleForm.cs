@@ -96,34 +96,34 @@ namespace UıLayer
             //    dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
             //    dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
             //}
-            using (var context = new YemekhaneContext())
-            {
-                DateTime bugun = DateTime.Today;
-                DateTime yarin = bugun.AddDays(1);
+            //using (var context = new YemekhaneContext())
+            //{
+            //    DateTime bugun = DateTime.Today;
+            //    DateTime yarin = bugun.AddDays(1);
 
-                var liste = context.Okutmalar
-                    .Include(o => o.calisan)
-                    .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
-                    .Select(o => new
-                    {
-                        o.OkutmalarID,
-                        AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
-                        o.OkutmaTarihi,
-                        o.jokerGecis,
-                        o.gecisCount,
-                        o.aktif
-                    })
-                    .OrderByDescending(x => x.OkutmaTarihi)
-                    .ToList();
+            //    var liste = context.Okutmalar
+            //        .Include(o => o.calisan)
+            //        .Where(o => o.aktif == true && o.OkutmaTarihi >= bugun && o.OkutmaTarihi < yarin)
+            //        .Select(o => new
+            //        {
+            //            o.OkutmalarID,
+            //            AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+            //            o.OkutmaTarihi,
+            //            o.jokerGecis,
+            //            o.gecisCount,
+            //            o.aktif
+            //        })
+            //        .OrderByDescending(x => x.OkutmaTarihi)
+            //        .ToList();
 
-                dataGridView1.DataSource = liste;
+            //    dataGridView1.DataSource = liste;
 
-                // ✅ Zebra efekti (alternatif satır renkleri)
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
-                dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
-                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
-                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-            }
+            //    // ✅ Zebra efekti (alternatif satır renkleri)
+            //    dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            //    dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+            //    dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+            //    dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            //}
 
 
 
@@ -265,34 +265,35 @@ namespace UıLayer
             CalisanSecForm form = new CalisanSecForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                int secilenCalisanID = (int)form.Tag;
-                DateTime bugun = DateTime.Today;
+                var gelenVeri = (Tuple<int, DateTime>)form.Tag;
+                int secilenCalisanID = gelenVeri.Item1;
+                DateTime secilenTarih = gelenVeri.Item2;
 
                 using (var context = new YemekhaneContext())
                 {
                     var calisan = context.Calisanlar.FirstOrDefault(c => c.calisanID == secilenCalisanID && c.aktiflik);
                     if (calisan == null) return;
 
-                    var bugunkuGecisler = context.Okutmalar
-                        .Where(o => o.calisanID == secilenCalisanID && o.OkutmaTarihi.Date == bugun && o.aktif && !o.jokerGecis)
+                    var gecisler = context.Okutmalar
+                        .Where(o => o.calisanID == secilenCalisanID && o.OkutmaTarihi.Date == secilenTarih.Date && o.aktif && !o.jokerGecis)
                         .ToList();
 
-                    int bugunkuGecisSayisi = bugunkuGecisler.Count;
-                    int izinliGecis = bugunkuGecisler.FirstOrDefault()?.gecisCount ?? 1;
+                    int bugunkuGecisSayisi = gecisler.Count;
+                    int izinliGecis = calisan.gecisSayısı;
 
                     if (bugunkuGecisSayisi >= izinliGecis)
                     {
-                        MessageBox.Show("⚠ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
+                        MessageBox.Show("⚠️ Bu çalışanın seçilen tarihteki geçiş hakkı dolmuştur.");
                         maskedTextBox1.Clear();
                         maskedTextBox1.Focus();
                         return;
                     }
 
-                    // Geçişi ekle
+                    // ✅ Tarihi manuel girilmiş geçiş
                     Okutmalar yeni = new Okutmalar
                     {
                         calisanID = secilenCalisanID,
-                        OkutmaTarihi = DateTime.Now,
+                        OkutmaTarihi = secilenTarih,
                         aktif = true,
                         jokerGecis = false,
                         gecisCount = izinliGecis,
@@ -301,11 +302,56 @@ namespace UıLayer
 
                     context.Okutmalar.Add(yeni);
                     context.SaveChanges();
-                    ListeleOkutmalar(); // Güncelleme
+                    ListeleOkutmalar();
+
                     maskedTextBox1.Clear();
                     maskedTextBox1.Focus();
                 }
             }
+            //CalisanSecForm form = new CalisanSecForm();
+            //if (form.ShowDialog() == DialogResult.OK)
+            //{
+            //    int secilenCalisanID = (int)form.Tag;
+            //    DateTime bugun = DateTime.Today;
+
+            //    using (var context = new YemekhaneContext())
+            //    {
+            //        var calisan = context.Calisanlar.FirstOrDefault(c => c.calisanID == secilenCalisanID && c.aktiflik);
+            //        if (calisan == null) return;
+
+            //        var bugunkuGecisler = context.Okutmalar
+            //            .Where(o => o.calisanID == secilenCalisanID && o.OkutmaTarihi.Date == bugun && o.aktif && !o.jokerGecis)
+            //            .ToList();
+
+            //        int bugunkuGecisSayisi = bugunkuGecisler.Count;
+            //        int izinliGecis = bugunkuGecisler.FirstOrDefault()?.gecisCount ?? 1;
+
+            //        if (bugunkuGecisSayisi >= izinliGecis)
+            //        {
+            //            MessageBox.Show("⚠ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
+            //            maskedTextBox1.Clear();
+            //            maskedTextBox1.Focus();
+            //            return;
+            //        }
+
+            //        // Geçişi ekle
+            //        Okutmalar yeni = new Okutmalar
+            //        {
+            //            calisanID = secilenCalisanID,
+            //            OkutmaTarihi = DateTime.Now,
+            //            aktif = true,
+            //            jokerGecis = false,
+            //            gecisCount = izinliGecis,
+            //            jokerGecisCount = 1
+            //        };
+
+            //        context.Okutmalar.Add(yeni);
+            //        context.SaveChanges();
+            //        ListeleOkutmalar(); // Güncelleme
+            //        maskedTextBox1.Clear();
+            //        maskedTextBox1.Focus();
+            //    }
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
