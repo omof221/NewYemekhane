@@ -8,7 +8,7 @@ aktif pasif ok yerine yazýlýcak direkt ----------hata oluşuyo en son bak tekr
 aktif default olarak gelicek    -----------------ok
 id yerinin sütunu daralt
 sicil eklenicek - PK olarak kullan-------------ok
-satrý temizle - hücreleri temizle
+satrý temizle - hücreleri temizle ---------ok
 ana sayfaya dön sað-sol üst köþe
 kart kullanýcý ekle zenbra     ------------ok
 kart kullanýcý ekle formu datagrid view saðda form bilgi doldurma vs solda----------yok gari
@@ -16,7 +16,7 @@ personel kaydedildsin mi? güncellensin mi silinsin mi -----------ok
 okutma id olmasýn görüntüsel sicil eklensin------------ok
 bitiþ tarihi baþlangýçtan önce olamaz
 kullanýcý adýný yemekhane çalýþaný olarak doldur
-tüm personel
+tüm personel ---ok
 listeleme gridden geçiþ sayýsýný sil
 joker de ayný sil
 geçiþ count default 1 gelsin 2-3-sýnýrsýz
@@ -28,6 +28,7 @@ comboboxllara biþi yazýlamasýn
 satýrlarý büyütk
 yeni kart okutmada eðer kart pasifse ya da zaten uyarý çýksýn
 çalýþan seç foruma sicille arama gelsin
+personel aramada boşluk arayamaz
 
 
 

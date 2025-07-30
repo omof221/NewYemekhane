@@ -33,7 +33,6 @@
             dtpBaslangic = new DateTimePicker();
             dtpBitis = new DateTimePicker();
             btnPersonelSecimi = new Button();
-            cbTumPersonel = new CheckBox();
             btnExceleAktar = new Button();
             dataGridView1 = new DataGridView();
             label3 = new Label();
@@ -81,24 +80,13 @@
             // 
             // btnPersonelSecimi
             // 
-            btnPersonelSecimi.Location = new Point(6, 17);
+            btnPersonelSecimi.Location = new Point(12, 52);
             btnPersonelSecimi.Name = "btnPersonelSecimi";
             btnPersonelSecimi.Size = new Size(284, 44);
             btnPersonelSecimi.TabIndex = 5;
             btnPersonelSecimi.Text = "Personel Ara";
             btnPersonelSecimi.UseVisualStyleBackColor = true;
             btnPersonelSecimi.Click += button1_Click;
-            // 
-            // cbTumPersonel
-            // 
-            cbTumPersonel.AutoSize = true;
-            cbTumPersonel.Location = new Point(87, 90);
-            cbTumPersonel.Name = "cbTumPersonel";
-            cbTumPersonel.Size = new Size(119, 24);
-            cbTumPersonel.TabIndex = 6;
-            cbTumPersonel.Text = "Tüm Personel";
-            cbTumPersonel.UseVisualStyleBackColor = true;
-            cbTumPersonel.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // btnExceleAktar
             // 
@@ -187,7 +175,6 @@
             Controls.Add(label3);
             Controls.Add(dataGridView1);
             Controls.Add(btnExceleAktar);
-            Controls.Add(cbTumPersonel);
             Controls.Add(btnPersonelSecimi);
             Controls.Add(dtpBitis);
             Controls.Add(dtpBaslangic);
@@ -207,7 +194,6 @@
         private DateTimePicker dtpBaslangic;
         private DateTimePicker dtpBitis;
         private Button btnPersonelSecimi;
-        private CheckBox cbTumPersonel;
         private Button btnExceleAktar;
         private DataGridView dataGridView1;
         private Label label3;

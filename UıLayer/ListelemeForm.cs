@@ -66,7 +66,7 @@ namespace UıLayer
             comboBox1.Items.Add("Detaylı Yemek Raporu");
             comboBox1.SelectedIndex = 0;
 
-            cbTumPersonel.Checked = true;
+            //cbTumPersonel.Checked = true;
             ListeleOkutmalar();
 
             // 📌 DataGridView tam otursun
@@ -93,7 +93,7 @@ namespace UıLayer
             comboBox1.Items.Add("Detaylı Yemek Raporu");
             comboBox1.SelectedIndex = 0;
 
-            cbTumPersonel.Checked = true;
+            //cbTumPersonel.Checked = true;
             ListeleOkutmalar();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -108,23 +108,23 @@ namespace UıLayer
 
         private void dtpBitis_ValueChanged(object sender, EventArgs e) => ListeleOkutmalar();
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            using (var context = new YemekhaneContext())
-            {
-                if (cbTumPersonel.Checked)
-                {
-                    secilenCalisanlar = context.Calisanlar.Where(c => c.aktiflik).Select(c => c.calisanID).ToList();
-                    tumPersonellerSecili = true;
-                }
-                else
-                {
-                    secilenCalisanlar.Clear();
-                    tumPersonellerSecili = false;
-                }
-            }
-            ListeleOkutmalar();
-        }
+        //private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    using (var context = new YemekhaneContext())
+        //    {
+        //        if (cbTumPersonel.Checked)
+        //        {
+        //            secilenCalisanlar = context.Calisanlar.Where(c => c.aktiflik).Select(c => c.calisanID).ToList();
+        //            tumPersonellerSecili = true;
+        //        }
+        //        else
+        //        {
+        //            secilenCalisanlar.Clear();
+        //            tumPersonellerSecili = false;
+        //        }
+        //    }
+        //    ListeleOkutmalar();
+        //}
 
         private void CalisanFiltrele(List<int> calisanIdListesi)
         {
