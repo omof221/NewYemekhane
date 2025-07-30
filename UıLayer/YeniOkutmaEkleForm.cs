@@ -167,10 +167,10 @@ namespace UıLayer
 
                 if (bugunkuGecisSayisi >= izinliGecisSayisi)
                 {
-                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarisiz.wav");
+                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\Kenan Doğulu - Ara Beni Lütfen (Official Video) #Festival [PHG83uTG3-8] (1).wav");
                     player.Play();
 
-                    MessageBox.Show("⚠️ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
+                    MessageBox.Show("⚠ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
 
                     maskedTextBox1.Clear();
                     maskedTextBox1.Focus();
@@ -196,8 +196,7 @@ namespace UıLayer
 
                 context.Okutmalar.Add(yeniOkutma);
                 context.SaveChanges();
-                SoundPlayer basariliSesi = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarili.wav");
-                basariliSesi.Play();
+
                 ListeleOkutmalar();
 
                 maskedTextBox1.Clear();
@@ -238,16 +237,14 @@ namespace UıLayer
                 }
 
                 // Onay mesajı
-                DateTime bugu = DateTime.Today;
-
                 var adSoyad = okutma.calisan.calisanIsmi + " " + okutma.calisan.calisanSoyad;
-                var result = MessageBox.Show($"Seçilen {adSoyad} isimli çalışanın bu {bugu}'kü yemeğini iptal etmek istiyor musunuz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show($"Seçilen {adSoyad} isimli çalışanın geçişini pasif yapmak istiyor musunuz?", "Onay", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     okutma.aktif = false;
                     context.SaveChanges();
-                    MessageBox.Show("Yemek iptal getirildi.");
+                    MessageBox.Show("Geçiş pasif hale getirildi.");
                     ListeleOkutmalar(); // Listeyi yenile
                 }
                 maskedTextBox1.Clear();
@@ -285,7 +282,7 @@ namespace UıLayer
 
                     if (bugunkuGecisSayisi >= izinliGecis)
                     {
-                        MessageBox.Show("⚠️ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
+                        MessageBox.Show("⚠ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
                         maskedTextBox1.Clear();
                         maskedTextBox1.Focus();
                         return;
@@ -313,9 +310,14 @@ namespace UıLayer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();       
+            YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
             anaSayfa.Show();
             this.Close(); // Mevcut formu gizle, böylece kullanıcı ana sayfaya dönebilir
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

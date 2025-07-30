@@ -32,6 +32,7 @@
             txtArama = new TextBox();
             dataGridView1 = new DataGridView();
             btnAra = new Button();
+            dtpSecilenTarih = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -54,10 +55,10 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(36, 77);
+            dataGridView1.Location = new Point(36, 106);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(735, 294);
+            dataGridView1.Size = new Size(943, 294);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
@@ -71,11 +72,19 @@
             btnAra.UseVisualStyleBackColor = true;
             btnAra.Click += btnAra_Click;
             // 
+            // dtpSecilenTarih
+            // 
+            dtpSecilenTarih.Location = new Point(661, 46);
+            dtpSecilenTarih.Name = "dtpSecilenTarih";
+            dtpSecilenTarih.Size = new Size(318, 27);
+            dtpSecilenTarih.TabIndex = 4;
+            // 
             // CalisanSecForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1023, 658);
+            Controls.Add(dtpSecilenTarih);
             Controls.Add(btnAra);
             Controls.Add(dataGridView1);
             Controls.Add(txtArama);
@@ -94,5 +103,6 @@
         private TextBox txtArama;
         private DataGridView dataGridView1;
         private Button btnAra;
+        private DateTimePicker dtpSecilenTarih;
     }
 }
