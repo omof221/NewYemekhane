@@ -38,7 +38,10 @@ namespace UıLayer
                 if (sonuc == DialogResult.Yes)
                 {
                     // Ana forma bilgiyi gönder
-                    this.Tag = calisanID; // calisanID'yi tag ile gönderiyoruz
+                    //this.Tag = calisanID; // calisanID'yi tag ile gönderiyoruz
+                    //this.DialogResult = DialogResult.OK;
+                    //this.Close();
+                    this.Tag = new Tuple<int, DateTime>(calisanID, dtpSecilenTarih.Value); // ID + seçilen tarih birlikte gönderiliyor
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
