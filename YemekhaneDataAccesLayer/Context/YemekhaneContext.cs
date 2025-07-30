@@ -18,5 +18,6 @@ namespace YemekhaneDataAccesLayer.Context
         public DbSet<Okutmalar> Okutmalar { get; set; }
         public DbSet<Admin> Adminler { get; set; }
         public DbSet<YemekhaneCalisan>  yemekhaneCalisanlar{ get; set; }
+
     }
 }
