@@ -16,7 +16,7 @@ namespace UıLayer
         public YemekhaneciAnaSayfa()
         {
             InitializeComponent();
-            textBox1.Focus();
+            //textBox1.Focus();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace UıLayer
 
         private void YemekhaneciAnaSayfa_Load(object sender, EventArgs e)
         {
-            textBox1.Focus();   
+            //textBox1.Focus();   
         }
     }
 }
