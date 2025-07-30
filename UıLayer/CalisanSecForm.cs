@@ -104,5 +104,10 @@ namespace UıLayer
                 e.SuppressKeyPress = true;
             }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
