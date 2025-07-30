@@ -131,6 +131,8 @@ namespace UıLayer
             dataGridView1.Rows.Clear();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            dataGridView1.AllowUserToAddRows = false;
+
 
             ApplyZebraStyle(); // Zebra görünümü form açılışında da uygula
         }
@@ -138,6 +140,12 @@ namespace UıLayer
         private void button1_Click(object sender, EventArgs e)
         {
             string arama = textBox1.Text.Trim().ToLower();
+
+            if (string.IsNullOrWhiteSpace(arama))
+            {
+                MessageBox.Show("Lütfen geçerli bir arama terimi giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             using (var context = new YemekhaneContext())
             {
@@ -206,6 +214,16 @@ namespace UıLayer
         {
             dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick(); // Arama butonuna tıkla
+                e.Handled = true;       // Olay işlendi
+                e.SuppressKeyPress = true; // Ding sesi engellenir
+            }
         }
     }
 }

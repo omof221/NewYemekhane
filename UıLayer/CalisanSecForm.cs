@@ -49,6 +49,12 @@ namespace UıLayer
         {
             string arama = txtArama.Text.Trim().ToLower();
 
+            if (string.IsNullOrWhiteSpace(arama))
+            {
+                MessageBox.Show("Lütfen bir isim veya soyisim giriniz.", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             using (var context = new YemekhaneContext())
             {
                 var sonuc = context.Calisanlar
@@ -70,7 +76,33 @@ namespace UıLayer
 
         private void CalisanSecForm_Load(object sender, EventArgs e)
         {
+            // DataGridView ayarları
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.ScrollBars = ScrollBars.Both;
+            dataGridView1.Font = new Font("Segoe UI", 10);
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
 
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void txtArama_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnAra.PerformClick();
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }

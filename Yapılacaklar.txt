@@ -15,7 +15,7 @@ kart kullanýcý ekle zenbra     ------------ok
 kart kullanýcý ekle formu datagrid view saðda form bilgi doldurma vs solda----------yok gari
 personel kaydedildsin mi? güncellensin mi silinsin mi -----------ok
 okutma id olmasýn görüntüsel sicil eklensin------------ok
-bitiþ tarihi baþlangýçtan önce olamaz
+bitiþ tarihi baþlangýçtan önce olamaz--------------ok
 kullanýcý adýný yemekhane çalýþaný olarak doldur
 tüm personel ---ok
 listeleme gridden geçiþ sayýsýný sil
@@ -29,7 +29,7 @@ comboboxllara biþi yazýlamasýn
 satýrlarý büyütk
 yeni kart okutmada eðer kart pasifse ya da zaten uyarý çýksýn
 çalýþan seç foruma sicille arama gelsin
-personel aramada boşluk arayamaz
+personel aramada boşluk arayamaz--------------ok
 
 
 

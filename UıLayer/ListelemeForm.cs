@@ -104,9 +104,29 @@ namespace UıLayer
 
         //private void cmbRaporSeçimi(object sender, EventArgs e) { }
 
-        private void dtpBaslangic_ValueChanged(object sender, EventArgs e) => ListeleOkutmalar();
+        private void dtpBaslangic_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpBaslangic.Value > dtpBitis.Value)
+            {
+                MessageBox.Show("Başlangıç tarihi, bitiş tarihinden büyük olamaz.", "Tarih Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpBaslangic.Value = dtpBitis.Value.Date;
+                return;
+            }
 
-        private void dtpBitis_ValueChanged(object sender, EventArgs e) => ListeleOkutmalar();
+            ListeleOkutmalar();
+        }
+
+        private void dtpBitis_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpBitis.Value < dtpBaslangic.Value)
+            {
+                MessageBox.Show("Bitiş tarihi, başlangıç tarihinden küçük olamaz.", "Tarih Hatası", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpBitis.Value = dtpBaslangic.Value.Date;
+                return;
+            }
+
+            ListeleOkutmalar();
+        }
 
         //private void checkBox1_CheckedChanged(object sender, EventArgs e)
         //{
