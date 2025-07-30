@@ -102,9 +102,9 @@ namespace UıLayer
             string soyad = txtSoyad.Text.Trim();
             string gorev = txtGorevv.Text.Trim();
             string sicil = txtsicil.Text.Trim();
-            string gecis=txtgecis.Text.Trim();
+            string gecis = txtgecis.Text.Trim();
             bool aktifMi = comboBoxAktiflik.SelectedIndex == 0; // "Aktif" seçiliyse true, "Pasif" seçiliyse false  
-        
+
             // 1. Kontrol: Tüm alanlar dolu mu?
             if (string.IsNullOrWhiteSpace(kartID) ||
                 string.IsNullOrWhiteSpace(isim) ||
@@ -113,7 +113,7 @@ namespace UıLayer
                 string.IsNullOrWhiteSpace(sicil) ||
                 string.IsNullOrWhiteSpace(gecis))
             {
-                MessageBox.Show("Tüm alanlar (Kart ID, İsim, Soyad, Görev,Sicil, Günlük Geçiş Sayısı) doldurulmalıdır.");
+                MessageBox.Show("Tüm alanlar (Kart ID, İsim, Soyad, Görev, Sicil, Günlük Geçiş Sayısı) doldurulmalıdır.");
                 return;
             }
 
@@ -124,13 +124,22 @@ namespace UıLayer
                 return;
             }
 
-            // 3. Kontrol: Kart ID '00' ile başlamıyorsa kullanıcıya onay sor
+            // 3. Kontrol: txtgecis alanı sayı mı?
+            if (!int.TryParse(gecis, out int gecisSayisi))
+            {
+                MessageBox.Show("Günlük geçiş sayısı sadece sayısal bir değer olmalıdır.");
+                txtgecis.Focus();
+                return;
+            }
+
+            // 4. Kontrol: Kart ID '00' ile başlamıyorsa kullanıcıya isim ve soyadıyla birlikte onay sor
             if (!kartID.StartsWith("00"))
             {
-                DialogResult sonuc = MessageBox.Show($"Kart numaranız ({kartID}) kayıt edilecek. Onaylıyor musunuz?",
-                                                      "Kart Onayı",
-                                                      MessageBoxButtons.YesNo,
-                                                      MessageBoxIcon.Question);
+                DialogResult sonuc = MessageBox.Show(
+                    $"Kart numaranız ({kartID}) {isim} {soyad} adlı çalışan için kaydedilecek. Onaylıyor musunuz?",
+                    "Kart Onayı",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
                 if (sonuc != DialogResult.Yes)
                 {
@@ -139,7 +148,7 @@ namespace UıLayer
                 }
             }
 
-            // 4. Kontrol: Aynı Kart ID veritabanında var mı?
+            // 5. Kontrol: Aynı Kart ID veritabanında var mı?
             using (var context = new YemekhaneContext())
             {
                 bool kartZatenVar = context.Calisanlar.Any(c => c.calisanKartNo == kartID);
@@ -152,7 +161,7 @@ namespace UıLayer
                     txtSoyad.Clear();
                     txtGorevv.Clear();
                     txtsicil.Clear();
-                    txtgecis.Clear(); 
+                    txtgecis.Clear();
                     maskedTextBoxKartID.Focus();
                     comboBoxAktiflik.SelectedIndex = 0;
                     return;
@@ -165,7 +174,7 @@ namespace UıLayer
                     calisanSoyad = soyad,
                     calisanGorevi = gorev,
                     sicil = sicil,
-                    gecisSayısı = Convert.ToInt32(gecis), // Günlük geçiş sayısını int olarak kaydet
+                    gecisSayısı = gecisSayisi, // Sayıya dönüştürülmüş haliyle kaydedildi
                     aktiflik = aktifMi
                 };
 
@@ -186,6 +195,7 @@ namespace UıLayer
 
                 CalisanlariListele(); // Güncel listeyi göster
             }
+
 
         }
 

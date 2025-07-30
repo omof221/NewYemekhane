@@ -67,5 +67,10 @@ namespace UıLayer
                 dataGridView1.DataSource = sonuc;
             }
         }
+
+        private void CalisanSecForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
