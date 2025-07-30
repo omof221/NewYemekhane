@@ -195,11 +195,11 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // YeniYemekhaneCalisaniEkleme
+            // Kullanıcıİşlemleri
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(963, 563);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(button1);
             Controls.Add(btnSil);
             Controls.Add(btnGuncelle);
@@ -217,7 +217,7 @@
             Controls.Add(txtAd);
             Controls.Add(label1);
             Controls.Add(txtTc);
-            Name = "YeniYemekhaneCalisaniEkleme";
+            Name = "Kullanıcıİşlemleri";
             Text = "YeniYemekhaneCalisaniEkleme";
             Load += YeniYemekhaneCalisaniEkleme_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

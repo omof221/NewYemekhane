@@ -53,6 +53,15 @@ namespace UıLayer
             comboBoxAktiflik.SelectedIndex = 0;
             CalisanlariListele();
             //checkBoxAktif.Checked = true;
+
+            // ✅ TextBox ve diğer input kontrollerin yazı boyutunu büyüt
+            txtIsim.Font = new System.Drawing.Font("Segoe UI", 12);
+            txtSoyad.Font = new System.Drawing.Font("Segoe UI", 12);
+            txtGorevv.Font = new System.Drawing.Font("Segoe UI", 12);
+            txtsicil.Font = new System.Drawing.Font("Segoe UI", 12);
+            txtgecis.Font = new System.Drawing.Font("Segoe UI", 12);
+            maskedTextBoxKartID.Font = new System.Drawing.Font("Segoe UI", 12);
+            comboBoxAktiflik.Font = new System.Drawing.Font("Segoe UI", 12);
         }
 
 
@@ -257,6 +266,14 @@ namespace UıLayer
                 dataGridView1.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
                 dataGridView1.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.SteelBlue;
                 dataGridView1.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+
+                dataGridView1.RowTemplate.Height = 30;
+                dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 11);
+                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 12, FontStyle.Bold);
+
+                // ✅ Tüm sütunları yatayda eşit sığdırma
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
             }
         }
 
@@ -314,7 +331,7 @@ namespace UıLayer
                         calisan.calisanSoyad = txtSoyad.Text.Trim();
                         calisan.calisanGorevi = txtGorevv.Text.Trim();
                         calisan.sicil = txtsicil.Text.Trim();
-                        calisan.gecisSayısı = Convert.ToInt32(txtgecis.Text.Trim()); 
+                        calisan.gecisSayısı = Convert.ToInt32(txtgecis.Text.Trim());
                         calisan.aktiflik = comboBoxAktiflik.SelectedIndex == 0;
 
                         context.SaveChanges();
@@ -332,7 +349,7 @@ namespace UıLayer
                     txtSoyad.Clear();
                     txtGorevv.Clear();
                     txtsicil.Clear();
-                    txtgecis.Clear();   
+                    txtgecis.Clear();
                     maskedTextBoxKartID.Clear();
                     comboBoxAktiflik.SelectedIndex = 0;
                     maskedTextBoxKartID.Focus();
@@ -362,7 +379,7 @@ namespace UıLayer
                 txtIsim.Text = satir.Cells["Isim"].Value.ToString();
                 txtSoyad.Text = satir.Cells["Soyad"].Value.ToString();
                 txtGorevv.Text = satir.Cells["Gorev"].Value.ToString();
-                txtsicil.Text = satir.Cells["Sicil"].Value.ToString(); 
+                txtsicil.Text = satir.Cells["Sicil"].Value.ToString();
                 txtgecis.Text = satir.Cells["GecisSayısı"].Value.ToString(); // Günlük geçiş sayısını al
                 // Aktiflik durumunu combobox'a yükle
                 bool aktiflik = Convert.ToBoolean(satir.Cells["AktifMi"].Value);
@@ -377,7 +394,7 @@ namespace UıLayer
             txtSoyad.Clear();
             txtGorevv.Clear();
             txtsicil.Clear();
-            txtgecis.Clear();   
+            txtgecis.Clear();
             maskedTextBoxKartID.Clear();
             comboBoxAktiflik.SelectedIndex = 0;
             maskedTextBoxKartID.Focus();
@@ -428,7 +445,7 @@ namespace UıLayer
                         txtSoyad.Clear();
                         txtGorevv.Clear();
                         txtsicil.Clear();
-                        txtgecis.Clear();   
+                        txtgecis.Clear();
                         maskedTextBoxKartID.Clear();
                         comboBoxAktiflik.SelectedIndex = 0;
                         maskedTextBoxKartID.Focus();
@@ -472,7 +489,7 @@ namespace UıLayer
                     txtSoyad.Text = calisan.calisanSoyad;
                     txtGorevv.Text = calisan.calisanGorevi;
                     txtsicil.Text = calisan.sicil;
-                    txtgecis.Text = calisan.gecisSayısı.ToString(); 
+                    txtgecis.Text = calisan.gecisSayısı.ToString();
 
                     comboBoxAktiflik.SelectedItem = calisan.aktiflik ? "Aktif" : "Pasif";
                 }
@@ -540,6 +557,16 @@ namespace UıLayer
                 e.Handled = true;
                 e.SuppressKeyPress = true; // Enter tuşunun sesini bastır
             }
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
