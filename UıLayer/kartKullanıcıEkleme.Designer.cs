@@ -56,19 +56,19 @@ namespace UıLayer
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(564, 12);
+            dataGridView1.Location = new Point(653, 12);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(700, 765);
+            dataGridView1.Size = new Size(802, 765);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // btnKaydet
             // 
-            btnKaydet.Location = new Point(26, 653);
+            btnKaydet.Location = new Point(25, 596);
             btnKaydet.Name = "btnKaydet";
-            btnKaydet.Size = new Size(255, 29);
+            btnKaydet.Size = new Size(135, 49);
             btnKaydet.TabIndex = 1;
             btnKaydet.Text = "Kaydet";
             btnKaydet.UseVisualStyleBackColor = true;
@@ -164,9 +164,9 @@ namespace UıLayer
             // 
             // button1
             // 
-            button1.Location = new Point(303, 653);
+            button1.Location = new Point(222, 596);
             button1.Name = "button1";
-            button1.Size = new Size(255, 29);
+            button1.Size = new Size(135, 49);
             button1.TabIndex = 16;
             button1.Text = "Güncelle";
             button1.UseVisualStyleBackColor = true;
@@ -176,7 +176,7 @@ namespace UıLayer
             // 
             button2.Location = new Point(25, 688);
             button2.Name = "button2";
-            button2.Size = new Size(255, 29);
+            button2.Size = new Size(135, 49);
             button2.TabIndex = 17;
             button2.Text = "Hücreleri Temizle";
             button2.UseVisualStyleBackColor = true;
@@ -184,9 +184,9 @@ namespace UıLayer
             // 
             // button3
             // 
-            button3.Location = new Point(303, 688);
+            button3.Location = new Point(222, 688);
             button3.Name = "button3";
-            button3.Size = new Size(255, 29);
+            button3.Size = new Size(135, 49);
             button3.TabIndex = 18;
             button3.Text = "Sil";
             button3.UseVisualStyleBackColor = true;
@@ -239,7 +239,7 @@ namespace UıLayer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1270, 789);
+            ClientSize = new Size(1525, 789);
             Controls.Add(txtgecis);
             Controls.Add(label7);
             Controls.Add(txtsicil);

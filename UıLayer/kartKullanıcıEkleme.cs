@@ -44,6 +44,9 @@ namespace UıLayer
 
         private void kartKullanıcıEkleme_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;         // İsteğe bağlı: kenarlık kaldırılır
+            this.StartPosition = FormStartPosition.CenterScreen; // Ekranın ortasında başlasın
             comboBoxAktiflik.Items.Clear();
             comboBoxAktiflik.Items.Add("Aktif");
             comboBoxAktiflik.Items.Add("Pasif");
