@@ -113,7 +113,7 @@ namespace UıLayer
 
                 if (bugunkuGecisSayisi >= izinliGecisSayisi)
                 {
-                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\Kenan Doğulu - Ara Beni Lütfen (Official Video) #Festival [PHG83uTG3-8] (1).wav");
+                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarisiz");
                     player.Play();
 
                     MessageBox.Show("⚠ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
