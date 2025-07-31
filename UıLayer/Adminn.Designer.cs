@@ -102,9 +102,9 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            button4.Location = new Point(23, 12);
+            button4.Location = new Point(35, 36);
             button4.Name = "button4";
-            button4.Size = new Size(237, 85);
+            button4.Size = new Size(250, 88);
             button4.TabIndex = 20;
             button4.Text = "Yemekhane Çalışanı Giriş Portalına Geri Dön";
             button4.UseVisualStyleBackColor = true;
@@ -114,7 +114,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1902, 1033);
+            ClientSize = new Size(1400, 770);
             Controls.Add(button4);
             Controls.Add(label3);
             Controls.Add(label2);

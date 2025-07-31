@@ -35,6 +35,7 @@
             button2 = new Button();
             button4 = new Button();
             label3 = new Label();
+            button1 = new Button();
             SuspendLayout();
             // 
             // textBox1
@@ -97,6 +98,7 @@
             button4.TabIndex = 21;
             button4.Text = "Admin Girişi";
             button4.UseVisualStyleBackColor = true;
+            button4.Visible = false;
             button4.Click += button4_Click;
             // 
             // label3
@@ -110,11 +112,23 @@
             label3.Text = "Yemekhane Çalışanı Giriş  Portalı";
             label3.Click += label3_Click;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            button1.Location = new Point(1634, 120);
+            button1.Name = "button1";
+            button1.Size = new Size(180, 57);
+            button1.TabIndex = 23;
+            button1.Text = "Admin Girişi";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // yemekhaneCalisanGirisDetay
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(button1);
             Controls.Add(label3);
             Controls.Add(button4);
             Controls.Add(button2);
@@ -137,5 +151,6 @@
         private Button button2;
         private Button button4;
         private Label label3;
+        private Button button1;
     }
 }

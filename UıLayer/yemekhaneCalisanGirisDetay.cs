@@ -192,5 +192,13 @@ namespace UıLayer
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Adminn adminn = new Adminn();
+            adminn.Show();
+            this.Hide();    
+
+        }
     }
 }

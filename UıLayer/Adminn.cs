@@ -63,9 +63,9 @@ namespace UıLayer
 
         private void Adminn_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-            this.FormBorderStyle = FormBorderStyle.None;         // İsteğe bağlı: kenarlık kaldırılır
-            this.StartPosition = FormStartPosition.CenterScreen; // Ekranın ortasında başlasın
+            //this.WindowState = FormWindowState.Maximized;
+            //this.FormBorderStyle = FormBorderStyle.None;         // İsteğe bağlı: kenarlık kaldırılır
+            //this.StartPosition = FormStartPosition.CenterScreen; // Ekranın ortasında başlasın
 
         }
 
