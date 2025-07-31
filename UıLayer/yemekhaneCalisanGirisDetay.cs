@@ -24,6 +24,7 @@ namespace UıLayer
             InitializeComponent();
             textBox1.Focus();
             textBox1.Clear();
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -149,13 +150,16 @@ namespace UıLayer
         {
             textBox1.Focus();
             textBox1.Clear();
+            //this.StartPosition = FormStartPosition.CenterScreen; diğerlerinde kullan
+
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Adminn adminn = new Adminn();
             adminn.Show();
-            this.Close();   
+            this.Close();
 
         }
 
@@ -175,6 +179,16 @@ namespace UıLayer
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

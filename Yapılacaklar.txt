@@ -12,7 +12,7 @@ sicil eklenicek - PK olarak kullan-------------ok
 satrý temizle - hücreleri temizle ---------ok
 ana sayfaya dön sað-sol üst köþe
 kart kullanýcý ekle zenbra     ------------ok
-kart kullanýcý ekle formu datagrid view saðda form bilgi doldurma vs solda----------yok gari
+kart kullanýcý ekle formu datagrid view saðda form bilgi doldurma vs solda----------ok
 personel kaydedildsin mi? güncellensin mi silinsin mi -----------ok
 okutma id olmasýn görüntüsel sicil eklensin------------ok
 bitiþ tarihi baþlangýçtan önce olamaz--------------ok
@@ -21,7 +21,7 @@ tüm personel ---ok
 listeleme gridden geçiþ sayýsýný sil
 joker de ayný sil
 geçiþ count default 1 gelsin 2-3-sýnýrsýz
-tüm personel default gelsin butpný sil
+tüm personel default gelsin butpný sil---------ok
 detaylý ara olsun personel arama deðil
 personel arama gridde sicil olcak personel id deðil
 detaylý raporda her þey gelsin toplam rapoda okutma id joker geçiþ ve geçiþ sayýsý olmucak
@@ -30,6 +30,8 @@ satýrlarý büyütk
 yeni kart okutmada eðer kart pasifse ya da zaten uyarý çýksýn
 çalýþan seç foruma sicille arama gelsin
 personel aramada boşluk arayamaz--------------ok
+geçiş count 1-2-3-sonsuz combobox ile
+
 
 
 

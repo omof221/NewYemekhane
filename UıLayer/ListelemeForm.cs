@@ -80,6 +80,8 @@ namespace UıLayer
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
             dataGridView1.EnableHeadersVisualStyles = false;
 
+            dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 14);
+
             // 🧠 Form genişledikçe otomatik olarak boyutu koru
             this.Resize += (s, ev) =>
             {
@@ -478,5 +480,14 @@ namespace UıLayer
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
