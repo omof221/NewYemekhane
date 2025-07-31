@@ -88,8 +88,11 @@ namespace UıLayer
 
                 if (calisan == null)
                 {
-                    MessageBox.Show("❗ Bu kart ile kayıtlı aktif bir çalışan bulunamadı.");
+                    // ❗ Sesli uyarı
+                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarisiz.wav");
+                    player.Play();
 
+                    MessageBox.Show("❗ Bu kart ile kayıtlı aktif bir çalışan bulunamadı.");
                     maskedTextBox1.Clear();
                     maskedTextBox1.Focus();
 
@@ -103,17 +106,17 @@ namespace UıLayer
 
                 DateTime bugun = DateTime.Today;
 
-                // 🔍 Bugünkü geçişleri al (aktif ve joker olmayanlar)
                 var bugunkuGecisler = context.Okutmalar
                     .Where(o => o.calisanID == calisan.calisanID && o.OkutmaTarihi.Date == bugun && o.aktif && !o.jokerGecis)
                     .ToList();
 
                 int bugunkuGecisSayisi = bugunkuGecisler.Count;
-                int izinliGecisSayisi = calisan.gecisSayısı; // ✅ Artık geçiş hakkı buradan alınıyor
+                int izinliGecisSayisi = calisan.gecisSayısı;
 
                 if (bugunkuGecisSayisi >= izinliGecisSayisi)
                 {
-                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarisiz");
+                    // ⚠ Sesli uyarı
+                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarisiz.wav");
                     player.Play();
 
                     MessageBox.Show("⚠ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
@@ -129,14 +132,17 @@ namespace UıLayer
                     return;
                 }
 
-                // ✅ Geçiş izni varsa yeni geçişi kaydet
+                // ✅ Başarılı okutma sesi
+                SoundPlayer basariliPlayer = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarili.wav");
+                basariliPlayer.Play();
+
                 Okutmalar yeniOkutma = new Okutmalar
                 {
                     calisanID = calisan.calisanID,
                     OkutmaTarihi = DateTime.Now,
                     aktif = true,
                     jokerGecis = false,
-                    gecisCount = izinliGecisSayisi,    // Bu alan artık gerekmiyorsa yine de saklanabilir
+                    gecisCount = izinliGecisSayisi,
                     jokerGecisCount = 1
                 };
 
@@ -153,7 +159,6 @@ namespace UıLayer
                     maskedTextBox1.SelectionStart = 0;
                 }));
             }
-
 
         }
 
