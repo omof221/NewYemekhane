@@ -199,7 +199,27 @@ namespace UıLayer
         {
             Admin_Detay admin_Detay = new Admin_Detay();
             admin_Detay.Show();
-            this.Close();   
+            this.Close();
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
 
         }
     }

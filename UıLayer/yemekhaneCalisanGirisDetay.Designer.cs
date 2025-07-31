@@ -39,18 +39,18 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(451, 196);
+            textBox1.Location = new Point(847, 394);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(233, 27);
+            textBox1.Size = new Size(278, 27);
             textBox1.TabIndex = 1;
             textBox1.TextChanged += textBox1_TextChanged;
             textBox1.KeyDown += textBox1_KeyDown;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(451, 250);
+            textBox2.Location = new Point(847, 448);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(233, 27);
+            textBox2.Size = new Size(278, 27);
             textBox2.TabIndex = 2;
             textBox2.UseSystemPasswordChar = true;
             textBox2.TextChanged += textBox2_TextChanged;
@@ -59,28 +59,30 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label1.Location = new Point(357, 203);
+            label1.Location = new Point(697, 394);
             label1.Name = "label1";
-            label1.Size = new Size(33, 28);
+            label1.Size = new Size(144, 28);
             label1.TabIndex = 3;
-            label1.Text = "TC";
+            label1.Text = "KULLANICI ADI";
+            label1.Click += label1_Click_1;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label2.Location = new Point(357, 257);
+            label2.Location = new Point(744, 448);
             label2.Name = "label2";
-            label2.Size = new Size(60, 28);
+            label2.Size = new Size(85, 28);
             label2.TabIndex = 4;
-            label2.Text = "ŞİFRE";
+            label2.Text = "PAROLA";
+            label2.Click += label2_Click;
             // 
             // button2
             // 
             button2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            button2.Location = new Point(495, 333);
+            button2.Location = new Point(891, 531);
             button2.Name = "button2";
-            button2.Size = new Size(131, 46);
+            button2.Size = new Size(176, 64);
             button2.TabIndex = 5;
             button2.Text = "Giriş Yap";
             button2.UseVisualStyleBackColor = true;
@@ -88,8 +90,8 @@
             // 
             // button4
             // 
-            button4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            button4.Location = new Point(28, 333);
+            button4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            button4.Location = new Point(1634, 36);
             button4.Name = "button4";
             button4.Size = new Size(180, 57);
             button4.TabIndex = 21;
@@ -100,10 +102,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F);
-            label3.Location = new Point(335, 113);
+            label3.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label3.Location = new Point(719, 303);
             label3.Name = "label3";
-            label3.Size = new Size(418, 38);
+            label3.Size = new Size(499, 46);
             label3.TabIndex = 22;
             label3.Text = "Yemekhane Çalışanı Giriş  Portalı";
             label3.Click += label3_Click;
@@ -112,7 +114,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(label3);
             Controls.Add(button4);
             Controls.Add(button2);

@@ -55,13 +55,13 @@ namespace UıLayer
             //checkBoxAktif.Checked = true;
 
             // ✅ TextBox ve diğer input kontrollerin yazı boyutunu büyüt
-            txtIsim.Font = new System.Drawing.Font("Segoe UI", 12);
-            txtSoyad.Font = new System.Drawing.Font("Segoe UI", 12);
-            txtGorevv.Font = new System.Drawing.Font("Segoe UI", 12);
-            txtsicil.Font = new System.Drawing.Font("Segoe UI", 12);
-            txtgecis.Font = new System.Drawing.Font("Segoe UI", 12);
-            maskedTextBoxKartID.Font = new System.Drawing.Font("Segoe UI", 12);
-            comboBoxAktiflik.Font = new System.Drawing.Font("Segoe UI", 12);
+            txtIsim.Font = new System.Drawing.Font("Segoe UI", 14);
+            txtSoyad.Font = new System.Drawing.Font("Segoe UI", 14);
+            txtGorevv.Font = new System.Drawing.Font("Segoe UI", 14);
+            txtsicil.Font = new System.Drawing.Font("Segoe UI", 14);
+            txtgecis.Font = new System.Drawing.Font("Segoe UI", 14);
+            maskedTextBoxKartID.Font = new System.Drawing.Font("Segoe UI", 14);
+            comboBoxAktiflik.Font = new System.Drawing.Font("Segoe UI", 14);
         }
 
 

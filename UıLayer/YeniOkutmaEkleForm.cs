@@ -70,7 +70,7 @@ namespace UıLayer
                 dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
             }
 
-      
+
 
 
         }
@@ -229,7 +229,7 @@ namespace UıLayer
 
                     if (bugunkuGecisSayisi >= izinliGecis)
                     {
-                        MessageBox.Show("⚠️ Bu çalışanın seçilen tarihteki geçiş hakkı dolmuştur.");
+                        MessageBox.Show("⚠ Bu çalışanın seçilen tarihteki geçiş hakkı dolmuştur.");
                         maskedTextBox1.Clear();
                         maskedTextBox1.Focus();
                         return;
@@ -248,7 +248,7 @@ namespace UıLayer
 
                     context.Okutmalar.Add(yeni);
                     context.SaveChanges();
-              
+
 
                     ListeleOkutmalar();
 

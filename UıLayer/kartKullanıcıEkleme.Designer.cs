@@ -35,21 +35,21 @@ namespace UıLayer
             txtIsim = new TextBox();
             txtGorevv = new TextBox();
             txtSoyad = new TextBox();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
             maskedTextBoxKartID = new MaskedTextBox();
-            label1 = new Label();
             comboBoxAktiflik = new ComboBox();
-            label5 = new Label();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
-            label6 = new Label();
             txtsicil = new TextBox();
-            label7 = new Label();
             txtgecis = new TextBox();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label1 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -99,38 +99,6 @@ namespace UıLayer
             txtSoyad.TabIndex = 4;
             txtSoyad.KeyDown += txtSoyad_KeyDown;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label2.Location = new Point(94, 221);
-            label2.Name = "label2";
-            label2.Size = new Size(162, 38);
-            label2.TabIndex = 7;
-            label2.Text = "Çalışan İsim";
-            label2.Click += label2_Click;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label3.Location = new Point(93, 319);
-            label3.Name = "label3";
-            label3.Size = new Size(187, 38);
-            label3.TabIndex = 8;
-            label3.Text = "Çalışan Soyad";
-            label3.Click += label3_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label4.Location = new Point(93, 416);
-            label4.Name = "label4";
-            label4.Size = new Size(185, 38);
-            label4.TabIndex = 9;
-            label4.Text = "Çalışan Görev";
-            // 
             // maskedTextBoxKartID
             // 
             maskedTextBoxKartID.Location = new Point(358, 137);
@@ -141,17 +109,6 @@ namespace UıLayer
             maskedTextBoxKartID.TextChanged += maskedTextBoxKartID_TextChanged_2;
             maskedTextBoxKartID.KeyDown += maskedTextBoxKartID_KeyDown;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label1.Location = new Point(91, 126);
-            label1.Name = "label1";
-            label1.Size = new Size(196, 38);
-            label1.TabIndex = 13;
-            label1.Text = "Çalışan Kart ID";
-            label1.Click += label1_Click_1;
-            // 
             // comboBoxAktiflik
             // 
             comboBoxAktiflik.FormattingEnabled = true;
@@ -159,16 +116,6 @@ namespace UıLayer
             comboBoxAktiflik.Name = "comboBoxAktiflik";
             comboBoxAktiflik.Size = new Size(187, 28);
             comboBoxAktiflik.TabIndex = 14;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label5.Location = new Point(97, 691);
-            label5.Name = "label5";
-            label5.Size = new Size(212, 38);
-            label5.TabIndex = 15;
-            label5.Text = "Aktiflik Durumu";
             // 
             // button1
             // 
@@ -214,6 +161,74 @@ namespace UıLayer
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
+            // txtsicil
+            // 
+            txtsicil.Location = new Point(362, 518);
+            txtsicil.Name = "txtsicil";
+            txtsicil.Size = new Size(189, 27);
+            txtsicil.TabIndex = 21;
+            txtsicil.KeyDown += txtsicil_KeyDown;
+            // 
+            // txtgecis
+            // 
+            txtgecis.Location = new Point(358, 608);
+            txtgecis.Name = "txtgecis";
+            txtgecis.Size = new Size(188, 27);
+            txtgecis.TabIndex = 23;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label2.Location = new Point(94, 221);
+            label2.Name = "label2";
+            label2.Size = new Size(162, 38);
+            label2.TabIndex = 7;
+            label2.Text = "Çalışan İsim";
+            label2.Click += label2_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label3.Location = new Point(93, 319);
+            label3.Name = "label3";
+            label3.Size = new Size(187, 38);
+            label3.TabIndex = 8;
+            label3.Text = "Çalışan Soyad";
+            label3.Click += label3_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label4.Location = new Point(93, 416);
+            label4.Name = "label4";
+            label4.Size = new Size(185, 38);
+            label4.TabIndex = 9;
+            label4.Text = "Çalışan Görev";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label1.Location = new Point(91, 126);
+            label1.Name = "label1";
+            label1.Size = new Size(196, 38);
+            label1.TabIndex = 13;
+            label1.Text = "Çalışan Kart ID";
+            label1.Click += label1_Click_1;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            label5.Location = new Point(97, 691);
+            label5.Name = "label5";
+            label5.Size = new Size(212, 38);
+            label5.TabIndex = 15;
+            label5.Text = "Aktiflik Durumu";
+            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -224,14 +239,6 @@ namespace UıLayer
             label6.TabIndex = 20;
             label6.Text = "Çalışan Sicil No";
             // 
-            // txtsicil
-            // 
-            txtsicil.Location = new Point(362, 518);
-            txtsicil.Name = "txtsicil";
-            txtsicil.Size = new Size(189, 27);
-            txtsicil.TabIndex = 21;
-            txtsicil.KeyDown += txtsicil_KeyDown;
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -241,13 +248,6 @@ namespace UıLayer
             label7.Size = new Size(256, 38);
             label7.TabIndex = 22;
             label7.Text = "Günlük Geçiş Sayısı";
-            // 
-            // txtgecis
-            // 
-            txtgecis.Location = new Point(358, 608);
-            txtgecis.Name = "txtgecis";
-            txtgecis.Size = new Size(188, 27);
-            txtgecis.TabIndex = 23;
             // 
             // kartKullanıcıEkleme
             // 
