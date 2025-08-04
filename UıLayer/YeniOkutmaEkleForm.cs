@@ -96,6 +96,7 @@ namespace UıLayer
                     maskedTextBox1.Clear();
                     maskedTextBox1.Focus();
                     maskedTextBox1.SelectionStart = 0;
+                    maskedTextBox1.SelectionStart = Math.Max(0, maskedTextBox1.SelectionStart - 1);
 
                     this.BeginInvoke((MethodInvoker)(() =>
                     {
@@ -125,9 +126,11 @@ namespace UıLayer
                     maskedTextBox1.Clear();
                     maskedTextBox1.Focus();
                     maskedTextBox1.SelectionStart = 0;
+                    maskedTextBox1.SelectionStart = Math.Max(0, maskedTextBox1.SelectionStart - 1);
                     this.BeginInvoke((MethodInvoker)(() =>
                     {
                         maskedTextBox1.SelectionStart = 0;
+                        maskedTextBox1.SelectionStart = Math.Max(0, maskedTextBox1.SelectionStart - 1);
                     }));
 
                     return;
@@ -155,6 +158,7 @@ namespace UıLayer
                 maskedTextBox1.Clear();
                 maskedTextBox1.Focus();
                 maskedTextBox1.SelectionStart = 0;
+                maskedTextBox1.SelectionStart = Math.Max(0, maskedTextBox1.SelectionStart - 1);
                 this.BeginInvoke((MethodInvoker)(() =>
                 {
                     maskedTextBox1.SelectionStart = 0;
@@ -171,6 +175,7 @@ namespace UıLayer
                 maskedTextBox1.Clear();
                 maskedTextBox1.Focus();
                 maskedTextBox1.SelectionStart = 0;
+                maskedTextBox1.SelectionStart = Math.Max(0, maskedTextBox1.SelectionStart - 1);
                 return;
             }
 
@@ -203,7 +208,7 @@ namespace UıLayer
                 maskedTextBox1.Clear();
                 maskedTextBox1.Focus();
                 maskedTextBox1.SelectionStart = 0;
-                //maskedTextBox1.SelectionStart = Math.Max(0, maskedTextBox1.SelectionStart - 1);
+                maskedTextBox1.SelectionStart = Math.Max(0, maskedTextBox1.SelectionStart - 1);
 
             }
 

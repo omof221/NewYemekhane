@@ -85,6 +85,13 @@ namespace UıLayer
         {
             loglar loglar = new loglar();
             loglar.Show();
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            loglar log=new loglar();    
+            log.Show();
             this.Close();   
         }
     }
