@@ -106,6 +106,7 @@ namespace UıLayer
             maskedTextBoxKartID.Name = "maskedTextBoxKartID";
             maskedTextBoxKartID.Size = new Size(188, 27);
             maskedTextBoxKartID.TabIndex = 10;
+            maskedTextBoxKartID.MaskInputRejected += maskedTextBoxKartID_MaskInputRejected;
             maskedTextBoxKartID.TextChanged += maskedTextBoxKartID_TextChanged_2;
             maskedTextBoxKartID.KeyDown += maskedTextBoxKartID_KeyDown;
             // 

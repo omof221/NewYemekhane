@@ -141,7 +141,7 @@ namespace UıLayer
                     Basarili = calisan != null
                 };
 
-              
+
                 context.girisLoglar.Add(girisLog); // Log kaydını ekle 
                 context.SaveChanges();
 
@@ -187,6 +187,7 @@ namespace UıLayer
 
         private void yemekhaneCalisanGirisDetay_Load(object sender, EventArgs e)
         {
+            this.KeyPreview = true;
             textBox1.Focus();
             textBox1.Clear();
             //this.StartPosition = FormStartPosition.CenterScreen; diğerlerinde kullan
@@ -236,8 +237,18 @@ namespace UıLayer
         {
             Adminn adminn = new Adminn();
             adminn.Show();
-            this.Hide();    
+            this.Hide();
 
+        }
+
+        private void yemekhaneCalisanGirisDetay_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button2.PerformClick();  // Giriş butonunu tetikle
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }
