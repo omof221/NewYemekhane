@@ -60,11 +60,11 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label1.Location = new Point(697, 394);
+            label1.Location = new Point(784, 394);
             label1.Name = "label1";
-            label1.Size = new Size(144, 28);
+            label1.Size = new Size(33, 28);
             label1.TabIndex = 3;
-            label1.Text = "KULLANICI ADI";
+            label1.Text = "TC";
             label1.Click += label1_Click_1;
             // 
             // label2

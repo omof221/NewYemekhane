@@ -16,6 +16,7 @@ namespace YemekhaneEntityLayer.Entities
         public string kullaniciAdi { get; set; }
         public string sifre { get; set; }
         public bool durum { get; set; }
-        
+        // Navigation Property (1'e Çok İlişki)
+        public List<GirisLoglari> GirisLoglari { get; set; }    
     }
 }

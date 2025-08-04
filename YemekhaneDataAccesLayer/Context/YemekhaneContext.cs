@@ -18,6 +18,17 @@ namespace YemekhaneDataAccesLayer.Context
         public DbSet<Okutmalar> Okutmalar { get; set; }
         public DbSet<Admin> Adminler { get; set; }
         public DbSet<YemekhaneCalisan>  yemekhaneCalisanlar{ get; set; }
+        public DbSet<GirisLoglari> girisLoglar { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<GirisLoglari>()
+                .HasOne(gl => gl.Calisan)
+                .WithMany(c => c.GirisLoglari)
+                .HasForeignKey(gl => gl.CalisanId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 }

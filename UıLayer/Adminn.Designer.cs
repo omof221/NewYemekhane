@@ -35,6 +35,7 @@
             label2 = new Label();
             label3 = new Label();
             button4 = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -110,11 +111,23 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 16.2F);
+            button1.Location = new Point(35, 153);
+            button1.Name = "button1";
+            button1.Size = new Size(250, 59);
+            button1.TabIndex = 21;
+            button1.Text = "Loglar";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_2;
+            // 
             // Adminn
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1400, 770);
+            Controls.Add(button1);
             Controls.Add(button4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -138,5 +151,6 @@
         private Label label2;
         private Label label3;
         private Button button4;
+        private Button button1;
     }
 }

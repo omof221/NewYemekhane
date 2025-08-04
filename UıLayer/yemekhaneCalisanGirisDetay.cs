@@ -75,13 +75,54 @@ namespace UıLayer
 
         GenericRepository<YemekhaneCalisan> adminRepo = new GenericRepository<YemekhaneCalisan>();
 
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+
+        //    string tc = textBox1.Text.Trim();
+        //    string sifre = textBox2.Text;
+
+        //    // 1️⃣ Boş alan kontrolü
+        //    if (string.IsNullOrEmpty(tc) || string.IsNullOrEmpty(sifre))
+        //    {
+        //        MessageBox.Show("❗ Lütfen TC ve şifre alanlarını boş bırakmayınız.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+
+        //    using (var context = new YemekhaneContext())
+        //    {
+        //        // 2️⃣ TC ve Şifre ile çalışanı kontrol et
+        //        var calisan = context.yemekhaneCalisanlar
+        //            .FirstOrDefault(c => c.tc == tc && c.sifre == sifre);
+
+        //        if (calisan != null)
+        //        {
+        //            // 3️⃣ Ana sayfa formunu hemen aç
+        //            YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
+        //            anaSayfa.Show();  // Direkt aç, modal değil!
+
+
+
+
+        //            // Giriş başarılı mesajı otomatik 3 saniyede kapanır
+        //            AutoClosingMessageBox.Show("✅ Giriş başarılı. Hoş geldiniz!", "Bilgi", 1600);
+
+        //            this.Hide(); // Giriş formunu gizle
+        //        }
+        //        else
+        //        {
+        //            // 5️⃣ Hatalı giriş
+        //            MessageBox.Show("❌ TC veya şifre hatalı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            textBox1.Clear();
+        //            textBox1.Focus();
+        //            textBox2.Clear();
+        //        }
+        //    }
+        //}
         private void button2_Click(object sender, EventArgs e)
         {
-
             string tc = textBox1.Text.Trim();
             string sifre = textBox2.Text;
 
-            // 1️⃣ Boş alan kontrolü
             if (string.IsNullOrEmpty(tc) || string.IsNullOrEmpty(sifre))
             {
                 MessageBox.Show("❗ Lütfen TC ve şifre alanlarını boş bırakmayınız.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,40 +131,38 @@ namespace UıLayer
 
             using (var context = new YemekhaneContext())
             {
-                // 2️⃣ TC ve Şifre ile çalışanı kontrol et
                 var calisan = context.yemekhaneCalisanlar
                     .FirstOrDefault(c => c.tc == tc && c.sifre == sifre);
 
+                var girisLog = new GirisLoglari
+                {
+                    CalisanId = calisan != null ? calisan.yemekhaneCalisanId : 0,
+                    GirisZamani = DateTime.Now,
+                    Basarili = calisan != null
+                };
+
+              
+                context.girisLoglar.Add(girisLog); // Log kaydını ekle 
+                context.SaveChanges();
+
                 if (calisan != null)
                 {
-                    // 3️⃣ Ana sayfa formunu hemen aç
+                    // Giriş başarılı
                     YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
-                    anaSayfa.Show();  // Direkt aç, modal değil!
+                    anaSayfa.Show();
 
-
-
-
-                    // Giriş başarılı mesajı otomatik 3 saniyede kapanır
-                    AutoClosingMessageBox.Show("✅ Giriş başarılı. Hoş geldiniz!", "Bilgi", 1600);
-
-                    this.Hide(); // Giriş formunu gizle
+                    AutoClosingMessageBox.Show($"✅ Giriş başarılı. Hoş geldiniz {calisan.ad} {calisan.soyad}!", "Bilgi", 1600);
+                    this.Hide();
                 }
                 else
                 {
-                    // 5️⃣ Hatalı giriş
+                    // Giriş hatalı
                     MessageBox.Show("❌ TC veya şifre hatalı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     textBox1.Clear();
                     textBox1.Focus();
                     textBox2.Clear();
                 }
             }
-
-
-
-
-
-
-
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)

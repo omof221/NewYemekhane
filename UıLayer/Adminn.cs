@@ -73,12 +73,19 @@ namespace UıLayer
         {
             yemekhaneCalisanGirisDetay yemekhaneCalisanGirisDetay = new yemekhaneCalisanGirisDetay();
             yemekhaneCalisanGirisDetay.Show();
-            this.Close();   
+            this.Close();
         }
 
         private void txtSifre_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            loglar loglar = new loglar();
+            loglar.Show();
+            this.Close();   
         }
     }
 }
