@@ -60,11 +60,11 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label1.Location = new Point(697, 394);
+            label1.Location = new Point(796, 393);
             label1.Name = "label1";
-            label1.Size = new Size(144, 28);
+            label1.Size = new Size(33, 28);
             label1.TabIndex = 3;
-            label1.Text = "KULLANICI ADI";
+            label1.Text = "TC";
             label1.Click += label1_Click_1;
             // 
             // label2
@@ -92,7 +92,7 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            button4.Location = new Point(1634, 36);
+            button4.Location = new Point(1710, 279);
             button4.Name = "button4";
             button4.Size = new Size(180, 57);
             button4.TabIndex = 21;
@@ -115,7 +115,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            button1.Location = new Point(1634, 120);
+            button1.Location = new Point(1691, 12);
             button1.Name = "button1";
             button1.Size = new Size(180, 57);
             button1.TabIndex = 23;
