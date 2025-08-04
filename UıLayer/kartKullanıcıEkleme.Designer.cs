@@ -175,7 +175,8 @@ namespace UıLayer
             txtgecis.Name = "txtgecis";
             txtgecis.Size = new Size(188, 27);
             txtgecis.TabIndex = 23;
-            txtgecis.Text = "t";
+            txtgecis.Text = "1";
+            txtgecis.TextChanged += txtgecis_TextChanged;
             // 
             // label2
             // 
