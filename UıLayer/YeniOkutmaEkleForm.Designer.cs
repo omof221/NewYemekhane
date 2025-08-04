@@ -42,7 +42,7 @@
             // 
             // maskedTextBox1
             // 
-            maskedTextBox1.Location = new Point(60, 358);
+            maskedTextBox1.Location = new Point(266, 358);
             maskedTextBox1.Mask = "0000000000";
             maskedTextBox1.Name = "maskedTextBox1";
             maskedTextBox1.Size = new Size(237, 27);
@@ -63,7 +63,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 13.8F);
-            button1.Location = new Point(448, 460);
+            button1.Location = new Point(266, 575);
             button1.Name = "button1";
             button1.Size = new Size(237, 45);
             button1.TabIndex = 2;
@@ -74,7 +74,7 @@
             // btnCalisanAra
             // 
             btnCalisanAra.Font = new Font("Segoe UI", 13.8F);
-            btnCalisanAra.Location = new Point(60, 460);
+            btnCalisanAra.Location = new Point(266, 460);
             btnCalisanAra.Name = "btnCalisanAra";
             btnCalisanAra.Size = new Size(237, 45);
             btnCalisanAra.TabIndex = 3;
@@ -95,10 +95,11 @@
             // 
             // dtpFiltreTarih
             // 
-            dtpFiltreTarih.Location = new Point(448, 358);
+            dtpFiltreTarih.Location = new Point(21, 776);
             dtpFiltreTarih.Name = "dtpFiltreTarih";
             dtpFiltreTarih.Size = new Size(237, 27);
             dtpFiltreTarih.TabIndex = 5;
+            dtpFiltreTarih.Visible = false;
             dtpFiltreTarih.ValueChanged += dtpFiltreTarih_ValueChanged;
             // 
             // label1
@@ -115,7 +116,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label2.Location = new Point(123, 283);
+            label2.Location = new Point(329, 283);
             label2.Name = "label2";
             label2.Size = new Size(110, 31);
             label2.TabIndex = 7;
@@ -125,11 +126,12 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label3.Location = new Point(489, 283);
+            label3.Location = new Point(62, 701);
             label3.Name = "label3";
             label3.Size = new Size(135, 31);
             label3.TabIndex = 8;
             label3.Text = "Tarih Seçimi";
+            label3.Visible = false;
             // 
             // YeniOkutmaEkleForm
             // 

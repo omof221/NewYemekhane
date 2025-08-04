@@ -163,9 +163,9 @@
             label6.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 162);
             label6.Location = new Point(62, 524);
             label6.Name = "label6";
-            label6.Size = new Size(206, 38);
+            label6.Size = new Size(143, 38);
             label6.TabIndex = 28;
-            label6.Text = "Çalışan Sicil No";
+            label6.Text = "Çalışan TC";
             // 
             // label5
             // 
