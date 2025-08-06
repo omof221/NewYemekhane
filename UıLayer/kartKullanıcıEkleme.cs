@@ -64,7 +64,7 @@ namespace UıLayer
             comboBoxAktiflik.Font = new System.Drawing.Font("Segoe UI", 14);
             txtgecis.Text = "1";
 
-      
+
         }
 
 
@@ -121,7 +121,7 @@ namespace UıLayer
             string sicil = txtsicil.Text.Trim();
             string gecis = txtgecis.Text.Trim();
             bool aktifMi = comboBoxAktiflik.SelectedIndex == 0; // "Aktif" seçiliyse true, "Pasif" seçiliyse false  
-        
+
             // 1. Kontrol: Tüm alanlar dolu mu?
             if (string.IsNullOrWhiteSpace(kartID) ||
                 string.IsNullOrWhiteSpace(isim) ||
@@ -182,7 +182,7 @@ namespace UıLayer
                     maskedTextBoxKartID.Focus();
                     maskedTextBoxKartID.SelectionStart = 0;
                     comboBoxAktiflik.SelectedIndex = 0;
-            
+
                     return;
                 }
 
@@ -200,7 +200,8 @@ namespace UıLayer
                 context.Calisanlar.Add(yeniCalisan);
                 context.SaveChanges();
 
-                MessageBox.Show("Çalışan başarıyla kaydedildi.");
+                //MessageBox.Show("Çalışan başarıyla kaydedildi.");
+                AutoClosingMessageBox.Show($"✅ Çalışan başarıyla kaydedildi.", "Bilgi", 800);
 
                 // Temizle
                 maskedTextBoxKartID.Clear();
@@ -212,7 +213,7 @@ namespace UıLayer
                 maskedTextBoxKartID.Focus();
                 maskedTextBoxKartID.SelectionStart = 0;
                 comboBoxAktiflik.SelectedIndex = 0;
-         
+
 
                 CalisanlariListele(); // Güncel listeyi göster
             }
@@ -234,7 +235,7 @@ namespace UıLayer
             maskedTextBoxKartID.Clear(); // temizle
             maskedTextBoxKartID.Focus();
             maskedTextBoxKartID.SelectionStart = 0;
-   
+
 
         }
 
@@ -368,7 +369,7 @@ namespace UıLayer
                     maskedTextBoxKartID.Clear();
                     comboBoxAktiflik.SelectedIndex = 0;
                     maskedTextBoxKartID.Focus();
-         
+
 
                     // Listeyi yenile
                     CalisanlariListele();
@@ -466,7 +467,7 @@ namespace UıLayer
                         maskedTextBoxKartID.Clear();
                         comboBoxAktiflik.SelectedIndex = 0;
                         maskedTextBoxKartID.Focus();
-           
+
 
                         // Listeyi yenile
                         CalisanlariListele();
@@ -595,6 +596,12 @@ namespace UıLayer
 
         private void maskedTextBoxKartID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
+
+        }
+
+        private void txtIsim_TextChanged(object sender, EventArgs e)
+        {
+
 
         }
     }

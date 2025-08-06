@@ -151,7 +151,7 @@ namespace UıLayer
                     YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
                     anaSayfa.Show();
 
-                    AutoClosingMessageBox.Show($"✅ Giriş başarılı. Hoş geldiniz {calisan.ad} {calisan.soyad}!", "Bilgi", 1600);
+                    AutoClosingMessageBox.Show($"✅ Giriş başarılı. Hoş geldiniz {calisan.ad} {calisan.soyad}!", "Bilgi", 800);
                     this.Hide();
                 }
                 else

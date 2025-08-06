@@ -81,6 +81,7 @@ namespace UıLayer
             txtIsim.Name = "txtIsim";
             txtIsim.Size = new Size(188, 27);
             txtIsim.TabIndex = 3;
+            txtIsim.TextChanged += txtIsim_TextChanged;
             txtIsim.KeyDown += txtIsim_KeyDown;
             // 
             // txtGorevv
