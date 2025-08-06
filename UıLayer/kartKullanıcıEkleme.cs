@@ -33,6 +33,16 @@ namespace UıLayer
         {
 
         }
+        public void mskTxtSıfırlayıcı()
+        {
+            maskedTextBoxKartID.Clear();
+            comboBoxAktiflik.SelectedIndex = 0;
+            maskedTextBoxKartID.Focus();
+            if (maskedTextBoxKartID.SelectionStart > 0)
+            {
+                maskedTextBoxKartID.SelectionStart -= 1;
+            }
+        }
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -81,8 +91,9 @@ namespace UıLayer
                     oncekiKartID = kartID;
                 }
 
-                maskedTextBoxKartID.Text = "";
-                maskedTextBoxKartID.SelectionStart = 0;
+                //maskedTextBoxKartID.Text = "";
+                //maskedTextBoxKartID.SelectionStart = 0;
+                mskTxtSıfırlayıcı();
 
             }
         }
@@ -90,7 +101,9 @@ namespace UıLayer
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (!maskedTextBoxKartID.Focused)
-                maskedTextBoxKartID.Focus(); // Fokus hep burada kalsın
+                /* maskedTextBoxKartID.Focus();*/
+                mskTxtSıfırlayıcı();
+            // Fokus hep burada kalsın
         }
 
         //yoruma aldım
@@ -173,14 +186,16 @@ namespace UıLayer
                 if (kartZatenVar)
                 {
                     MessageBox.Show("Bu Kart ID zaten kayıtlı.");
-                    maskedTextBoxKartID.Clear();
+                   
                     txtIsim.Clear();
                     txtSoyad.Clear();
                     txtGorevv.Clear();
                     txtsicil.Clear();
                     txtgecis.Clear();
-                    maskedTextBoxKartID.Focus();
-                    maskedTextBoxKartID.SelectionStart = 0;
+                    mskTxtSıfırlayıcı();
+                    //maskedTextBoxKartID.Clear();
+                    //maskedTextBoxKartID.Focus();
+                    //maskedTextBoxKartID.SelectionStart = 0;
                     comboBoxAktiflik.SelectedIndex = 0;
             
                     return;
@@ -203,14 +218,16 @@ namespace UıLayer
                 MessageBox.Show("Çalışan başarıyla kaydedildi.");
 
                 // Temizle
-                maskedTextBoxKartID.Clear();
+              
                 txtIsim.Clear();
                 txtSoyad.Clear();
                 txtGorevv.Clear();
                 txtsicil.Clear();
                 txtgecis.Clear();
-                maskedTextBoxKartID.Focus();
-                maskedTextBoxKartID.SelectionStart = 0;
+                mskTxtSıfırlayıcı();
+                //maskedTextBoxKartID.Clear();
+                //maskedTextBoxKartID.Focus();
+                //maskedTextBoxKartID.SelectionStart = 0;
                 comboBoxAktiflik.SelectedIndex = 0;
          
 
@@ -231,10 +248,12 @@ namespace UıLayer
             File.AppendAllText(dosyaYolu, kartID + Environment.NewLine);
 
             //lblDurum.Text = $"Yazıldı: {kartID}";
-            maskedTextBoxKartID.Clear(); // temizle
-            maskedTextBoxKartID.Focus();
-            maskedTextBoxKartID.SelectionStart = 0;
-   
+
+            mskTxtSıfırlayıcı();
+            //maskedTextBoxKartID.Clear(); // temizle
+            //maskedTextBoxKartID.Focus();
+            //maskedTextBoxKartID.SelectionStart = 0;
+
 
         }
 
@@ -242,9 +261,10 @@ namespace UıLayer
         {
             this.BeginInvoke((MethodInvoker)delegate
             {
-                maskedTextBoxKartID.Clear();
-                maskedTextBoxKartID.Focus();
-                maskedTextBoxKartID.SelectionStart = 0; // imleç en başa gelsin
+                mskTxtSıfırlayıcı();
+                //maskedTextBoxKartID.Clear();
+                //maskedTextBoxKartID.Focus();
+                //maskedTextBoxKartID.SelectionStart = 0; // imleç en başa gelsin
             });
         }
 
@@ -365,10 +385,11 @@ namespace UıLayer
                     txtGorevv.Clear();
                     txtsicil.Clear();
                     txtgecis.Clear();
-                    maskedTextBoxKartID.Clear();
+                    //maskedTextBoxKartID.Clear();
                     comboBoxAktiflik.SelectedIndex = 0;
-                    maskedTextBoxKartID.Focus();
-         
+                    //maskedTextBoxKartID.Focus();
+                    mskTxtSıfırlayıcı();
+
 
                     // Listeyi yenile
                     CalisanlariListele();
@@ -411,10 +432,10 @@ namespace UıLayer
             txtGorevv.Clear();
             txtsicil.Clear();
             txtgecis.Clear();
-            maskedTextBoxKartID.Clear();
-            comboBoxAktiflik.SelectedIndex = 0;
-            maskedTextBoxKartID.Focus();
-
+            //maskedTextBoxKartID.Clear();
+            //comboBoxAktiflik.SelectedIndex = 0;
+            //maskedTextBoxKartID.Focus();
+            mskTxtSıfırlayıcı();
 
             // Listeyi yenile
             CalisanlariListele();
@@ -463,10 +484,15 @@ namespace UıLayer
                         txtGorevv.Clear();
                         txtsicil.Clear();
                         txtgecis.Clear();
-                        maskedTextBoxKartID.Clear();
+                        //maskedTextBoxKartID.Clear();
                         comboBoxAktiflik.SelectedIndex = 0;
-                        maskedTextBoxKartID.Focus();
-           
+                        //maskedTextBoxKartID.Focus();
+                        //if (maskedTextBoxKartID.SelectionStart > 0)
+                        //{
+                        //    maskedTextBoxKartID.SelectionStart -= 1;
+                        //}
+                        mskTxtSıfırlayıcı();
+
 
                         // Listeyi yenile
                         CalisanlariListele();
