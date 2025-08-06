@@ -25,9 +25,9 @@ namespace UıLayer
             //timer1.Start();
         }
         //yamok
-        //private string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
+        private string dosyaYolu = @"C:\Users\Hp\OneDrive\Desktop\KartVerileri";
         //omof
-        private string dosyaYolu = @"C:\Users\omery\OneDrive\Masaüstü\kartverileri";
+        //private string dosyaYolu = @"C:\Users\omery\OneDrive\Masaüstü\kartverileri";
         private string oncekiKartID = "";
         private void label1_Click(object sender, EventArgs e)
         {
@@ -62,6 +62,11 @@ namespace UıLayer
             txtgecis.Font = new System.Drawing.Font("Segoe UI", 14);
             maskedTextBoxKartID.Font = new System.Drawing.Font("Segoe UI", 14);
             comboBoxAktiflik.Font = new System.Drawing.Font("Segoe UI", 14);
+
+            maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
+            maskedTextBoxKartID.ResetOnPrompt = true;
+            maskedTextBoxKartID.ResetOnSpace = true;
+            maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             txtgecis.Text = "1";
         }
 
@@ -79,7 +84,8 @@ namespace UıLayer
                     oncekiKartID = kartID;
                 }
 
-                maskedTextBoxKartID.Clear(); // bir sonraki okutma için temizle
+                maskedTextBoxKartID.Text = "";
+                maskedTextBoxKartID.SelectionStart = 0; // bir sonraki okutma için temizle
             }
         }
 
@@ -574,6 +580,11 @@ namespace UıLayer
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void maskedTextBoxKartID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }

@@ -136,9 +136,11 @@
             Controls.Add(label1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
+            KeyPreview = true;
             Name = "yemekhaneCalisanGirisDetay";
             Text = "yemekhaneCalisanGirisDetay";
             Load += yemekhaneCalisanGirisDetay_Load;
+            KeyDown += yemekhaneCalisanGirisDetay_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }
