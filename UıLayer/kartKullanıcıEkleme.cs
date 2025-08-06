@@ -64,7 +64,7 @@ namespace UıLayer
             comboBoxAktiflik.Font = new System.Drawing.Font("Segoe UI", 14);
             txtgecis.Text = "1";
 
-            maskedTextBoxKartID.PromptChar = '_'; // Boşluk karakterini sıfırla
+           // maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
             maskedTextBoxKartID.ResetOnPrompt = true;
             maskedTextBoxKartID.ResetOnSpace = true;
             maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
@@ -180,9 +180,6 @@ namespace UıLayer
                 {
                     MessageBox.Show("Bu Kart ID zaten kayıtlı.");
                     maskedTextBoxKartID.Clear();
-                    maskedTextBoxKartID.PromptChar = '\0';  // Burası önemli!
-                    maskedTextBoxKartID.Focus();
-                    maskedTextBoxKartID.SelectionStart = 0;
                     txtIsim.Clear();
                     txtSoyad.Clear();
                     txtGorevv.Clear();
