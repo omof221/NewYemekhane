@@ -63,7 +63,7 @@ namespace UıLayer
             maskedTextBoxKartID.Font = new System.Drawing.Font("Segoe UI", 14);
             comboBoxAktiflik.Font = new System.Drawing.Font("Segoe UI", 14);
 
-            maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
+           // maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
             maskedTextBoxKartID.ResetOnPrompt = true;
             maskedTextBoxKartID.ResetOnSpace = true;
             maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
@@ -123,7 +123,10 @@ namespace UıLayer
             string sicil = txtsicil.Text.Trim();
             string gecis = txtgecis.Text.Trim();
             bool aktifMi = comboBoxAktiflik.SelectedIndex == 0; // "Aktif" seçiliyse true, "Pasif" seçiliyse false  
-
+          //  maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
+            maskedTextBoxKartID.ResetOnPrompt = true;
+            maskedTextBoxKartID.ResetOnSpace = true;
+            maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             // 1. Kontrol: Tüm alanlar dolu mu?
             if (string.IsNullOrWhiteSpace(kartID) ||
                 string.IsNullOrWhiteSpace(isim) ||
@@ -184,6 +187,10 @@ namespace UıLayer
                     maskedTextBoxKartID.Focus();
                     maskedTextBoxKartID.SelectionStart = 0;
                     comboBoxAktiflik.SelectedIndex = 0;
+                  //  maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
+                    maskedTextBoxKartID.ResetOnPrompt = true;
+                    maskedTextBoxKartID.ResetOnSpace = true;
+                    maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
                     return;
                 }
 
@@ -213,6 +220,10 @@ namespace UıLayer
                 maskedTextBoxKartID.Focus();
                 maskedTextBoxKartID.SelectionStart = 0;
                 comboBoxAktiflik.SelectedIndex = 0;
+              //  maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
+                maskedTextBoxKartID.ResetOnPrompt = true;
+                maskedTextBoxKartID.ResetOnSpace = true;
+                maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
                 CalisanlariListele(); // Güncel listeyi göster
             }
@@ -234,6 +245,10 @@ namespace UıLayer
             maskedTextBoxKartID.Clear(); // temizle
             maskedTextBoxKartID.Focus();
             maskedTextBoxKartID.SelectionStart = 0;
+          //  maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
+            maskedTextBoxKartID.ResetOnPrompt = true;
+            maskedTextBoxKartID.ResetOnSpace = true;
+            maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
         }
 
@@ -367,6 +382,10 @@ namespace UıLayer
                     maskedTextBoxKartID.Clear();
                     comboBoxAktiflik.SelectedIndex = 0;
                     maskedTextBoxKartID.Focus();
+                  //  maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
+                    maskedTextBoxKartID.ResetOnPrompt = true;
+                    maskedTextBoxKartID.ResetOnSpace = true;
+                    maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
                     // Listeyi yenile
                     CalisanlariListele();
@@ -412,6 +431,10 @@ namespace UıLayer
             maskedTextBoxKartID.Clear();
             comboBoxAktiflik.SelectedIndex = 0;
             maskedTextBoxKartID.Focus();
+        //     maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
+            maskedTextBoxKartID.ResetOnPrompt = true;
+            maskedTextBoxKartID.ResetOnSpace = true;
+            maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
             // Listeyi yenile
             CalisanlariListele();
@@ -463,6 +486,10 @@ namespace UıLayer
                         maskedTextBoxKartID.Clear();
                         comboBoxAktiflik.SelectedIndex = 0;
                         maskedTextBoxKartID.Focus();
+                       // maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
+                        maskedTextBoxKartID.ResetOnPrompt = true;
+                        maskedTextBoxKartID.ResetOnSpace = true;
+                        maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
 
                         // Listeyi yenile
                         CalisanlariListele();
