@@ -67,6 +67,7 @@ namespace UıLayer
             maskedTextBoxKartID.ResetOnPrompt = true;
             maskedTextBoxKartID.ResetOnSpace = true;
             maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txtgecis.Text = "1";
         }
 
 
@@ -181,6 +182,7 @@ namespace UıLayer
                     txtsicil.Clear();
                     txtgecis.Clear();
                     maskedTextBoxKartID.Focus();
+                    maskedTextBoxKartID.SelectionStart = 0;
                     comboBoxAktiflik.SelectedIndex = 0;
                     return;
                 }
@@ -209,6 +211,7 @@ namespace UıLayer
                 txtsicil.Clear();
                 txtgecis.Clear();
                 maskedTextBoxKartID.Focus();
+                maskedTextBoxKartID.SelectionStart = 0;
                 comboBoxAktiflik.SelectedIndex = 0;
 
                 CalisanlariListele(); // Güncel listeyi göster
@@ -229,6 +232,8 @@ namespace UıLayer
 
             //lblDurum.Text = $"Yazıldı: {kartID}";
             maskedTextBoxKartID.Clear(); // temizle
+            maskedTextBoxKartID.Focus();
+            maskedTextBoxKartID.SelectionStart = 0;
 
         }
 
@@ -236,6 +241,7 @@ namespace UıLayer
         {
             this.BeginInvoke((MethodInvoker)delegate
             {
+                maskedTextBoxKartID.Clear();
                 maskedTextBoxKartID.Focus();
                 maskedTextBoxKartID.SelectionStart = 0; // imleç en başa gelsin
             });
@@ -279,6 +285,8 @@ namespace UıLayer
 
                 // ✅ Tüm sütunları yatayda eşit sığdırma
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                txtgecis.Text = "1";
+
 
             }
         }
@@ -507,6 +515,7 @@ namespace UıLayer
                     txtSoyad.Clear();
                     txtGorevv.Clear();
                     txtgecis.Clear();
+                    txtgecis.Text = "1";
                     txtsicil.Clear();
                     comboBoxAktiflik.SelectedIndex = 0;
                 }
@@ -576,6 +585,11 @@ namespace UıLayer
         }
 
         private void maskedTextBoxKartID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void txtgecis_TextChanged(object sender, EventArgs e)
         {
 
         }
