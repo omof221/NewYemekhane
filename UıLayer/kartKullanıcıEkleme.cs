@@ -62,12 +62,12 @@ namespace UıLayer
             txtgecis.Font = new System.Drawing.Font("Segoe UI", 14);
             maskedTextBoxKartID.Font = new System.Drawing.Font("Segoe UI", 14);
             comboBoxAktiflik.Font = new System.Drawing.Font("Segoe UI", 14);
+            txtgecis.Text = "1";
 
            // maskedTextBoxKartID.PromptChar = '\0'; // Boşluk karakterini sıfırla
             maskedTextBoxKartID.ResetOnPrompt = true;
             maskedTextBoxKartID.ResetOnSpace = true;
             maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            txtgecis.Text = "1";
         }
 
 
@@ -85,7 +85,8 @@ namespace UıLayer
                 }
 
                 maskedTextBoxKartID.Text = "";
-                maskedTextBoxKartID.SelectionStart = 0; // bir sonraki okutma için temizle
+                maskedTextBoxKartID.SelectionStart = 0;
+
             }
         }
 
@@ -611,12 +612,12 @@ namespace UıLayer
 
         }
 
-        private void maskedTextBoxKartID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void txtgecis_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void txtgecis_TextChanged(object sender, EventArgs e)
+        private void maskedTextBoxKartID_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }
