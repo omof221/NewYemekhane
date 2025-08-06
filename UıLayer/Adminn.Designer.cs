@@ -132,6 +132,7 @@
             button2.TabIndex = 21;
             button2.Text = "Loglar";
             button2.UseVisualStyleBackColor = true;
+            button2.Visible = false;
             button2.Click += button2_Click;
             // 
             // Adminn

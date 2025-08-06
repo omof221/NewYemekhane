@@ -31,6 +31,7 @@
             button1 = new Button();
             button2 = new Button();
             label2 = new Label();
+            button3 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -66,11 +67,23 @@
             label2.Text = "Admin İşlemleri Ana Sayfası";
             label2.Click += label2_Click;
             // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            button3.Location = new Point(863, 575);
+            button3.Name = "button3";
+            button3.Size = new Size(209, 76);
+            button3.TabIndex = 7;
+            button3.Text = "Loglar";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Admin_Detay
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(button3);
             Controls.Add(label2);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -86,5 +99,6 @@
         private Button button1;
         private Button button2;
         private Label label2;
+        private Button button3;
     }
 }

@@ -134,19 +134,19 @@ namespace UıLayer
                 var calisan = context.yemekhaneCalisanlar
                     .FirstOrDefault(c => c.tc == tc && c.sifre == sifre);
 
-                var girisLog = new GirisLoglari
-                {
-                    CalisanId = calisan != null ? calisan.yemekhaneCalisanId : 0,
-                    GirisZamani = DateTime.Now,
-                    Basarili = calisan != null
-                };
-
-              
-                context.girisLoglar.Add(girisLog); // Log kaydını ekle 
-                context.SaveChanges();
-
                 if (calisan != null)
                 {
+                    // Giriş başarılıysa log kaydını ekle
+                    var girisLog = new GirisLoglari
+                    {
+                        CalisanId = calisan.yemekhaneCalisanId,
+                        GirisZamani = DateTime.Now,
+                        Basarili = true
+                    };
+
+                    context.girisLoglar.Add(girisLog);
+                    context.SaveChanges();
+
                     // Giriş başarılı
                     YemekhaneciAnaSayfa anaSayfa = new YemekhaneciAnaSayfa();
                     anaSayfa.Show();
@@ -156,13 +156,14 @@ namespace UıLayer
                 }
                 else
                 {
-                    // Giriş hatalı
+                    // Giriş hatalı → log kaydı eklenmeyecek
                     MessageBox.Show("❌ TC veya şifre hatalı.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     textBox1.Clear();
                     textBox1.Focus();
                     textBox2.Clear();
                 }
             }
+
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)

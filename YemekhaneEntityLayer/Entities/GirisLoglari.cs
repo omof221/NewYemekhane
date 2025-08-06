@@ -11,7 +11,7 @@ namespace YemekhaneEntityLayer.Entities
         public int GirisLoglariId { get; set; }
 
         // Foreign Key
-        public int CalisanId { get; set; }
+        public int? CalisanId { get; set; }
 
         // Navigation Property
         public YemekhaneCalisan Calisan { get; set; }
