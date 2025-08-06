@@ -482,7 +482,16 @@ namespace UıLayer
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            // 🧹 Seçilen Personel Listesini Sıfırla
+            secilenCalisanlar.Clear();
+            tumPersonellerSecili = true; // Tüm personeller aktif sayılır
 
+            // 📅 Tarihleri Bugünün Tarihine Çek
+            dtpBaslangic.Value = DateTime.Today;
+            dtpBitis.Value = DateTime.Today;
+
+            // 🧠 Listeyi Tamamen Default Haliyle Güncelle
+            ListeleOkutmalar();
         }
 
         private void label5_Click(object sender, EventArgs e)
