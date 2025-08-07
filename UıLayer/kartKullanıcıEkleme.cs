@@ -50,6 +50,13 @@ namespace UıLayer
 
             maskedTextBoxKartID.Clear();
             maskedTextBoxKartID.Focus();
+            int pos = maskedTextBoxKartID.SelectionStart;
+
+            // Eğer imleç zaten başta değilse, bir birim sola kaydır
+            if (pos > 0)
+            {
+                maskedTextBoxKartID.SelectionStart = pos - 1;
+            }
             maskedTextBoxKartID.SelectionStart = 0; // imleç tam başa
             maskedTextBoxKartID.SelectionStart = Math.Max(0, maskedTextBoxKartID.SelectionStart - 1);
             this.BeginInvoke((MethodInvoker)(() =>
