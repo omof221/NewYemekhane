@@ -503,8 +503,8 @@ namespace UıLayer
                         calisan.aktiflik = false;
                         context.SaveChanges();
 
-                        MessageBox.Show("Çalışan başarıyla pasif hale getirildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        //MessageBox.Show("Çalışan başarıyla pasif hale getirildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        AutoClosingMessageBox.Show($"✅ Çalışan başarıyla pasif hale getirildi.", "Bilgi", 800);
                         // Temizle ve sıfırla
                         secilenCalisanID = 0;
                         txtIsim.Clear();
