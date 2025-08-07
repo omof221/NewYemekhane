@@ -133,8 +133,9 @@ namespace UıLayer
                     // ⚠ Sesli uyarı
                     SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarisiz.wav");
                     player.Play();
+                    AutoClosingMessageBox.Show($"✅ ⚠ Bu çalışanın bugünkü geçiş hakkı dolmuştur.", "Bilgi", 3000);
 
-                    MessageBox.Show("⚠ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
+                    //MessageBox.Show("⚠ Bu çalışanın bugünkü geçiş hakkı dolmuştur.");
 
                     maskedTextBox1.Clear();
                     maskedTextBox1.Focus();
