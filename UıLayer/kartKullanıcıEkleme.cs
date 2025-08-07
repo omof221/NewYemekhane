@@ -544,8 +544,8 @@ namespace UıLayer
         {
             string girilenKartID = maskedTextBoxKartID.Text.Trim();
 
-            if (girilenKartID.Length != 10) // Veya senin sistemdeki uzunluk
-                return;
+            //if (girilenKartID.Length != 10) // Veya senin sistemdeki uzunluk
+            //    return;
 
             using (var context = new YemekhaneContext())
             {
