@@ -35,13 +35,23 @@ namespace UıLayer
         }
         public void mskTxtSıfırlayıcı()
         {
+            //maskedTextBoxKartID.Clear();
+            //comboBoxAktiflik.SelectedIndex = 0;
+            //maskedTextBoxKartID.Focus();
+            //if (maskedTextBoxKartID.SelectionStart > 0)
+            //{
+            //    maskedTextBoxKartID.SelectionStart -= 1;
+            //}
+            maskedTextBoxKartID.Mask = "0000000000"; // 10 haneli rakam
+            maskedTextBoxKartID.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            maskedTextBoxKartID.ResetOnPrompt = true;
+            maskedTextBoxKartID.ResetOnSpace = true;
+            maskedTextBoxKartID.SkipLiterals = true;
+
             maskedTextBoxKartID.Clear();
-            comboBoxAktiflik.SelectedIndex = 0;
             maskedTextBoxKartID.Focus();
-            if (maskedTextBoxKartID.SelectionStart > 0)
-            {
-                maskedTextBoxKartID.SelectionStart -= 1;
-            }
+            maskedTextBoxKartID.SelectionStart = 0; // imleç tam başa
+            maskedTextBoxKartID.SelectionStart = Math.Max(0, maskedTextBoxKartID.SelectionStart - 1);
         }
 
         private void label3_Click(object sender, EventArgs e)
