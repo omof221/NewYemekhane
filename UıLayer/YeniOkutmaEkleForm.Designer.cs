@@ -47,12 +47,13 @@
             maskedTextBox1.Name = "maskedTextBox1";
             maskedTextBox1.Size = new Size(237, 27);
             maskedTextBox1.TabIndex = 0;
+            maskedTextBox1.MaskInputRejected += maskedTextBox1_MaskInputRejected;
             maskedTextBox1.TextChanged += maskedTextBox1_TextChanged;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(762, 12);
+            dataGridView1.Location = new Point(647, 12);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1243, 1032);

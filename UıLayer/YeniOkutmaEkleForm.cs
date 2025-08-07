@@ -72,8 +72,8 @@ namespace UıLayer
                 dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
 
                 // ✅ Font büyütme
-                dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12);
-                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+                dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
 
                 // ✅ Satır yüksekliği artır
                 dataGridView1.RowTemplate.Height = 30;
@@ -343,6 +343,11 @@ namespace UıLayer
         private void dtpFiltreTarih_ValueChanged(object sender, EventArgs e)
         {
             ListeleOkutmalar();
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }
