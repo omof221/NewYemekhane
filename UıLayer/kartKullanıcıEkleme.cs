@@ -52,6 +52,10 @@ namespace UıLayer
             maskedTextBoxKartID.Focus();
             maskedTextBoxKartID.SelectionStart = 0; // imleç tam başa
             maskedTextBoxKartID.SelectionStart = Math.Max(0, maskedTextBoxKartID.SelectionStart - 1);
+            this.BeginInvoke((MethodInvoker)(() =>
+            {
+               maskedTextBoxKartID.SelectionStart = 0;
+            }));
         }
 
         private void label3_Click(object sender, EventArgs e)
