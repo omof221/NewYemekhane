@@ -386,7 +386,8 @@ namespace UıLayer
 
                         context.SaveChanges();
 
-                        MessageBox.Show("Çalışan bilgileri güncellendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("Çalışan bilgileri güncellendi.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        AutoClosingMessageBox.Show($"✅ Çalışan başarıyla güncellendi.", "Bilgi", 800);
                     }
                     else
                     {
