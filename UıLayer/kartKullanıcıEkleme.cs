@@ -200,8 +200,11 @@ namespace UıLayer
 
                 if (kartZatenVar)
                 {
-                    MessageBox.Show("Bu Kart ID zaten kayıtlı.");
-                   
+                    //MessageBox.Show("Bu Kart ID zaten kayıtlı.");
+                    AutoClosingMessageBox.Show($"✅ Bu Kart ID zaten kayıtlı.", "Bilgi", 800);
+
+
+
                     txtIsim.Clear();
                     txtSoyad.Clear();
                     txtGorevv.Clear();
@@ -475,7 +478,8 @@ namespace UıLayer
                 {
                     if (!calisan.aktiflik)
                     {
-                        MessageBox.Show("Seçilen çalışanın durumu zaten PASİF!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("Seçilen çalışanın durumu zaten PASİF!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        AutoClosingMessageBox.Show($"✅ Seçilen çalışanın durumu zaten PASİF!", "Bilgi", 800);
                         return;
                     }
 
