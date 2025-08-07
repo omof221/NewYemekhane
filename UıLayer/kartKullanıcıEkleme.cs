@@ -55,6 +55,7 @@ namespace UıLayer
             this.BeginInvoke((MethodInvoker)(() =>
             {
                maskedTextBoxKartID.SelectionStart = 0;
+                maskedTextBoxKartID.SelectionStart = Math.Max(0, maskedTextBoxKartID.SelectionStart - 1);
             }));
         }
 
