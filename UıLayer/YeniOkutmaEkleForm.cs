@@ -63,11 +63,24 @@ namespace UıLayer
 
                 dataGridView1.DataSource = liste;
 
-                // ✅ Zebra efekti (alternatif satır renkleri)
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+                // ✅ Zebra satır efekti
                 dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
+
+                // ✅ Seçili satır rengi
                 dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
                 dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+
+                // ✅ Font büyütme
+                dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 12);
+                dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+
+                // ✅ Satır yüksekliği artır
+                dataGridView1.RowTemplate.Height = 30;
+
+                // ✅ Sütun genişliğini otomatik ayarla (tam sığdır)
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
             }
 
 
