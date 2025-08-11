@@ -96,7 +96,7 @@
             // 
             // dtpFiltreTarih
             // 
-            dtpFiltreTarih.Location = new Point(21, 776);
+            dtpFiltreTarih.Location = new Point(46, 982);
             dtpFiltreTarih.Name = "dtpFiltreTarih";
             dtpFiltreTarih.Size = new Size(237, 27);
             dtpFiltreTarih.TabIndex = 5;
@@ -127,7 +127,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            label3.Location = new Point(62, 701);
+            label3.Location = new Point(76, 933);
             label3.Name = "label3";
             label3.Size = new Size(135, 31);
             label3.TabIndex = 8;

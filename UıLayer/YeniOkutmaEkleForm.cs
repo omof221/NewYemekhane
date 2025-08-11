@@ -102,7 +102,7 @@ namespace UıLayer
                 if (calisan == null)
                 {
                     // ❗ Sesli uyarı
-                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\yemekhane.basarisiz.wav");
+                    SoundPlayer player = new SoundPlayer(Application.StartupPath + @"\kayıtlıkullsnıcıbulunamadı.wav");
                     player.Play();
 
                     MessageBox.Show("❗ Bu kart ile kayıtlı aktif bir çalışan bulunamadı.");

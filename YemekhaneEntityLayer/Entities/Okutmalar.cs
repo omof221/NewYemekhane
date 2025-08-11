@@ -8,8 +8,7 @@ namespace YemekhaneEntityLayer.Entities
 {
     public class Okutmalar
     {
-        public int OkutmalarID { get; set; }
-
+       public int OkutmalarID { get; set; }
         public int calisanID { get; set; }
         public Calisan calisan { get; set; }
         public bool aktif { get; set; }
