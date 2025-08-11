@@ -32,6 +32,11 @@ yeni kart okutmada eðer kart pasifse ya da zaten uyarý çýksýn
 personel aramada boşluk arayamaz--------------ok
 geçiş count 1-2-3-sonsuz combobox ile
 
+kullanıcı zten okuttu uyarısı
+kullanıcı güncellendi otomatik kapansın
+listelemede sicille arama
+excele sicil ekleme
+
 
 
 

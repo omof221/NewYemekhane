@@ -167,12 +167,21 @@ namespace UıLayer
         private async void button3_Click(object sender, EventArgs e)
         {
             string klasorYolu = @"C:\Users\Hp\OneDrive\Desktop\excelçıktıları";
+            Directory.CreateDirectory(klasorYolu);
+
             string zamanDamgasi = DateTime.Now.ToString("dd-MM-yyyy_HH-mm-ss");
             string dosyaAdi = $"Yemek_{zamanDamgasi}.xlsx";
             string dosyaYolu = Path.Combine(klasorYolu, dosyaAdi);
 
             try
             {
+                if (comboBox1.SelectedItem == null)
+                {
+                    MessageBox.Show("Lütfen bir rapor türü seçin.", "Uyarı",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 using (var context = new YemekhaneContext())
                 {
                     DateTime baslangic = dtpBaslangic.Value.Date;
@@ -182,40 +191,55 @@ namespace UıLayer
                     {
                         var worksheet = workbook.Worksheets.Add("Yemek Raporu");
 
+                        // 1) ALINAN TOPLAM YEMEK RAPORU
                         if (comboBox1.SelectedItem.ToString() == "Alınan Toplam Yemek Raporu")
                         {
-                            var query = context.Okutmalar.Include(o => o.calisan)
-                                .Where(o => o.aktif && o.calisan.aktiflik && o.OkutmaTarihi >= baslangic && o.OkutmaTarihi <= bitis);
+                            var query = context.Okutmalar
+                                .Include(o => o.calisan)
+                                .Where(o => o.aktif &&
+                                            o.calisan.aktiflik &&
+                                            o.OkutmaTarihi >= baslangic &&
+                                            o.OkutmaTarihi <= bitis);
 
-                            if (!tumPersonellerSecili && secilenCalisanlar.Any())
+                            // Seçili personel filtresi (projenizde zaten varsa)
+                            if (!tumPersonellerSecili && secilenCalisanlar != null && secilenCalisanlar.Any())
                             {
                                 query = query.Where(o => secilenCalisanlar.Contains(o.calisanID));
                             }
 
-                            var toplamlar = await query.GroupBy(o => new
-                            {
-                                o.calisanID,
-                                o.calisan.calisanIsmi,
-                                o.calisan.calisanSoyad,
-                                o.calisan.calisanGorevi,
-                                o.calisan.calisanKartNo
-                            }).Select(g => new
-                            {
-                                g.Key.calisanID,
-                                g.Key.calisanIsmi,
-                                g.Key.calisanSoyad,
-                                g.Key.calisanGorevi,
-                                g.Key.calisanKartNo,
-                                ToplamOkutmaSayisi = g.Count()
-                            }).ToListAsync();
+                            var toplamlar = await query
+                                .GroupBy(o => new
+                                {
+                                    o.calisanID,
+                                    o.calisan.calisanIsmi,
+                                    o.calisan.calisanSoyad,
+                                    o.calisan.calisanGorevi,
+                                    o.calisan.calisanKartNo,
+                                    o.calisan.sicil
+                                })
+                                .Select(g => new
+                                {
+                                    g.Key.calisanID,
+                                    g.Key.calisanIsmi,
+                                    g.Key.calisanSoyad,
+                                    g.Key.calisanGorevi,
+                                    g.Key.calisanKartNo,
+                                    g.Key.sicil,
+                                    ToplamOkutmaSayisi = g.Count()
+                                })
+                                .OrderBy(x => x.calisanSoyad).ThenBy(x => x.calisanIsmi)
+                                .ToListAsync();
 
+                            // Başlıklar
                             worksheet.Cell(1, 1).Value = "Çalışan ID";
                             worksheet.Cell(1, 2).Value = "Ad";
                             worksheet.Cell(1, 3).Value = "Soyad";
                             worksheet.Cell(1, 4).Value = "Görev";
                             worksheet.Cell(1, 5).Value = "Kart No";
-                            worksheet.Cell(1, 6).Value = "Toplam Okutma";
+                            worksheet.Cell(1, 6).Value = "Sicil No";
+                            worksheet.Cell(1, 7).Value = "Toplam Okutma";
 
+                            // Satırlar
                             int row = 2;
                             foreach (var t in toplamlar)
                             {
@@ -224,44 +248,55 @@ namespace UıLayer
                                 worksheet.Cell(row, 3).Value = t.calisanSoyad;
                                 worksheet.Cell(row, 4).Value = t.calisanGorevi;
                                 worksheet.Cell(row, 5).Value = t.calisanKartNo;
-                                worksheet.Cell(row, 6).Value = t.ToplamOkutmaSayisi;
+                                worksheet.Cell(row, 6).Value = t.sicil;
+                                worksheet.Cell(row, 7).Value = t.ToplamOkutmaSayisi;
                                 row++;
                             }
+
+                            // Stil
                             worksheet.Columns().AdjustToContents();
                             worksheet.Style.Alignment.WrapText = true;
                             worksheet.Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
 
-
-                            var headerRange = worksheet.Range(1, 1, 1, 6); // 6 sütunluk başlık
+                            var headerRange = worksheet.Range(1, 1, 1, 7); // 7 sütun
                             headerRange.Style.Font.Bold = true;
                             headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
                             headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-
                         }
+                        // 2) DETAYLI YEMEK RAPORU
                         else if (comboBox1.SelectedItem.ToString() == "Detaylı Yemek Raporu")
                         {
                             var okutmalar = await context.Okutmalar
                                 .Include(o => o.calisan)
-                                .Where(o => o.calisan.aktiflik && o.aktif && o.OkutmaTarihi >= baslangic && o.OkutmaTarihi <= bitis)
+                                .Where(o => o.calisan.aktiflik &&
+                                            o.aktif &&
+                                            o.OkutmaTarihi >= baslangic &&
+                                            o.OkutmaTarihi <= bitis)
                                 .Select(o => new
                                 {
                                     OkutmaID = o.OkutmalarID,
                                     CalisanID = o.calisanID,
                                     Ad = o.calisan.calisanIsmi,
                                     Soyad = o.calisan.calisanSoyad,
+                                    Sicil = o.calisan.sicil,
                                     Tarih = o.OkutmaTarihi,
                                     JokerGecis = o.jokerGecis,
                                     GecisSayisi = o.gecisCount
-                                }).ToListAsync();
+                                })
+                                .OrderBy(x => x.Tarih)
+                                .ToListAsync();
 
+                            // Başlıklar
                             worksheet.Cell(1, 1).Value = "Okutma ID";
                             worksheet.Cell(1, 2).Value = "Çalışan ID";
                             worksheet.Cell(1, 3).Value = "Ad";
                             worksheet.Cell(1, 4).Value = "Soyad";
-                            worksheet.Cell(1, 5).Value = "Tarih";
-                            worksheet.Cell(1, 6).Value = "Joker Geçiş";
-                            worksheet.Cell(1, 7).Value = "Geçiş Sayısı";
+                            worksheet.Cell(1, 5).Value = "Sicil No";
+                            worksheet.Cell(1, 6).Value = "Tarih";
+                            worksheet.Cell(1, 7).Value = "Joker Geçiş";
+                            worksheet.Cell(1, 8).Value = "Geçiş Sayısı";
 
+                            // Satırlar
                             int row = 2;
                             foreach (var o in okutmalar)
                             {
@@ -269,32 +304,40 @@ namespace UıLayer
                                 worksheet.Cell(row, 2).Value = o.CalisanID;
                                 worksheet.Cell(row, 3).Value = o.Ad;
                                 worksheet.Cell(row, 4).Value = o.Soyad;
-                                worksheet.Cell(row, 5).Value = o.Tarih.ToString("g");
-                                worksheet.Cell(row, 6).Value = o.JokerGecis ? "Evet" : "Hayır";
-                                worksheet.Cell(row, 7).Value = o.GecisSayisi;
+                                worksheet.Cell(row, 5).Value = o.Sicil;
+                                worksheet.Cell(row, 6).Value = o.Tarih.ToString("g");
+                                worksheet.Cell(row, 7).Value = o.JokerGecis ? "Evet" : "Hayır";
+                                worksheet.Cell(row, 8).Value = o.GecisSayisi;
                                 row++;
                             }
 
-                            // Görsel düzenlemeler:
+                            // Stil
                             worksheet.Columns().AdjustToContents();
-                            var headerRange = worksheet.Range(1, 1, 1, 7);
+                            var headerRange = worksheet.Range(1, 1, 1, 8); // 8 sütun
                             headerRange.Style.Font.Bold = true;
                             headerRange.Style.Fill.BackgroundColor = XLColor.LightGray;
                             headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Geçerli bir rapor türü seçin.", "Uyarı",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
                         }
 
                         workbook.SaveAs(dosyaYolu);
                     }
 
-                    MessageBox.Show("Excel dosyası başarıyla oluşturuldu.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Excel dosyası başarıyla oluşturuldu.\n" + dosyaYolu, "Bilgi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Hata oluştu: " + ex.Message, "Hata",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void button1_Click_2(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null)
