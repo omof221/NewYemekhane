@@ -9,12 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="kayıtlıkullsnıcıbulunamadı.wav" />
     <None Remove="Kenan Doğulu - Ara Beni Lütfen %28Official Video%29 #Festival [PHG83uTG3-8] %281%29.wav" />
     <None Remove="yemekhane.basarili.wav" />
     <None Remove="yemekhane.basarisiz.wav" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="kayıtlıkullsnıcıbulunamadı.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Kenan Doğulu - Ara Beni Lütfen (Official Video) #Festival [PHG83uTG3-8] (1).wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

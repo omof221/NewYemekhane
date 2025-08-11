@@ -50,11 +50,12 @@ namespace YemekhaneDataAccesLayer.Repositories
             context.Update(entity);
             context.SaveChanges();
         }
-
         //public static implicit operator GenericRepository<T>(GenericRepository<Admin> v)
         //{
         //    throw new NotImplementedException();
         //}
+
+
     }
- 
+
 }

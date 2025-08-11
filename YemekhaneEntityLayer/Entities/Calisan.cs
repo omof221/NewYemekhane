@@ -20,9 +20,5 @@ namespace YemekhaneEntityLayer.Entities
         public int gecisSayısı { get; set; }
 
         public List<Okutmalar> Okutmalar { get; set; }
-
-
-
-
-    }
+ }
 }

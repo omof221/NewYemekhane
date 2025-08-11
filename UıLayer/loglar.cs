@@ -23,8 +23,8 @@ namespace UıLayer
             using (var context = new YemekhaneContext())
             {
                 var logListesi = context.girisLoglar
-                    .Include(g => g.Calisan) // Calisan bilgilerini dahil ediyoruz
-                    .OrderByDescending(g => g.GirisLoglariId) // SON EKLENENİ EN ÜSTE GETİRİR
+                    .Include(g => g.Calisan) 
+                    .OrderByDescending(g => g.GirisLoglariId) 
                     .Select(g => new
                     {
                         g.GirisLoglariId,
