@@ -1,27 +1,17 @@
 ﻿
-2. UI ler düzeltilecek ve merkeze ortlanaccak.
-
-8. listelemede kullanýcý adý gözükmesi
-
-<<<<<<< HEAD
 excelde zebrayý uygula
 aktif pasif ok yerine yazýlýcak direkt ----------hata oluşuyo en son bak tekrar
-aktif default olarak gelicek    -----------------ok
-id yerinin sütunu daralt
-sicil eklenicek - PK olarak kullan-------------ok
-satrý temizle - hücreleri temizle ---------ok
-ana sayfaya dön sað-sol üst köþe
-kart kullanýcý ekle zenbra     ------------ok
-kart kullanýcý ekle formu datagrid view saðda form bilgi doldurma vs solda----------ok
-personel kaydedildsin mi? güncellensin mi silinsin mi -----------ok
-okutma id olmasýn görüntüsel sicil eklensin------------ok
-bitiþ tarihi baþlangýçtan önce olamaz--------------ok
+
+
+
+
+
+
 kullanýcý adýný yemekhane çalýþaný olarak doldur
-tüm personel ---ok
+
 listeleme gridden geçiþ sayýsýný sil
 joker de ayný sil
-geçiþ count default 1 gelsin 2-3-sýnýrsýz
-tüm personel default gelsin butpný sil---------ok
+
 detaylý ara olsun personel arama deðil
 personel arama gridde sicil olcak personel id deðil
 detaylý raporda her þey gelsin toplam rapoda okutma id joker geçiþ ve geçiþ sayýsý olmucak
@@ -29,18 +19,14 @@ comboboxllara biþi yazýlamasýn
 satýrlarý büyütk
 yeni kart okutmada eðer kart pasifse ya da zaten uyarý çýksýn
 çalýþan seç foruma sicille arama gelsin
-personel aramada boşluk arayamaz--------------ok
-geçiş count 1-2-3-sonsuz combobox ile
+
+
 
 kullanıcı zten okuttu uyarısı
 kullanıcı güncellendi otomatik kapansın
-listelemede sicille arama
-excele sicil ekleme ---------ok
 
 
 
-
->>>>>>> 4d24e5f9a283db2bb0ef2ecdfe128f53486901cd
 
 
 
