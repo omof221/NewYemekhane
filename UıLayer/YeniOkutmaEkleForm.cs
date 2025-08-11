@@ -39,6 +39,55 @@ namespace UıLayer
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
         }
+        //private void ListeleOkutmalar()
+        //{
+        //    using (var context = new YemekhaneContext())
+        //    {
+        //        DateTime secilenTarih = dtpFiltreTarih.Value.Date;
+        //        DateTime ertesiGun = secilenTarih.AddDays(1);
+
+        //        var liste = context.Okutmalar
+        //            .Include(o => o.calisan)
+        //            .Where(o => o.aktif == true && o.OkutmaTarihi >= secilenTarih && o.OkutmaTarihi < ertesiGun)
+        //            .Select(o => new
+        //            {
+        //                o.OkutmalarID,
+        //                AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
+        //                o.OkutmaTarihi,
+        //                o.jokerGecis,
+        //                o.gecisCount,
+        //                o.aktif
+        //            })
+        //            .OrderByDescending(x => x.OkutmaTarihi)
+        //            .ToList();
+
+        //        dataGridView1.DataSource = liste;
+
+        //        // ✅ Zebra satır efekti
+        //        dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
+        //        dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
+
+        //        // ✅ Seçili satır rengi
+        //        dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+        //        dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+
+        //        // ✅ Font büyütme
+        //        dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+        //        dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
+
+        //        // ✅ Satır yüksekliği artır
+        //        dataGridView1.RowTemplate.Height = 30;
+
+        //        // ✅ Sütun genişliğini otomatik ayarla (tam sığdır)
+        //        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        //    }
+
+
+
+
+        //}
+
         private void ListeleOkutmalar()
         {
             using (var context = new YemekhaneContext())
@@ -48,10 +97,10 @@ namespace UıLayer
 
                 var liste = context.Okutmalar
                     .Include(o => o.calisan)
-                    .Where(o => o.aktif == true && o.OkutmaTarihi >= secilenTarih && o.OkutmaTarihi < ertesiGun)
+                    .Where(o => o.aktif && o.OkutmaTarihi >= secilenTarih && o.OkutmaTarihi < ertesiGun)
                     .Select(o => new
                     {
-                        o.OkutmalarID,
+                        o.OkutmalarID, // (gerekirse silmek vs. için tutuyoruz)
                         AdSoyad = o.calisan.calisanIsmi + " " + o.calisan.calisanSoyad,
                         o.OkutmaTarihi,
                         o.jokerGecis,
@@ -61,32 +110,46 @@ namespace UıLayer
                     .OrderByDescending(x => x.OkutmaTarihi)
                     .ToList();
 
-                dataGridView1.DataSource = liste;
+                // 1’den başlayarak sıra numarası ver
+                var siraliListe = liste
+                    .Select((x, i) => new
+                    {
+                        SiraNo = i + 1,        // her gün için 1’den başlar
+                        x.AdSoyad,
+                        x.OkutmaTarihi,
+                        x.jokerGecis,
+                        x.gecisCount,
+                        x.aktif,
+                        x.OkutmalarID          // görünmeyecek ama elde dursun (silme vb. için)
+                    })
+                    .ToList();
 
-                // ✅ Zebra satır efekti
+                dataGridView1.DataSource = siraliListe;
+
+                // OkutmalarID sütununu gizle (gerekliyse)
+                if (dataGridView1.Columns["OkutmalarID"] != null)
+                    dataGridView1.Columns["OkutmalarID"].Visible = false;
+
+                // Zebra & stil
                 dataGridView1.RowsDefaultCellStyle.BackColor = Color.White;
                 dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Gainsboro;
-
-                // ✅ Seçili satır rengi
                 dataGridView1.DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
                 dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-
-                // ✅ Font büyütme
                 dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 10);
                 dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11, FontStyle.Bold);
-
-                // ✅ Satır yüksekliği artır
                 dataGridView1.RowTemplate.Height = 30;
-
-                // ✅ Sütun genişliğini otomatik ayarla (tam sığdır)
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+                // Başlıkları ister düzenle
+                dataGridView1.Columns["SiraNo"].HeaderText = "Sıra";
+                dataGridView1.Columns["AdSoyad"].HeaderText = "Ad Soyad";
+                dataGridView1.Columns["OkutmaTarihi"].HeaderText = "Okutma Tarihi";
+                dataGridView1.Columns["jokerGecis"].HeaderText = "Joker";
+                dataGridView1.Columns["gecisCount"].HeaderText = "Geçiş Hakkı";
+                dataGridView1.Columns["aktif"].HeaderText = "Aktif";
             }
-
-
-
-
         }
+
         private void maskedTextBox1_TextChanged(object sender, EventArgs e)
         {
             string girilenKartID = maskedTextBox1.Text.Trim();
